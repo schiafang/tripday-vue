@@ -12,14 +12,24 @@
       />
     </div>
 
-    <!-- nav list toggle -->
-    <label class="navbar-toggle-label" for="navbar-toggle"
-      ><div class="hamburger">三</div></label
+    <!-- hambuger -->
+    <label
+      class="navlist-toggle-label"
+      for="navlist-toggle"
+      @click="showNavlist"
     >
-    <input type="checkbox" class="navbar-toggle" id="navbar-toggle" />
+      <div class="hamburger"></div>
+    </label>
+    <input
+      type="checkbox"
+      class="navlist-toggle"
+      id="navlist-toggle"
+      v-model="checked"
+    />
 
+    <div v-if="showNavlistBack" class="navlist-back" @click="hideNavList"></div>
     <!-- nav list -->
-    <div class="nav-list">
+    <div class="navlist">
       <div class="nav-item">
         登入註冊
       </div>
@@ -34,11 +44,22 @@
 </template>
 
 <script>
+
 export default {
   name: 'Navbar',
   data() {
     return {
-      notIndex: false
+      showNavlistBack: false,
+      checked: false
+    }
+  },
+  methods: {
+    hideNavList() {
+      this.checked = false
+      this.showNavlistBack = false
+    },
+    showNavlist() {
+      this.showNavlistBack = true
     }
   }
 }

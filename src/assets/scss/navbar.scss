@@ -4,6 +4,7 @@
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   z-index: 99;
@@ -13,15 +14,79 @@
   width: 80px;
   height: 30px;
   background: rgb(197, 201, 214);
-  margin-left: 15px;
+  margin-left: 30px;
 }
 
-.nav-list {
-  display: none; /*先隱藏*/
+.navlist-toggle-label {
+  position: relative;
+  height: 50px;
+  cursor: pointer;
+}
+
+.hamburger,
+.hamburger::after,
+.hamburger::before {
+  width: 20px;
+  height: 3px;
+  background: rgb(53, 52, 52);
+  margin-right: 30px;
+}
+
+.hamburger {
+  position: relative;
+  top: 25px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+  }
+}
+
+.navlist-toggle {
   position: absolute;
+  display: none;
+
+  &:checked {
+    ~ .navlist {
+      transform: scale(1, 1)
+    }
+  }
+}
+
+.navlist-back {
+  position: absolute;
+  top:0;
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  opacity: .8;
+}
+
+.navlist {
+  position: absolute;
+  z-index: 999;
   height: 100vh;
   width: 200px;
   top: 0;
   right: 0;
   background-color: rgb(202, 223, 211);
+  transform: scale(0, 1);
+  transition: transform 0.3s ease-out;
+  transform-origin: right;
+}
+
+@media screen and (min-width: 996px) {
+  .hamburger {
+    display: none;
+  }
+
+  .nav-list {
+    all: unset;
+  }
 }
