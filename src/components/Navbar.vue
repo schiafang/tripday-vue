@@ -99,11 +99,11 @@
         </div>
       </div> -->
 
-      <div v-if="!isSmallWindow" class="nav-item">
+      <div v-if="!isSmallWindow && isAuthenticted" class="nav-item">
         <router-link to="/cart">購物車</router-link>
       </div>
 
-      <div v-if="!isSmallWindow" class="nav-item">
+      <div v-if="!isSmallWindow && isAuthenticted" class="nav-item">
         <img
           :src="user.avatar"
           alt="avatar"
@@ -189,15 +189,15 @@ export default {
     showNavlist() {
       this.showNavlistBack = true
     },
+    toggleDeskTopNavList() {
+      this.showAuthNavList = !this.showAuthNavList
+    },
     fetchUser() {
       this.user = dummyUser
     },
     logout() {
       this.isAuthenticted = false
     },
-    toggleDeskTopNavList() {
-      this.showAuthNavList = !this.showAuthNavList
-    }
   }
 }
 </script>

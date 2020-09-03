@@ -27,16 +27,18 @@ export default {
 <style lang="scss" scoped>
 @media screen and (min-width: 996px) {
   .product-info {
-    background-color: rgb(21, 117, 61);
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 300px;
-    grid-template-rows: 280px minmax(500px, 1fr) auto;
+    grid-template-rows: 350px minmax(500px, 1fr) auto;
     grid-template-areas: 'cover cover' 'content right' 'comment .';
+    margin-top: 100px;
   }
   .product-cover {
     grid-area: cover;
+
     img {
+      border-radius: 10px;
       object-fit: cover;
     }
   }

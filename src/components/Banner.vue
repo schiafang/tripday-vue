@@ -15,7 +15,7 @@
 .banner {
   background-color: rgb(201, 195, 191);
   width: 100%;
-  height: 200px;
+  height: 300px;
   position: relative;
 }
 

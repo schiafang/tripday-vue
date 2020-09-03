@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Index from '../views/Index.vue'
 import NotFound from '../views/NotFound.vue'
 
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,6 +20,26 @@ const routes = [
     path: '/user',
     name: 'User',
     component: () => import('../views/User')
+  },
+  {
+    path: '/user/orderlist',
+    name: 'OrderList',
+    component: () => import('../views/OrderList')
+  },
+  {
+    path: '/user/favorites',
+    name: 'Favorites',
+    component: () => import('../views/Favorites')
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('../views/Cart')
+  },
+  {
+    path: '/booking',
+    name: 'Booking',
+    component: () => import('../views/Booking')
   },
   {
     path: '*',
