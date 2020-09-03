@@ -3,9 +3,8 @@
     <!-- Banner -->
     <Banner />
 
-    <!-- Theme -->
     <div class="container">
-      <Theme />
+      <!-- Theme -->
 
       <!-- top city -->
       <TopCities />
@@ -26,15 +25,13 @@
 
 <script>
 import Banner from '../components/Banner'
-import Theme from '../components/Theme'
 import TopCities from '../components/TopCities'
 import ProductCard from '../components/ProductCard'
-
 
 export default {
   name: 'Index',
   components: {
-    Banner, Theme, TopCities, ProductCard
+    Banner, TopCities, ProductCard
   }
 }
 </script>

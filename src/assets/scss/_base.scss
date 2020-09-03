@@ -1,0 +1,10 @@
+$main-blue: #26bec9;
+$main-gray: #666666;
+
+/*nav使用者漸層背景*/
+%userBackgroundGradient {
+  background: -moz-linear-gradient(-45deg,  #b8e0d8 0%, #007a99 100%);
+  background: -webkit-linear-gradient(-45deg,  #b8e0d8 0%,#007a99 100%); 
+  background: linear-gradient(135deg,  #b8e0d8 0%,#007a99 100%);
+}
+

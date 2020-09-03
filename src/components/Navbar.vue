@@ -12,32 +12,104 @@
       />
     </div>
 
-    <!-- hambuger -->
+    <!-- hambuger/nav-list-toggle -->
     <label
-      class="navlist-toggle-label"
-      for="navlist-toggle"
+      class="nav-list-toggle-label"
+      for="nav-list-toggle"
       @click="showNavlist"
     >
       <div class="hamburger"></div>
     </label>
     <input
       type="checkbox"
-      class="navlist-toggle"
-      id="navlist-toggle"
+      class="nav-list-toggle"
+      id="nav-list-toggle"
       v-model="checked"
     />
+    <div
+      v-if="showNavlistBack && isSmallWindow"
+      class="nav-list-back"
+      @click="hideNavList"
+    ></div>
 
-    <div v-if="showNavlistBack" class="navlist-back" @click="hideNavList"></div>
     <!-- nav list -->
-    <div class="navlist">
-      <div class="nav-item">
-        登入註冊
+    <div class="nav-list">
+      <div
+        class="nav-list-auth"
+        v-if="isAuthenticted"
+        v-bind:style="{ display }"
+      >
+        <router-link to="/user" @click="hideNavList">
+          <div class="nav-item-user">
+            <img :src="user.avatar" alt="avatar" class="user-image" />
+            <span class="user-name">
+              {{ user.name }}
+            </span>
+          </div>
+        </router-link>
+
+        <router-link to="/user/orderlist" @click="hideNavList">
+          <div class="nav-item-link ">
+            訂單管理
+          </div>
+        </router-link>
+
+        <router-link to="/user/favorites" @click="hideNavList">
+          <div class="nav-item-link ">
+            我的收藏
+          </div>
+        </router-link>
+
+        <div class="nav-item-link nav-item-logout" @click="logout">
+          登出
+        </div>
       </div>
-      <div class="nav-item">
-        TWD
+
+      <div v-else>
+        <div class="nav-item-link nav-item-sign">
+          登入註冊
+        </div>
       </div>
-      <div class="nav-item">
-        繁體中文
+
+      <div class="nav-item nav-item-currency">
+        <label for="dropdown-currency-toggle" class="dropdown-currency-label"
+          >TWD</label
+        >
+        <input
+          type="checkbox"
+          id="dropdown-currency-toggle"
+          class="dropdown-currency-toggle"
+        />
+        <div class="dropdown-currency-content">
+          <a href="#" class="dropdown-link nav-item-link">USD 美元</a>
+        </div>
+      </div>
+
+      <!-- <div class="nav-item-language dropdown">
+        <label for="dropdown-language" class="dropdown-language-label"
+          >繁體中文</label
+        >
+        <input
+          type="checkbox"
+          id="dropdown-language"
+          class="dropdown-language"
+        />
+        <div class="dropdown-language-content">
+          <a href="#" class="nav-item-link">English</a>
+        </div>
+      </div> -->
+
+      <div v-if="!isSmallWindow" class="nav-item">
+        <router-link to="/cart">購物車</router-link>
+      </div>
+
+      <div v-if="!isSmallWindow" class="nav-item">
+        <img
+          :src="user.avatar"
+          alt="avatar"
+          class="user-image"
+          @click="toggleDeskTopNavList"
+        />
       </div>
     </div>
   </div>
@@ -45,12 +117,68 @@
 
 <script>
 
+const dummyUser = {
+  name: 'Carey Sung',
+  avatar: 'https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=845&q=80',
+  isAdmin: false
+}
+
 export default {
   name: 'Navbar',
   data() {
     return {
       showNavlistBack: false,
-      checked: false
+      checked: false,
+      user: {
+        name: '',
+        avatar: '',
+        isAdmin: false
+      },
+      isAuthenticted: false,
+      //監控螢幕大小
+      screenWidth: window.innerWidth,
+      isSmallWindow: false,
+      //切換授權後的 nav-list 的顯示狀態
+      showAuthNavList: false,
+      display: 'block'
+    }
+  },
+  created() {
+    this.fetchUser()
+    this.isAuthenticted = true
+    if (this.screenWidth < 996) this.isSmallWindow = true
+    if (this.screenWidth > 996) this.display = 'none'
+  },
+  mounted() {
+    const that = this
+    window.onresize = () => {
+      return (() => {
+        that.screenWidth = window.innerWidth
+      })()
+    }
+  },
+  watch: {
+    // eslint-disable-next-line
+    $route(to, from) {
+      this.checked = false
+      this.showNavlistBack = false
+      this.showAuthNavList = false
+    },
+    //監控螢幕變化
+    screenWidth() {
+      if (this.screenWidth < 996) {
+        this.isSmallWindow = true
+        this.display = 'block'
+      } else {
+        this.isSmallWindow = false
+        this.display = 'none'
+      }
+    },
+    //監控是否顯示授權後的nav-list
+    showAuthNavList() {
+      if (this.screenWidth < 996) this.display = 'block'
+      if (this.screenWidth > 996 && this.showAuthNavList) this.display = 'block'
+      if (this.screenWidth > 996 && !this.showAuthNavList) this.display = 'none'
     }
   },
   methods: {
@@ -60,6 +188,15 @@ export default {
     },
     showNavlist() {
       this.showNavlistBack = true
+    },
+    fetchUser() {
+      this.user = dummyUser
+    },
+    logout() {
+      this.isAuthenticted = false
+    },
+    toggleDeskTopNavList() {
+      this.showAuthNavList = !this.showAuthNavList
     }
   }
 }
