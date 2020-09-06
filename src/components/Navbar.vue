@@ -60,6 +60,12 @@
           </div>
         </router-link>
 
+        <router-link to="/admin" v-if="user.isAdmin" @click="hideNavList"
+          ><div class="nav-item-link admin-link">
+            管理者後台
+          </div></router-link
+        >
+
         <div class="nav-item-link nav-item-logout" @click="logout">
           登出
         </div>
@@ -120,7 +126,7 @@
 const dummyUser = {
   name: 'Carey Sung',
   avatar: 'https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=845&q=80',
-  isAdmin: false
+  isAdmin: true
 }
 
 export default {

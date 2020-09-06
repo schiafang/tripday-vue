@@ -42,6 +42,11 @@ const routes = [
     component: () => import('../views/Booking')
   },
   {
+    path: '/admin',
+    name: 'AdminPage',
+    component: () => import('../views/AdminPage')
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: NotFound
