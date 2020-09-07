@@ -45,11 +45,12 @@
             <span class="user-name">
               {{ user.name }}
             </span>
+            <i class="fas fa-cog user-setting"></i>
           </div>
         </router-link>
 
         <router-link to="/user/orderlist" @click="hideNavList">
-          <div class="nav-item-link ">
+          <div class="nav-item-link">
             訂單管理
           </div>
         </router-link>
@@ -148,7 +149,7 @@ export default {
   },
   created() {
     this.fetchUser()
-    this.isAuthenticted = false
+    this.isAuthenticted = true
     if (this.screenWidth < 996) this.isSmallWindow = true
     if (this.screenWidth > 996) this.display = 'none'
   },

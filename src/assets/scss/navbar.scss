@@ -92,6 +92,7 @@
   height: 90px;
   @extend %userBackgroundGradient;
   align-items: center;
+  position: relative;
 
   .user-image {
     margin: 0 15px;
@@ -105,6 +106,12 @@
     font-size: 1rem;
     font-weight: 600;
     color: rgb(255, 255, 255);
+  }
+  .user-setting {
+    font-size: 1.2rem;
+    color: white;
+    position: absolute;
+    right: 20px;
   }
 }
 
@@ -197,24 +204,24 @@
     position: absolute;
     box-shadow: 1px 2px 3px 1px rgba($color: #272727, $alpha: .1);
 
-    .nav-item-user {
-      background: transparent;
-      border-bottom: 1.5px solid rgb(218, 212, 212);
-      border-radius: 12px 12px 0 0;
-
-      &:hover {
-        background-color: rgb(184, 212, 212);
-      }
-  
-      .user-name {
-        color: $main-gray;
-      }
-    }
-
     .nav-item-logout {
       padding: 10px 20px;
       margin: 10px 0;
       border-top: 1.5px solid rgb(226, 226, 226);
+    }
+  }
+
+  .nav-item-user {
+    background: transparent;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 1.5px solid rgb(218, 212, 212);
+
+    &:hover {
+      background-color: rgb(184, 212, 212);
+    }
+    .user-name,
+    .user-setting {
+      color: $main-gray;
     }
   }
 
@@ -236,12 +243,13 @@
   }
 
   .nav-item-link {
-    width: 210px;
+    width: 100%;
   }
 
   .nav-item-currency {
     margin-top: 3px;
     position: relative;
+    margin-right: 120px;
   }
 
   .dropdown-currency-label {

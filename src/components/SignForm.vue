@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" max-width="450px">
       <template v-slot:activator="{ on, attrs }">
-        <div class="nav-item-link nav-item-sign" v-bind="attrs" v-on="on">
+        <div class="nav-item-sign" v-bind="attrs" v-on="on">
           登入註冊
         </div>
         <!-- <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">登入註冊 </v-btn> -->

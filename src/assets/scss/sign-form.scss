@@ -1,10 +1,9 @@
 @import 'base';
 
 .nav-item-sign {
-  padding: 10px 30px;
-  &:hover {
-    background: #eeeeee;
-  }
+  padding: 10px 25px;
+  width: 320px;
+  margin: 10px 0;
 }
 
 .dialog-content {
@@ -109,4 +108,15 @@
     cursor: pointer;
     text-decoration: underline;
   }
+}
+
+@media screen and (min-width: 996px) {
+  .nav-item-sign {
+    position: absolute;
+    top: 15px;
+    left: 120px;
+    padding: 0;
+    margin: 0;
+  }
+
 }
