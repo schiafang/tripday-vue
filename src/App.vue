@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <Navbar />
+    <v-app>
+      <Navbar />
 
-    <div class="main-container">
-      <router-view />
-    </div>
+      <div class="main-container">
+        <router-view />
+      </div>
 
-    <Footer />
+      <Footer />
+    </v-app>
   </div>
 </template>
 

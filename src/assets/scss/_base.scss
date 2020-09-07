@@ -1,5 +1,12 @@
 $main-blue: #26bec9;
 $main-gray: #666666;
+$light-gray: #EEEEEE;
+
+@mixin cursorPointer {
+  &:hover {
+    cursor: pointer;
+  }
+}
 
 /*nav使用者漸層背景*/
 %userBackgroundGradient {

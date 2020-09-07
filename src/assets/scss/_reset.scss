@@ -3,7 +3,8 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Avenir',Helvetica,'Noto Sans TC', sans-serif; 
+  // font-family: 'Avenir',Helvetica,'Noto Sans TC', sans-serif; 
+  font-family: 'Noto Sans TC', sans-serif; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -105,5 +106,5 @@ textarea {
 ::placeholder {
   font-family: "Noto Sans TC", sans-serif; 
   font-size: .9rem;
-  color: #D2D2D2;
+  color: #808080;
 }

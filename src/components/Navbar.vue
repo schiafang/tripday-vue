@@ -72,9 +72,8 @@
       </div>
 
       <div v-else>
-        <div class="nav-item-link nav-item-sign">
-          登入註冊
-        </div>
+        <!--登入註冊彈出視窗-->
+        <SignForm />
       </div>
 
       <div class="nav-item nav-item-currency">
@@ -106,10 +105,6 @@
       </div> -->
 
       <div v-if="!isSmallWindow && isAuthenticted" class="nav-item">
-        <router-link to="/cart">購物車</router-link>
-      </div>
-
-      <div v-if="!isSmallWindow && isAuthenticted" class="nav-item">
         <img
           :src="user.avatar"
           alt="avatar"
@@ -122,15 +117,17 @@
 </template>
 
 <script>
+import SignForm from './SignForm'
 
 const dummyUser = {
   name: 'Carey Sung',
   avatar: 'https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=845&q=80',
-  isAdmin: true
+  isAdmin: false
 }
 
 export default {
   name: 'Navbar',
+  components: { SignForm },
   data() {
     return {
       showNavlistBack: false,
@@ -151,7 +148,7 @@ export default {
   },
   created() {
     this.fetchUser()
-    this.isAuthenticted = true
+    this.isAuthenticted = false
     if (this.screenWidth < 996) this.isSmallWindow = true
     if (this.screenWidth > 996) this.display = 'none'
   },
