@@ -149,7 +149,7 @@ export default {
   },
   created() {
     this.fetchUser()
-    this.isAuthenticted = true
+    this.isAuthenticted = false
     if (this.screenWidth < 996) this.isSmallWindow = true
     if (this.screenWidth > 996) this.display = 'none'
   },

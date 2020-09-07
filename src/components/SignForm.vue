@@ -16,7 +16,7 @@
 
         <!-- sign in form -->
         <div class="sign-form sign-in-form" v-if="showSignInForm">
-          <form action="">
+          <form @submit.stop.prevent="handleSignInSubmit">
             <div class="form-title">
               會員帳號登入
             </div>
@@ -54,7 +54,7 @@
 
         <!-- sign up form -->
         <div class="sign-form sign-up-form" v-else>
-          <form action="">
+          <form @submit.stop.prevent="handleSignUpSubmit">
             <div class="form-title">
               免費註冊
             </div>
@@ -90,7 +90,7 @@
                 type="password"
                 placeholder="請再次輸入密碼"
                 class="sign-check-password sign-input"
-                v-model="checkPassword"
+                v-model="confirmPassword"
                 required
               />
             </div>
@@ -107,6 +107,9 @@
 </template>
 
 <script>
+import authorizationAPI from '../apis/authorization'
+import { Toast } from '../utils/helpers'
+/* eslint-disable */
 
 export default {
   data: () => ({
@@ -114,8 +117,70 @@ export default {
     showSignInForm: true,
     email: '',
     password: '',
-    checkPassword: ''
+    confirmPassword: ''
   }),
+  computed: {
+    cleanForm: {
+      get() {
+        console.log('get')
+        return this.dialog
+        // if (this.dialog === !this.dialog || this.showSignInForm === !this.showSignInForm) {
+        //   console.log(this.email)
+        //   console.log(this.dialog)
+        //   return this.email = ''
+        //   this.password = ''
+        // }
+      },
+      sset() {
+        return this.email = ''
+        this.password = ''
+      }
+    }
+  },
+  methods: {
+    async handleSignInSubmit() {
+      try {
+        if (!this.email || !this.password) {
+          Toast.fire({
+            icon: 'warning',
+            title: '請填入 Email 和 Password'
+          })
+          return
+        }
+
+        const res = await authorizationAPI.singIn({ email: this.email, password: this.password })
+
+        if (res.data.status !== 'success') { throw new Error(data.message) } //攔截非200-299的錯誤
+
+        localStorage.setItem('token', res.data.token)
+        this.dialog = false
+
+      } catch (error) {
+        Toast.fire({
+          icon: 'error',
+          title: '帳號密碼錯誤'
+        })
+      }
+    },
+    async handleSignUpSubmit() {
+      try {
+        if (!this.email || !this.password || !this.confirmPassword) {
+          Toast.fire({
+            icon: 'warning',
+            title: '請完整填寫寫表單'
+          })
+          return
+        }
+
+        const res = await authorizationAPI.singUp({ email: this.email, password: this.password, confirmPassword: this.confirmPassword })
+
+        if (res.data.status !== 'success') { throw new Error(data.message) }
+        this.dialog = false
+
+      } catch (error) { }
+
+    }
+  }
 }
 </script>
 
