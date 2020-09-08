@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <!-- navbrand index link -->
-    <router-link to="/"><div class="nav-brand">Logo</div></router-link>
+    <router-link to="/"><div class="nav-brand">tripday</div></router-link>
 
     <!-- 離開首頁後的搜尋欄 -->
     <div v-if="$route.name !== 'Index'">
@@ -36,7 +36,7 @@
     <div class="nav-list">
       <div
         class="nav-list-auth"
-        v-if="isAuthenticted"
+        v-if="isAuthenticated"
         v-bind:style="{ display }"
       >
         <router-link to="/user" @click="hideNavList">
@@ -67,7 +67,7 @@
           </div></router-link
         >
 
-        <div class="nav-item-link nav-item-logout" @click="logout">
+        <div class="nav-item-link nav-item-logout">
           登出
         </div>
       </div>
@@ -105,7 +105,7 @@
         </div>
       </div> -->
 
-      <div v-if="!isSmallWindow && isAuthenticted" class="nav-item">
+      <div v-if="!isSmallWindow && isAuthenticated" class="nav-item">
         <img
           :src="user.avatar"
           alt="avatar"
@@ -119,12 +119,7 @@
 
 <script>
 import SignForm from './SignForm'
-
-const dummyUser = {
-  name: 'Carey Sung',
-  avatar: 'https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=845&q=80',
-  isAdmin: false
-}
+import { mapState } from 'vuex'
 
 export default {
   name: 'Navbar',
@@ -133,12 +128,6 @@ export default {
     return {
       showNavlistBack: false,
       checked: false,
-      user: {
-        name: '',
-        avatar: '',
-        isAdmin: false
-      },
-      isAuthenticted: false,
       //監控螢幕大小
       screenWidth: window.innerWidth,
       isSmallWindow: false,
@@ -148,8 +137,6 @@ export default {
     }
   },
   created() {
-    this.fetchUser()
-    this.isAuthenticted = false
     if (this.screenWidth < 996) this.isSmallWindow = true
     if (this.screenWidth > 996) this.display = 'none'
   },
@@ -185,6 +172,9 @@ export default {
       if (this.screenWidth > 996 && !this.showAuthNavList) this.display = 'none'
     }
   },
+  computed: {
+    ...mapState(['isAuthenticated', 'user'])
+  },
   methods: {
     hideNavList() {
       this.checked = false
@@ -195,13 +185,7 @@ export default {
     },
     toggleDeskTopNavList() {
       this.showAuthNavList = !this.showAuthNavList
-    },
-    fetchUser() {
-      this.user = dummyUser
-    },
-    logout() {
-      this.isAuthenticted = false
-    },
+    }
   }
 }
 </script>

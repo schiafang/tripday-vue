@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" max-width="450px">
       <template v-slot:activator="{ on, attrs }">
         <div class="nav-item-sign" v-bind="attrs" v-on="on">
-          登入註冊
+          登入/註冊
         </div>
         <!-- <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">登入註冊 </v-btn> -->
       </template>
@@ -110,7 +110,6 @@
 import authorizationAPI from '../apis/authorization'
 import { Toast } from '../utils/helpers'
 /* eslint-disable */
-
 export default {
   data: () => ({
     dialog: false,
@@ -153,6 +152,8 @@ export default {
         if (res.data.status !== 'success') { throw new Error(data.message) } //攔截非200-299的錯誤
 
         localStorage.setItem('token', res.data.token)
+        console.log(res.data.user)
+        this.$store.commit('setCurrentUser', res.data.user)
         this.dialog = false
 
       } catch (error) {
