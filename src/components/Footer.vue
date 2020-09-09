@@ -6,7 +6,8 @@
 
 <style scoped>
 .footer {
-  height: 300px;
+  opacity: 0;
+  height: 200px;
   width: 100%;
   background: rgb(106, 107, 107);
 }

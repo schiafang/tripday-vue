@@ -1,7 +1,9 @@
 // $main-blue: #26bec9;
 // $main-blue: #2E86AB;
 // $main-blue: #048BA8;
-$main-blue: #2292A4;
+// $main-blue: #2292A4;
+$main-blue: #0B7A75;
+
 $main-white: #F5EFED;
 
 
@@ -11,6 +13,7 @@ $main-black:#232528;
 $light-gray: #EEEEEE;
 $border-gray:#E6E6E6;
 $yellow: #F5F749;
+$red: #7B2D26;
 
 @mixin cursorPointer {
   &:hover {
