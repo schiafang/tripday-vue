@@ -24,8 +24,11 @@
           <div class="card-title">
             <i class="fa fa-flash title-flash"></i>{{ product.title }}
           </div>
-          <div class="card-ordered">15K+ 已訂購</div>
+          <div class="card-ordered">
+            <i class="fab fa-hotjar"></i> 15K+ 已訂購
+          </div>
           <div class="card-place">
+            <i class="fas fa-map-marker-alt"></i>
             {{ product.location.country }} {{ product.location.city }}
           </div>
           <div class="card-rating">
@@ -185,10 +188,18 @@ export default {
 
   .card-ordered {
     grid-area: ordered;
+    i {
+      color: $gray;
+      margin-right: 3px;
+    }
   }
 
   .card-place {
     grid-area: place;
+    i {
+      color: $gray;
+      margin-right: 3px;
+    }
   }
 
   .card-rating {
