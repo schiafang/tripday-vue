@@ -94,7 +94,6 @@
                 required
               />
             </div>
-
             <button class="sign-up-btn">註冊</button>
           </form>
           <div class="sign-up-link" @click="showSignInForm = true">
@@ -116,27 +115,22 @@ export default {
     showSignInForm: true,
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   }),
-  computed: {
-    cleanForm: {
-      get() {
-        console.log('get')
-        return this.dialog
-        // if (this.dialog === !this.dialog || this.showSignInForm === !this.showSignInForm) {
-        //   console.log(this.email)
-        //   console.log(this.dialog)
-        //   return this.email = ''
-        //   this.password = ''
-        // }
-      },
-      sset() {
-        return this.email = ''
-        this.password = ''
-      }
+  watch: {
+    showSignInForm() {
+      return this.clearForm()
+    },
+    dialog() {
+      return this.clearForm()
     }
   },
   methods: {
+    clearForm() {
+      this.email = ''
+      this.password = ''
+      this.confirmPassword = ''
+    },
     async handleSignInSubmit() {
       try {
         if (!this.email || !this.password) {
