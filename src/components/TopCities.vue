@@ -1,7 +1,7 @@
 <template>
   <div class="top-cities">
     <div class="top-cities-title">
-      <h2 @mouseover="mouseover">探索熱門城市</h2>
+      <h2>探索熱門城市</h2>
     </div>
     <div class="top-cities-content">
       <router-link
@@ -84,6 +84,7 @@ export default {
 <style lang="scss" scoped>
 .top-cities {
   height: 350px;
+  margin: 100px 0;
 }
 
 .top-cities-title {

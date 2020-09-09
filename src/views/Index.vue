@@ -10,15 +10,7 @@
       <TopCities />
 
       <!-- top product -->
-      <div>top-products</div>
-      <div class="top-products">
-        <router-link to="/products/1">
-          <ProductCard />
-        </router-link>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-      </div>
+      <TopProducts />
     </div>
   </div>
 </template>
@@ -26,12 +18,12 @@
 <script>
 import Banner from '../components/Banner'
 import TopCities from '../components/TopCities'
-import ProductCard from '../components/ProductCard'
+import TopProducts from '../components/TopProducts'
 
 export default {
   name: 'Index',
   components: {
-    Banner, TopCities, ProductCard
+    Banner, TopCities, TopProducts
   }
 }
 </script>
