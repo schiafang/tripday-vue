@@ -50,6 +50,7 @@
 
       div {
         margin: 10px 0;
+        white-space: nowrap;
       }
     }
     
@@ -59,11 +60,6 @@
 
       .hightlights {
         margin: 30px 0;
-
-        li {
-          list-style-type: disc;
-          line-height: 2rem;
-        }
       }
     }
   }

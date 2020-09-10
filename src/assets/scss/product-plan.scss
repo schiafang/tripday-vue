@@ -1,0 +1,96 @@
+@import 'base';
+
+.product-option-plan {
+  background-color: $light-gray;
+  margin: 0 -30px;
+  padding: 30px;
+}
+
+.product-plan-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.plan-content {
+  border-radius: 6px;
+  background-color: #FFF;
+  box-shadow: 3px 5px 10px 8px rgba(100,100,100,.1);
+  width: 100%;
+  padding: 20px;
+}
+
+hr {
+  margin: 0 -20px;
+}
+
+.plan-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+
+
+  .title-label {
+    border-radius: 3px;
+    color: #FFF;
+    background-color: $pink;
+    font-size: .6rem;
+    padding: 5px 8px;
+    margin-left: 10px;
+  }
+}
+
+.ticket-type {
+  font-size: .9rem;
+  color: $main-gray;
+}
+
+.benifit-bar {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  width: 100%;
+  background: $light-gray;
+  border-radius: 6px;
+  margin: 15px 0;
+  padding: 15px;
+  white-space: nowrap;
+  
+  span {
+  }
+  
+  div {
+    display: inline-block;
+    font-size: .9rem;
+    margin-right: 30px;
+    padding: 10px;
+    font-weight: normal;
+  }
+}
+
+.date-option {
+  .redo {
+    color: $main-blue;
+    font-weight: 800;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 996px) {
+  .product-option-plan {
+    margin: 0 -150px;
+    padding: 30px 150px;
+  }
+
+  .benifit-bar {
+    flex-direction: row;
+    align-items: center;
+
+    span {
+      margin-right: 30px;
+    }
+  }
+}
