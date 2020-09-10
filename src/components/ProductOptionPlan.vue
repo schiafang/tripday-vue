@@ -35,18 +35,30 @@
           <button class="redo"><i class="fas fa-redo-alt"></i> 全部重選</button>
         </div>
         <span class="caption-tag">請選擇使用日期</span>
-        <Calender />
+        <Calendar @selectedDate="selectedDate" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Calender from './Calender'
+import Calendar from './Calendar'
 
 export default {
   name: 'ProductOptionPlan',
-  components: { Calender }
+  components: { Calendar },
+  data() {
+    return {
+      bookingDetail: {
+        date: ''
+      }
+    }
+  },
+  methods: {
+    selectedDate(val) {
+      this.bookingDetail.date = val
+    }
+  }
 }
 </script>
 
