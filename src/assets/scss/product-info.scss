@@ -1,0 +1,207 @@
+@import 'base';
+
+  .product-info {
+    width: 100%;
+  }
+
+  .product-location {
+    font-size: 0.9rem;
+    margin: 15px 0;
+  }
+
+  .product-cover {
+    height: 150px;
+
+    img {
+      border-radius: 6px;
+      object-fit: cover;
+    }
+  }
+
+  .product-content {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+
+    .product-title {
+      font-size: 1.5rem;
+      font-weight: 450;
+      padding: 25px 10px 0 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .location {
+      color: $main-gray;
+      padding: 30px 0;
+      border-bottom: 1px solid $border-gray;
+
+      i {
+        opacity: .5;
+        margin-right: 10px;
+      }
+    }
+
+    .policy {
+      display: flex;
+      flex-direction: column;
+      font-size: 1rem;
+      border-bottom: 1px solid $border-gray;
+      padding: 5px 0;
+
+      div {
+        margin: 10px 0;
+      }
+    }
+    
+    .description {
+      margin: 30px 0;
+      padding-right: 30px;
+
+      .hightlights {
+        margin: 30px 0;
+
+        li {
+          list-style-type: disc;
+          line-height: 2rem;
+        }
+      }
+    }
+  }
+
+  .product-comment {
+    display: flex;
+    flex-direction: column;
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .more {
+        margin-right: 5px;
+        color: $main-gray;
+        font-size: .9rem;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .product-booking-col {
+    width: 100%;
+    margin: 30px 0;
+  }
+  
+  .booking-card {
+    border: 1px solid $border-gray;
+    padding: 15px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+
+    .price {
+      display: flex;
+      align-items: center;
+
+      .price-now {
+        font-size: 1.2rem;
+        font-family: 'Varela Round', sans-serif;
+        font-weight: 700;
+        margin-right: 10px;
+      }
+
+      .original {
+        font-size: .9rem;
+        text-decoration: line-through;
+      }
+    }
+
+    .score {
+      margin: 10px 0;
+      font-size: .9rem;
+      color: $main-gray;
+      display: flex;
+      align-items: center;
+
+      span {
+        color: $main-blue;
+        margin-right: 3px;
+        font-weight: 700;
+      }
+    }
+
+    .plan-btn {
+      height: 50px;
+      color: #FFF;
+      font-weight: 500;
+      border-radius: 6px;
+      background-color: $main-blue;
+      
+      &:hover {
+        opacity: .8;
+      }
+    }
+
+    .bottom {
+      font-size: .9rem;
+      margin-top: 15px;
+
+      i {
+        color: $main-blue;
+      }
+    }
+  }
+
+
+@media screen and (min-width: 996px) {
+
+  .product-info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: auto 350px minmax(500px, 1fr) auto;
+    grid-template-areas: 'location .' 'cover cover' 'content right' 'comment .';
+  }
+
+  .product-location {
+    grid-area: location;
+  }
+
+  .product-cover {
+    height: auto;
+    grid-area: cover;
+  }
+
+  .product-content {
+    grid-area: content;
+    padding-right: 30px;
+
+    .policy {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      padding: 30px 0;
+
+      :nth-child(1) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+      }
+
+      :nth-child(2) {
+        grid-column-start: 2;
+        grid-column-end: 3;
+      }
+    }
+  }
+  
+  .product-comment {
+    grid-area: comment;
+  }
+
+  .product-booking-col {
+    grid-area: right;
+    height: auto;
+  }
+
+}

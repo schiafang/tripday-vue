@@ -1,59 +1,101 @@
 <template>
   <div class="product-info">
+    <div class="product-location">
+      {{ product.location.country }} > {{ product.location.city }}
+    </div>
+
     <div class="product-cover">
-      <img
-        src="https://images.unsplash.com/photo-1547210318-c4ab922fb3a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80"
-        alt=""
-      />
+      <img :src="product.cover || product.image" alt="" />
     </div>
     <div class="product-content">
-      桃園青埔｜Xpark 都會型水生公園門票
+      <div class="product-title">
+        {{ product.title }}
+
+        <i class="far fa-heart"></i>
+        <!-- <i class="fas fa-heart"></i> -->
+      </div>
+      <div class="location">
+        <i class="fas fa-map-marker-alt"></i> {{ product.location.country }} -
+        {{ product.location.city }}
+      </div>
+      <div class="policy">
+        <div>6天前可免費取消</div>
+        <div>現場請出示 QR code</div>
+      </div>
+      <div class="description">
+        <div class="introduction">
+          {{ product.description.introduction }}
+        </div>
+        <ul class="hightlights">
+          <li
+            v-for="(hightlight, index) in product.description.highlights"
+            :key="index"
+          >
+            {{ hightlight }}
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="product-right-col">選購跟廣告</div>
-    <div class="product-top-comment">
-      最高分的旅客評價
-      <ProductComments />
+    <div class="product-comment">
+      <div class="top">
+        <h3>旅客評價</h3>
+        <div class="more" @click="scrollToComments">
+          更多評價 <i class="fas fa-angle-right"></i>
+        </div>
+      </div>
+      <ProductCommentCard />
+    </div>
+
+    <!--選購欄--->
+    <div class="product-booking-col">
+      <div class="booking-card">
+        <div class="price">
+          <div class="price-now">
+            TWD 500
+          </div>
+          <div class="original">
+            TWD 600
+          </div>
+        </div>
+        <div class="score">
+          <span>4.3 </span><star />
+          (8063) | 已售出 18k +
+        </div>
+        <button class="plan-btn">
+          選擇方案
+        </button>
+        <div class="bottom">
+          <i class="fa fa-flash title-flash"></i> 立即確認
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import ProductComments from '../components/ProductComments'
+import ProductCommentCard from '../components/ProductCommentCard'
+import star from '../components/star'
+
 export default {
-  components: { ProductComments }
+  name: 'ProductInfo',
+  components: { ProductCommentCard, star },
+  props: {
+    product: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    scrollToComments() {
+      // const height = document.querySelector("#productComents").offsetParent
+      document.querySelector("#productComents").scrollIntoView(true)
+      // this.$refs.productComents.$el.scrollIntoView(true)
+      // window.scrollBy(0, height)
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@media screen and (min-width: 996px) {
-  .product-info {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    grid-template-rows: 350px minmax(500px, 1fr) auto;
-    grid-template-areas: 'cover cover' 'content right' 'comment .';
-    margin-top: 100px;
-  }
-  .product-cover {
-    grid-area: cover;
-
-    img {
-      border-radius: 10px;
-      object-fit: cover;
-    }
-  }
-
-  .product-content {
-    grid-area: content;
-  }
-
-  .product-right-col {
-    grid-area: right;
-    background-color: yellow;
-  }
-
-  .product-top-comment {
-    grid-area: comment;
-  }
-}
+@import '../assets/scss/product-info.scss';
 </style>

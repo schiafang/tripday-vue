@@ -48,7 +48,6 @@
               <span v-if="product.specialPrice">{{
                 product.specialPrice
               }}</span>
-
               <span v-else>{{ product.price }}</span>
             </div>
           </div>
@@ -66,9 +65,6 @@ export default {
       type: Array,
       required: true
     }
-  },
-  created() {
-    console.log(this.products)
   }
 }
 </script>
