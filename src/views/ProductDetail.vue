@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       product: {},
-      highlights: []
+      highlights: [],
     }
   },
   created() {

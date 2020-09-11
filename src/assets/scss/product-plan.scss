@@ -59,9 +59,6 @@ hr {
   padding: 15px;
   white-space: nowrap;
   
-  span {
-  }
-  
   div {
     display: inline-block;
     font-size: .9rem;
@@ -72,10 +69,57 @@ hr {
 }
 
 .date-option {
+  margin-bottom: 30px;
+
   .redo {
     color: $main-blue;
     font-weight: 800;
     font-size: 1rem;
+  }
+}
+
+.time-option-radio {
+  font-size: .9rem;
+  display: flex;
+  padding: 15px 0;
+  flex-wrap: wrap;
+
+  input[type="radio"] {
+    display: none;
+
+    &:checked {
+      ~.radio-label {
+        color: #FFF;
+        background-color: $main-blue;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          border-color: #fff #fff transparent transparent;
+          border-style: solid;
+          border-width: 4px;
+        }
+      }
+    }
+  }
+
+  .radio-label {
+    text-align: center;
+    display: inline-block;
+    border: 1px solid $border-gray;
+    border-radius: 6px;
+    width: 80px;
+    height: 40px;
+    padding-top: 10px;
+    margin: 0 5px 10px 0;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $border-gray;
+    }
   }
 }
 

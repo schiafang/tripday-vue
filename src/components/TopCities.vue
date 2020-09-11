@@ -74,7 +74,6 @@ export default {
   },
   methods: {
     mouseover(index) {
-      console.log(index)
       this.index = index
     }
   }

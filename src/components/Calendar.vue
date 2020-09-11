@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     selecteDate(date) {
-      date = moment(date).format('YYYY/MM/DD')
+      date = moment(date).format('YYYY-MM-DD')
       this.selectedDate = date
       this.$emit('selectedDate', this.selectedDate)
     }
@@ -65,10 +65,44 @@ export default {
   padding: 10px;
   width: 100% !important;
   border: none !important;
+  font-weight: 600;
 
   header {
     height: 50px !important;
     line-height: 50px !important;
+
+    .prev,
+    .next {
+      &.disabled:after {
+        border-top: 2px solid $light-gray !important;
+        border-right: 2px solid $light-gray !important;
+      }
+    }
+
+    .next:after,
+    .prev:after {
+      content: '';
+      border: none !important;
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+    }
+
+    .next:after {
+      margin-left: -10px !important;
+      border-top: 2px solid $main-blue !important;
+      border-right: 2px solid $main-blue !important;
+      transform: rotate(45deg) !important;
+      -webkit-transform: rotate(45deg);
+    }
+
+    .prev:after {
+      margin-left: -10px !important;
+      border-top: 2px solid $main-blue !important;
+      border-right: 2px solid $main-blue !important;
+      transform: rotate(-135deg) !important;
+      -webkit-transform: rotate(-135deg);
+    }
 
     .day__month_btn:hover,
     .prev:hover,
@@ -84,6 +118,10 @@ export default {
   font-weight: 500;
   color: $main-black;
   position: relative;
+
+  &.day-header {
+    font-size: 90% !important;
+  }
 
   &.selected {
     border-radius: 6px !important;
@@ -103,7 +141,7 @@ export default {
 
   &:hover {
     background-color: $light-gray;
-    border: none !important;
+    border: 1px solid transparent !important;
     border-radius: 6px;
   }
 }

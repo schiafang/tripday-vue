@@ -63,6 +63,11 @@
 </template>
 
 <style lang="scss" scoped>
+li {
+  list-style-type: none;
+  margin: 0.3rem;
+}
+
 footer {
   height: auto;
   width: 100%;

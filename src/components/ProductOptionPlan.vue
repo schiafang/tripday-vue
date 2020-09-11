@@ -36,6 +36,45 @@
         </div>
         <span class="caption-tag">請選擇使用日期</span>
         <Calendar @selectedDate="selectedDate" />
+        <span class="caption-tag"> &#x24D8; 價格以 TWD 顯示 </span>
+      </div>
+
+      <div class="time-option">
+        <span class="caption-span">場次</span>
+        <div class="time-option-radio">
+          <div>
+            <input
+              type="radio"
+              id="ten"
+              name="time"
+              value="10:00"
+              @change="selecteTime"
+              v-model="bookingDetail.time"
+              checked
+            />
+            <label for="ten" class="radio-label">10:00</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="eleven"
+              name="time"
+              value="11:00"
+              v-model="bookingDetail.time"
+            />
+            <label for="eleven" class="radio-label">11:00</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="twenty"
+              name="time"
+              value="12:00"
+              v-model="bookingDetail.time"
+            />
+            <label for="twenty" class="radio-label">12:00</label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -50,13 +89,14 @@ export default {
   data() {
     return {
       bookingDetail: {
-        date: ''
+        date: '',
+        time: ''
       }
     }
   },
   methods: {
-    selectedDate(val) {
-      this.bookingDetail.date = val
+    selectedDate(date) {
+      this.bookingDetail.date = date
     }
   }
 }
