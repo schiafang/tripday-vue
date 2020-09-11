@@ -4,7 +4,7 @@
     <ProductInfo :product="product" />
 
     <!--方案選擇-->
-    <ProductOptionPlan />
+    <ProductOptionPlan :ticket="ticket" />
 
     <!--商品下方其他資訊說明-->
     <div class="product-description">
@@ -43,7 +43,28 @@ const dummyData = {
   address: '320台灣桃園市中壢區春德路105號',
   rating: 4.5,
   ratingCount: 7332,
-  orderCount: 233443
+  orderCount: 233443,
+  ticketTime: ['10:00', '11:00', '12:00', '13:00', '14:00'],
+  ticketTypes: [
+    {
+      name: '成人',
+      limit: '(18 - 64 歲)',
+      price: '550'
+    },
+    {
+      name: '兒童',
+      limit: '(4 - 11 歲)',
+      price: '250'
+    }, {
+      name: '學生',
+      limit: '(12 歲以上（含）)',
+      price: '450'
+    }, {
+      name: '長者',
+      limit: '(65 歲以上（含）)',
+      price: '200'
+    },
+  ]
 }
 
 export default {
@@ -53,10 +74,16 @@ export default {
     return {
       product: {},
       highlights: [],
+      ticket: {
+        ticketTime: [],
+        ticketTypes: []
+      }
     }
   },
   created() {
     this.product = dummyData
+    this.ticket.ticketTime = dummyData.ticketTime
+    this.ticket.ticketTypes = dummyData.ticketTypes
     this.highlights = dummyData.description.highlights
   }
 }

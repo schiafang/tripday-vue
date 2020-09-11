@@ -24,7 +24,7 @@ hr {
   margin: 0 -20px;
 }
 
-.plan-title {
+.plan-title, .plan-subtitle {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,6 +41,16 @@ hr {
     padding: 5px 8px;
     margin-left: 10px;
   }
+}
+
+.plan-subtitle  {
+  font-size: 1rem;
+  margin-top: 30px;
+}
+
+.redo {
+  color: $main-blue;
+  font-weight: 800;
 }
 
 .ticket-type {
@@ -70,12 +80,6 @@ hr {
 
 .date-option {
   margin-bottom: 30px;
-
-  .redo {
-    color: $main-blue;
-    font-weight: 800;
-    font-size: 1rem;
-  }
 }
 
 .time-option-radio {
@@ -123,6 +127,112 @@ hr {
   }
 }
 
+.types-option-quantity {
+  flex-direction: column;
+  margin: 15px 0;
+
+  .type-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+
+    .type-name {
+      font-weight: 900;
+
+      span {
+        font-size: .8rem;
+        font-weight: normal;
+        color: rgb(136, 136, 136);
+        margin-left: 5px;
+      }
+    }
+
+    .type-count span {
+      font-size: .9rem;
+      font-weight: 500;
+      color: rgb(151, 151, 151);
+    }
+  }
+
+  .counter {
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-left: 10px;
+    
+    button {
+      width: 30px;
+      height: 30px;
+      border: 2px solid $main-blue;
+      color: $main-blue;
+      border-radius: 100%;
+      font-size: 1.8rem;
+      font-weight: 400;
+      position: relative;
+      margin-left: 5px;
+  
+      &:disabled {
+        opacity: .4;
+      }
+    }
+  
+    .plus-btn::after {
+      content: '\002B';
+      position: absolute;
+      top: -8px;
+      left: 5px;
+    }
+  
+    .minus-btn::after {
+      content: '\2212';
+      position: absolute;
+      top: -8px;
+      left: 5px;
+    }
+  }
+}
+
+.total-booking {
+  border-top: 1px solid $border-gray;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 15px;
+
+  .total-price {
+    color: $main-blue;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    span {
+      font-size: .9rem;
+      color: $main-gray;
+      font-weight: normal;
+    }
+  }
+
+  button {
+    background-color: $main-blue;
+    padding: 10px 30px;
+    border-radius: 4px;
+    color: #FFF;
+    margin: 15px 0 0 10px;
+
+    &:disabled {
+      background-color: $border-gray;
+    }
+  }
+
+  .cart-btn {
+    background-color: rgb(88, 175, 114);
+
+  }
+}
+
 @media screen and (min-width: 996px) {
   .product-option-plan {
     margin: 0 -150px;
@@ -135,6 +245,32 @@ hr {
 
     span {
       margin-right: 30px;
+    }
+  }
+
+  .booking-content {
+    display: grid;
+    grid-template-columns: 550px 50px 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: 
+    'date . time'
+    'date . type'
+    'date .  booking';
+
+    .date-option {
+      grid-area: date;
+    }
+
+    .time-option {
+      grid-area: time;
+    }
+
+    .types-option {
+      grid-area: type;
+    }
+
+    .total-booking {
+      grid-area: booking;
     }
   }
 }
