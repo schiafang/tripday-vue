@@ -148,6 +148,12 @@ export default {
 
 @media screen and (min-width: 996px) {
   .vdp-datepicker {
+    width: 420px;
+  }
+}
+
+@media screen and (min-width: 1263px) {
+  .vdp-datepicker {
     width: 550px;
   }
 }

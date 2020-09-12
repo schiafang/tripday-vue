@@ -23,6 +23,7 @@
   box-shadow: 3px 5px 10px 8px rgba(100,100,100,.1);
   width: 100%;
   padding: 20px;
+  margin-bottom: 5px;
 }
 
 hr {
@@ -221,8 +222,10 @@ hr {
   }
 
   button {
+    width: 120px;
+    white-space: nowrap;
     background-color: $main-blue;
-    padding: 10px 30px;
+    padding: 10px 15px;
     border-radius: 4px;
     color: #FFF;
     margin: 15px 0 0 10px;
@@ -255,7 +258,7 @@ hr {
 
   .booking-content {
     display: grid;
-    grid-template-columns: 550px 50px 1fr;
+    grid-template-columns: minmax(420px, 1fr) 50px 1fr;
     grid-template-rows: auto auto 1fr;
     grid-template-areas: 
     'date . time'

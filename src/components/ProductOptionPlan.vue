@@ -27,7 +27,6 @@
           <div>立即發送憑證</div>
         </div>
       </div>
-
       <div class="plan-subtitle">
         選擇日期、選項
         <button class="redo" @click="resetOption">
@@ -53,7 +52,6 @@
                 name="time"
                 :value="time"
                 v-model="bookingDetail.time"
-                checked
               />
               <label :for="time" class="radio-label">{{ time }}</label>
             </div>

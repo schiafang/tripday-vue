@@ -128,11 +128,9 @@ export default {
     return {
       showNavlistBack: false,
       checked: false,
-      //監控螢幕大小
-      screenWidth: window.innerWidth,
       isSmallWindow: false,
-      //切換授權後的 nav-list 的顯示狀態
-      showAuthNavList: false,
+      showAuthNavList: false,  //切換授權後的 nav-list 的顯示狀態
+      screenWidth: window.innerWidth, //監控螢幕大小
       display: 'block'
     }
   },

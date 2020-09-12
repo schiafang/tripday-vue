@@ -4,7 +4,6 @@
     <ProductInfo :product="product" />
 
     <!--方案選擇-->
-    <!-- <ProductOptionPlan :ticket="ticket" /> -->
     <ProductOptionPlan :planOption="planOption" />
 
     <!--商品下方其他資訊說明-->
@@ -46,28 +45,6 @@ const dummyData = {
   rating: 4.5,
   ratingCount: 7332,
   orderCount: 233443,
-  ticketTime: ['10:00', '11:00', '12:00', '13:00', '14:00'],
-  ticketTypes: [
-    {
-      name: '成人',
-      limit: '(18 - 64 歲)',
-      price: '550'
-    },
-    {
-      name: '兒童',
-      limit: '(4 - 11 歲)',
-      price: '250'
-    }, {
-      name: '學生',
-      limit: '(12 歲以上（含）)',
-      price: '450'
-    }, {
-      name: '長者',
-      limit: '(65 歲以上（含）)',
-      price: '200'
-    },
-  ],
-  //新增兩種以上plan
   planOption: [
     {
       id: uuidv4(),
@@ -77,20 +54,20 @@ const dummyData = {
       ticketTypes: [
         {
           name: '成人',
-          limit: '(18 - 64 歲)',
+          limit: '18 - 64 歲',
           price: '550'
         },
         {
           name: '兒童',
-          limit: '(4 - 11 歲)',
+          limit: '4 - 11 歲',
           price: '250'
         }, {
           name: '學生',
-          limit: '(12 歲以上（含）)',
+          limit: '12 歲以上(含)',
           price: '450'
         }, {
           name: '長者',
-          limit: '(65 歲以上（含）)',
+          limit: '65 歲以上(含)',
           price: '200'
         },
       ],
@@ -114,8 +91,6 @@ export default {
   },
   created() {
     this.product = dummyData
-    this.ticket.ticketTime = dummyData.ticketTime
-    this.ticket.ticketTypes = dummyData.ticketTypes
     this.planOption = dummyData.planOption
     this.highlights = dummyData.description.highlights
   }

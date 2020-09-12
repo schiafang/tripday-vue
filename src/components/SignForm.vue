@@ -5,7 +5,6 @@
         <div class="nav-item-sign" v-bind="attrs" v-on="on">
           登入/註冊
         </div>
-        <!-- <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">登入註冊 </v-btn> -->
       </template>
       <!-- dialog content -->
       <div class="dialog-content">

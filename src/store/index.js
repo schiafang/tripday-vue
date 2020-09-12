@@ -9,7 +9,7 @@ export default new Vuex.Store({
       id: -1,
       name: '',
       email: '',
-      avatar: 'https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=845&q=80',
+      avatar: 'https://i.imgur.com/Vu6ZZac.png',
       isAdmin: false
     },
     isAuthenticated: false
