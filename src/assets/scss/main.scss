@@ -17,6 +17,17 @@ hr {
   color: $main-gray;
 }
 
+/*提示文字與動畫*/
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
 .main-container {
   margin: 50px 0;
 }

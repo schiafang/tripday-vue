@@ -12,6 +12,7 @@
   width: 100%;
   background: white;
   background-color: #F5EFED;
+  position: relative;
 }
 
 .dialog-top {
@@ -35,6 +36,13 @@
     cursor: pointer;
     color: brown;
   }
+}
+
+.alert {
+  position: absolute;
+  width: 330px;
+  top: 15px;
+  left: 60px;
 }
 
 .sign-form {

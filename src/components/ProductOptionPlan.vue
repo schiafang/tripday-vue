@@ -117,8 +117,9 @@
 </template>
 
 <script>
-import Calendar from './Calendar'
 /* eslint-disable */
+import Calendar from './Calendar'
+
 export default {
   name: 'ProductOptionPlan',
   components: { Calendar },
@@ -173,15 +174,14 @@ export default {
         this.$router.push('/booking')
       }
     },
-    resetOption() {  /**錯誤無法更新 */
-      return this.bookingDetail = this.bookingDetail.map(i => ({
-        ...i,
-        date: '',
-        time: '',
-        totalPrice: 0,
-      }))
-
-      console.log(this.bookingDetail)
+    resetOption() {
+      // return this.bookingDetail = this.bookingDetail.map(i => ({
+      //   ...i,
+      //   date: '',
+      //   time: '',
+      //   totalPrice: 0,
+      // }))
+      // this.$refs.planDatepicker.clearDate()
     }
   },
   watch: {
@@ -199,14 +199,4 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/scss/product-plan.scss';
-
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: all 0.3s ease-in-out;
-}
-.slide-fade-enter,
-.slide-fade-leave-to {
-  transform: translateX(10px);
-  opacity: 0;
-}
 </style>

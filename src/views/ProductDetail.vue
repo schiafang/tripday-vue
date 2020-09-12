@@ -26,7 +26,7 @@ import ProductCommentCard from '../components/ProductCommentCard'
 import ProductOptionPlan from '../components/ProductOptionPlan'
 
 const dummyData = {
-  id: 1,
+  id: uuidv4(),
   title: '桃園青埔｜Xpark 都會型水生公園門票',
   image: 'https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2020/07/15/realtime/8196557.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=800&exp=3600&w=930',
   cover: 'https://images.unsplash.com/photo-1547210318-c4ab922fb3a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',

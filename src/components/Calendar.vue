@@ -5,6 +5,7 @@
       :language="zh"
       :disabled-dates="disabledDates"
       @selected="selecteDate"
+      ref="planDatepicker"
     ></datepicker>
   </div>
 </template>
@@ -43,6 +44,9 @@ export default {
       date = moment(date).format('YYYY-MM-DD')
       this.selectedDate = date
       this.$emit('selectedDate', this.selectedDate)
+    },
+    resetOption() {
+      this.$refs.planDatepicker.clearDate()
     }
   }
 }

@@ -12,7 +12,19 @@
         <div class="dialog-close" @click="dialog = !dialog">
           <i class="fas fa-times"></i>
         </div>
-
+        <div>
+          <transition name="slide-fade">
+            <v-alert
+              type="error"
+              outlined
+              color="red lighten-2"
+              class="alert"
+              v-if="alert"
+            >
+              {{ alert }}
+            </v-alert>
+          </transition>
+        </div>
         <!-- sign in form -->
         <div class="sign-form sign-in-form" v-if="showSignInForm">
           <form @submit.stop.prevent="handleSignInSubmit">
@@ -115,6 +127,7 @@ export default {
     email: '',
     password: '',
     confirmPassword: '',
+    alert: ''
   }),
   watch: {
     showSignInForm() {
@@ -133,10 +146,8 @@ export default {
     async handleSignInSubmit() {
       try {
         if (!this.email || !this.password) {
-          Toast.fire({
-            icon: 'warning',
-            title: '請填入 Email 和 Password'
-          })
+          this.alert = '請輸入 Email 和 Password'
+          setTimeout(() => { this.alert = null }, 3000)
           return
         }
 
@@ -146,32 +157,34 @@ export default {
 
         localStorage.setItem('token', res.data.token)
         this.$store.commit('setCurrentUser', res.data.user)
+        Toast.fire({ icon: 'success', title: '登入成功' })
         this.dialog = false
 
       } catch (error) {
-        Toast.fire({
-          icon: 'error',
-          title: '帳號密碼錯誤'
-        })
+        this.alert = '帳號密碼錯誤'
+        setTimeout(() => { this.alert = null }, 3000)
+        return
       }
     },
     async handleSignUpSubmit() {
       try {
         if (!this.email || !this.password || !this.confirmPassword) {
-          Toast.fire({
-            icon: 'warning',
-            title: '請完整填寫寫表單'
-          })
-          return
+          return this.alert = '請完整填寫表單'
         }
 
         const res = await authorizationAPI.singUp({ email: this.email, password: this.password, confirmPassword: this.confirmPassword })
+        console.log(res.data)
 
-        if (res.data.status !== 'success') { throw new Error(data.message) }
+
+        if (res.data.status !== 'success') { throw new Error(res.data.message) }
+        Toast.fire({ icon: 'success', title: '註冊成功' })
         this.dialog = false
 
-      } catch (error) { }
-
+      } catch (error) {
+        this.alert = error
+        setTimeout(() => { this.alert = null }, 3000)
+        return
+      }
     }
   }
 }

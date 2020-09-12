@@ -3,7 +3,6 @@
     <div class="product-location">
       {{ product.location.country }} > {{ product.location.city }}
     </div>
-
     <div class="product-cover">
       <img :src="product.cover || product.image" alt="" />
     </div>
@@ -11,8 +10,19 @@
       <div class="product-title">
         {{ product.title }}
 
-        <i class="far fa-heart"></i>
-        <!-- <i class="fas fa-heart"></i> -->
+        <i
+          class="far fa-heart add-favorite"
+          @click="addFavorite(product.id)"
+        ></i>
+        <!-- <i class="fas fa-heart remove-favorite"></i> -->
+        <div
+          class="sign-tip"
+          ref="signTip"
+          :style="{
+            opacity: 0,
+            transition: 'opacity .2s ease-in-out'
+          }"
+        ></div>
       </div>
       <div class="location">
         <i class="fas fa-map-marker-alt"></i> {{ product.location.country }} -
@@ -75,6 +85,7 @@
 <script>
 import ProductCommentCard from '../components/ProductCommentCard'
 import star from '../components/star'
+import { mapState } from 'vuex'
 
 export default {
   name: 'ProductInfo',
@@ -85,6 +96,9 @@ export default {
       required: true
     }
   },
+  computed: {
+    ...mapState(['isAuthenticated'])
+  },
   methods: {
     scrollToComments() {
       // const height = document.querySelector("#productComents").offsetParent
@@ -94,6 +108,15 @@ export default {
     },
     scrollToPlanOption() {
       document.querySelector("#planOption").scrollIntoView(true)
+    },
+    addFavorite(id) {
+      console.log(id)
+      if (!this.isAuthenticated) {
+        this.$refs.signTip.style.opacity = 1
+        setTimeout(() => { this.$refs.signTip.style.opacity = 0 }, 1500)
+        return
+      }
+
     }
   }
 }
