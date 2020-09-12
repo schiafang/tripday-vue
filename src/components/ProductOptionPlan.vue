@@ -1,12 +1,12 @@
 <template>
-  <div class="product-option-plan">
+  <div class="product-option-plan" id="planOption">
     <div class="product-plan-title">
       選擇方案
     </div>
-    <div class="plan-content">
+    <div class="plan-content" v-for="plan in planOption" :key="plan.id">
       <div class="plan-title">
         <div class="d-flex justify-center">
-          Xpark 入園門票 <span class="title-label">6天前可免費取消</span>
+          {{ plan.title }} <span class="title-label">6天前可免費取消</span>
         </div>
         <div class="price">TWD 550</div>
       </div>
@@ -30,7 +30,7 @@
 
       <div class="plan-subtitle">
         選擇日期、選項
-        <button class="redo" disabled>
+        <button class="redo" @click="resetOption">
           <i class="fas fa-redo-alt"></i> 全部重選
         </button>
       </div>
@@ -43,10 +43,10 @@
         </div>
 
         <!--選擇時間場次-->
-        <div v-if="ticket.ticketTime" class="time-option">
+        <div v-if="plan.ticketTime" class="time-option">
           <span class="caption-tag">場次</span>
           <div class="time-option-radio">
-            <div v-for="(time, index) in ticket.ticketTime" :key="index">
+            <div v-for="(time, index) in plan.ticketTime" :key="index">
               <input
                 type="radio"
                 :id="time"
@@ -65,7 +65,7 @@
           <span class="caption-tag">選擇數量</span>
           <div class="types-option-quantity">
             <div
-              v-for="(type, index) in ticket.ticketTypes"
+              v-for="(type, index) in plan.ticketTypes"
               :key="index"
               class="type-item"
             >
@@ -99,9 +99,19 @@
           </div>
           <div>
             <button class="cart-btn" disabled>加入購物車</button>
-
             <button class="booking-btn" @click="bookingNow">立即訂購</button>
           </div>
+          <transition name="slide-fade">
+            <v-alert
+              v-if="alert"
+              type="error"
+              outlined
+              color="red lighten-2"
+              class="alert"
+            >
+              {{ alert }}
+            </v-alert>
+          </transition>
         </div>
       </div>
     </div>
@@ -115,8 +125,8 @@ export default {
   name: 'ProductOptionPlan',
   components: { Calendar },
   props: {
-    ticket: {
-      type: Object,
+    planOption: {
+      type: Array,
       required: true
     }
   },
@@ -128,10 +138,11 @@ export default {
         type: [],
         totalPrice: 0,
       },
+      alert: null
     }
   },
   created() {
-    const type = this.ticket.ticketTypes
+    let type = this.planOption[0].ticketTypes
     type.forEach((item, index) => {
       this.bookingDetail.type.push({ index, 'name': item.name, quantity: 0 })
     })
@@ -155,12 +166,49 @@ export default {
       }
     },
     bookingNow() {
+      const { date, time, totalPrice } = this.bookingDetail
+      if (!date || !time || !totalPrice) {
+        this.alert = '請選擇欄位'
+        setTimeout(() => { this.alert = null }, 3000)
+      } else {
+        localStorage.setItem('booking', JSON.stringify(this.bookingDetail))
+        this.$router.push('/booking')
+      }
+    },
+    resetOption() {  /**錯誤無法更新 */
+      return this.bookingDetail = this.bookingDetail.map(i => ({
+        ...i,
+        date: '',
+        time: '',
+        totalPrice: 0,
+      }))
+
       console.log(this.bookingDetail)
     }
-  }
+  },
+  watch: {
+    bookingDetail: {
+      get(v) {
+        console.log(v)
+      },
+      set(a) {
+        console.log(a)
+      }
+    }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../assets/scss/product-plan.scss';
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>

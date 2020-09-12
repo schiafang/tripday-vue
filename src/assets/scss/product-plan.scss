@@ -1,5 +1,10 @@
 @import 'base';
 
+.v-alert {
+  margin-top: 15px;
+  transition: display .3s ease-in-out;
+}
+
 .product-option-plan {
   background-color: $light-gray;
   margin: 0 -30px;

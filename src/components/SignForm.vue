@@ -146,7 +146,6 @@ export default {
         if (res.data.status !== 'success') { throw new Error(data.message) } //攔截非200-299的錯誤
 
         localStorage.setItem('token', res.data.token)
-        // console.log(res.data.user)
         this.$store.commit('setCurrentUser', res.data.user)
         this.dialog = false
 

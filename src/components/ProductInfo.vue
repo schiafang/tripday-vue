@@ -48,7 +48,7 @@
 
     <!--選購欄--->
     <div class="product-booking-col">
-      <div class="booking-card">
+      <div class="booking-card" @click="scrollToPlanOption">
         <div class="price">
           <div class="price-now">
             TWD 500
@@ -91,6 +91,9 @@ export default {
       document.querySelector("#productComents").scrollIntoView(true)
       // this.$refs.productComents.$el.scrollIntoView(true)
       // window.scrollBy(0, height)
+    },
+    scrollToPlanOption() {
+      document.querySelector("#planOption").scrollIntoView(true)
     }
   }
 }
