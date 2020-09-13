@@ -32,6 +32,11 @@ const routes = [
     component: () => import('../views/Favorites')
   },
   {
+    path: '/cities/:id',
+    name: 'Cities',
+    component: () => import('../views/City')
+  },
+  {
     path: '/cart',
     name: 'Cart',
     component: () => import('../views/Cart')
