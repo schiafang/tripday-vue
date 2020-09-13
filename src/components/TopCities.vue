@@ -6,7 +6,7 @@
     <div class="top-cities-content">
       <router-link
         v-for="(city, index) in cities"
-        :to="{ name: 'citise', query: { city: city.city } }"
+        :to="{ name: 'Cities', query: { city: city.city } }"
         :key="city.id"
         class="city-card"
         :class="{}"

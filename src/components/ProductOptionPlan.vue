@@ -97,7 +97,9 @@
           </div>
           <div>
             <button class="cart-btn" disabled>加入購物車</button>
-            <button class="booking-btn" @click="bookingNow">立即訂購</button>
+            <button class="booking-btn" @click="bookingNow(plan.title)">
+              立即訂購
+            </button>
           </div>
           <transition name="slide-fade">
             <v-alert
@@ -164,13 +166,18 @@ export default {
         return
       }
     },
-    bookingNow() {
+    bookingNow(plan) {
       const { date, time, totalPrice } = this.bookingDetail
+      let data = { ...this.bookingDetail }
+      data.title = plan
+
       if (!date || !time || !totalPrice) {
         this.alert = '請選擇欄位'
         setTimeout(() => { this.alert = null }, 3000)
       } else {
-        localStorage.setItem('booking', JSON.stringify(this.bookingDetail))
+        // localStorage.setItem('booking', JSON.stringify(this.bookingDetail))
+        localStorage.setItem('booking', JSON.stringify(data))
+
         this.$router.push('/booking')
       }
     },
