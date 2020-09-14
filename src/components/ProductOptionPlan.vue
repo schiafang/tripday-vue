@@ -37,7 +37,18 @@
         <!--選擇日期-->
         <div class="date-option">
           <span class="caption-tag">請選擇使用日期</span>
-          <Calendar @selectedDate="selectedDate" />
+          <template>
+            <div class="calendar">
+              <datepicker
+                ref="planDatepicker"
+                :inline="true"
+                :language="zh"
+                :disabled-dates="disabledDates"
+                v-model="bookingDetail.date"
+              ></datepicker>
+            </div>
+          </template>
+
           <span class="caption-tag"> &#x24D8; 價格以 TWD 顯示 </span>
         </div>
 
@@ -120,11 +131,20 @@
 
 <script>
 /* eslint-disable */
-import Calendar from './Calendar'
+// import Calendar from './Calendar'
+import Datepicker from 'vuejs-datepicker'
+import { zh, en } from 'vuejs-datepicker/dist/locale'
+import moment from 'moment'
+
+var state = {
+  disabledDates: {
+    to: new Date()
+  }
+}
 
 export default {
   name: 'ProductOptionPlan',
-  components: { Calendar },
+  components: { Datepicker },
   props: {
     plan: {
       type: Object,
@@ -133,25 +153,30 @@ export default {
   },
   data() {
     return {
+      selectedDate: '',
+      disabledDates: {},
+      zh: zh,
+      en: en,
       bookingDetail: {
         date: '',
         time: '',
         type: [],
         totalPrice: 0,
       },
+      typeTemp: [], //暫存created時的type資料
       alert: null
     }
   },
   created() {
-    let type = this.plan.planOption[0].ticketTypes
-    type.forEach((item, index) => {
-      this.bookingDetail.type.push({ index, 'name': item.name, quantity: 0 })
+    this.disabledDates = state.disabledDates
+
+    this.plan.planOption[0].ticketTypes.forEach((item, index) => {
+      this.typeTemp.push({ index, 'name': item.name, quantity: 0 })
     })
+
+    this.bookingDetail.type = this.typeTemp.map(i => ({ ...i }))
   },
   methods: {
-    selectedDate(date) {
-      this.bookingDetail.date = date
-    },
     counterPlus(price, index) {
       let type = this.bookingDetail.type
       type[index].quantity += 1
@@ -168,40 +193,33 @@ export default {
     },
     bookingNow(plan) {
       const { date, time, totalPrice } = this.bookingDetail
-      let data = { ...this.bookingDetail }
-      data.plan = plan
-      data.title = this.plan.title
-      data.image = this.plan.image
 
       if (!date || !time || !totalPrice) {
         this.alert = '請選擇欄位'
-        setTimeout(() => { this.alert = null }, 3000)
-      } else {
-        // localStorage.setItem('booking', JSON.stringify(this.bookingDetail))
-        localStorage.setItem('booking', JSON.stringify(data))
-        this.$router.push('/booking')
+        return setTimeout(() => { this.alert = null }, 3000)
       }
+
+      let bookingData = {
+        ...this.bookingDetail,
+        date: moment(date).format('YYYY-MM-DD'),
+        plan,
+        title: this.plan.title,
+        image: this.plan.image
+      }
+
+      localStorage.setItem('booking', JSON.stringify(bookingData))
+      this.$router.push('/booking')
     },
     resetOption() {
-      // return this.bookingDetail = this.bookingDetail.map(i => ({
-      //   ...i,
-      //   date: '',
-      //   time: '',
-      //   totalPrice: 0,
-      // }))
-      // this.$refs.planDatepicker.clearDate()
-    }
-  },
-  watch: {
-    bookingDetail: {
-      get(v) {
-        console.log(v)
-      },
-      set(a) {
-        console.log(a)
+      this.bookingDetail = {
+        ...this.bookingDetail,
+        date: '',
+        time: '',
+        type: this.typeTemp.map(i => ({ ...i })),
+        totalPrice: 0,
       }
     }
-  },
+  }
 }
 </script>
 

@@ -65,7 +65,12 @@
 
           <div class="form-item">
             <label for="" class="required-label">電子郵件信箱</label>
-            <input type="text" placeholder="請輸入常用電子郵件信箱" required />
+            <input
+              type="text"
+              placeholder="請輸入常用電子郵件信箱"
+              :value="user.email"
+              required
+            />
           </div>
 
           <button class="continue-btn">繼續</button>
@@ -155,7 +160,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isAuthenticated'])
+    ...mapState(['isAuthenticated', 'user'])
   },
   methods: {
     toggleDisplay(e) {

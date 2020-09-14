@@ -14,7 +14,7 @@
             :indeterminate="isLoading"
             absolute
             height="8px"
-            color="primary"
+            color="cyan darken-1"
           ></v-progress-linear>
         </div>
         <div class="dialog-close" @click="dialog = !dialog">
