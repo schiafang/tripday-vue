@@ -8,7 +8,15 @@
       </template>
       <!-- dialog content -->
       <div class="dialog-content">
-        <div class="dialog-top"></div>
+        <div class="dialog-top">
+          <v-progress-linear
+            :active="isLoading"
+            :indeterminate="isLoading"
+            absolute
+            height="8px"
+            color="primary"
+          ></v-progress-linear>
+        </div>
         <div class="dialog-close" @click="dialog = !dialog">
           <i class="fas fa-times"></i>
         </div>
@@ -117,17 +125,20 @@
 </template>
 
 <script>
+/* eslint-disable */
 import authorizationAPI from '../apis/authorization'
 import { Toast } from '../utils/helpers'
-/* eslint-disable */
+
 export default {
+  name: 'SignForm',
   data: () => ({
     dialog: false,
     showSignInForm: true,
     email: '',
     password: '',
     confirmPassword: '',
-    alert: ''
+    alert: '',
+    isLoading: false
   }),
   watch: {
     showSignInForm() {
@@ -145,12 +156,12 @@ export default {
     },
     async handleSignInSubmit() {
       try {
+        this.isLoading = true
         if (!this.email || !this.password) {
           this.alert = '請輸入 Email 和 Password'
           setTimeout(() => { this.alert = null }, 3000)
           return
         }
-
         const res = await authorizationAPI.singIn({ email: this.email, password: this.password })
 
         if (res.data.status !== 'success') { throw new Error(data.message) } //攔截非200-299的錯誤
@@ -158,9 +169,12 @@ export default {
         localStorage.setItem('token', res.data.token)
         this.$store.commit('setCurrentUser', res.data.user)
         Toast.fire({ icon: 'success', title: '登入成功' })
+
         this.dialog = false
+        this.isLoading = false
 
       } catch (error) {
+        this.isLoading = false
         this.alert = '帳號密碼錯誤'
         setTimeout(() => { this.alert = null }, 3000)
         return
@@ -168,19 +182,21 @@ export default {
     },
     async handleSignUpSubmit() {
       try {
+        this.isLoading = true
         if (!this.email || !this.password || !this.confirmPassword) {
           return this.alert = '請完整填寫表單'
         }
 
         const res = await authorizationAPI.singUp({ email: this.email, password: this.password, confirmPassword: this.confirmPassword })
-        console.log(res.data)
-
 
         if (res.data.status !== 'success') { throw new Error(res.data.message) }
         Toast.fire({ icon: 'success', title: '註冊成功' })
+
         this.dialog = false
+        this.isLoading = false
 
       } catch (error) {
+        this.isLoading = false
         this.alert = error
         setTimeout(() => { this.alert = null }, 3000)
         return

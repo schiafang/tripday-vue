@@ -133,7 +133,7 @@ export default {
       isSmallWindow: false,
       showAuthNavList: false,  //切換授權後的 nav-list 的顯示狀態
       screenWidth: window.innerWidth, //監控螢幕大小
-      display: 'block'
+      display: 'block',
     }
   },
   created() {
