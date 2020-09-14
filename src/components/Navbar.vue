@@ -68,7 +68,7 @@
           </div></router-link
         >
 
-        <div class="nav-item-link nav-item-logout">
+        <div class="nav-item-link nav-item-logout" @click="logout">
           登出
         </div>
       </div>
@@ -187,6 +187,9 @@ export default {
     },
     openDialog() {
       this.$store.commit('openDialog', true)
+    },
+    logout() {
+      this.$store.commit('revokeAuthentication')
     }
   }
 }

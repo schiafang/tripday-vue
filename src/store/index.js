@@ -14,6 +14,7 @@ export default new Vuex.Store({
       isAdmin: false
     },
     isAuthenticated: false,
+    token: '',
     dialog: false,
   },
   mutations: {
@@ -23,9 +24,16 @@ export default new Vuex.Store({
         ...user
       }
       state.isAuthenticated = true
+      state.token = localStorage.getItem('token')
     },
     openDialog(state, payload) {
       state.dialog = payload
+    },
+    revokeAuthentication(state) {
+      state.user = {}
+      state.isAuthenticated = false
+      state.token = ''
+      localStorage.removeItem('token')
     }
   },
   actions: {
@@ -38,6 +46,7 @@ export default new Vuex.Store({
 
       } catch (error) {
         console.error(error)
+        commit('revokeAuthentication')
       }
     }
   },

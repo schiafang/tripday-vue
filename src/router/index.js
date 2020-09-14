@@ -65,7 +65,11 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  store.dispatch('fetchCurrentUser')
+  const token = localStorage.getItem('token')
+  const stateToken = store.state.token
+
+  if (token !== stateToken) { store.dispatch('fetchCurrentUser') }
+
   next()
 })
 
