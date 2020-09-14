@@ -4,7 +4,7 @@
     <ProductInfo :product="product" />
 
     <!--方案選擇-->
-    <ProductOptionPlan :planOption="planOption" />
+    <ProductOptionPlan :plan="plan" />
 
     <!--商品下方其他資訊說明-->
     <div class="product-description">
@@ -86,12 +86,16 @@ export default {
         ticketTime: [],
         ticketTypes: []
       },
-      planOption: []
+      // planOption: []
+      plan: {}
     }
   },
   created() {
+    const { planOption, title, image } = dummyData
     this.product = dummyData
-    this.planOption = dummyData.planOption
+    this.plan.planOption = planOption
+    this.plan.title = title
+    this.plan.image = image
     this.highlights = dummyData.description.highlights
   }
 }

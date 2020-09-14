@@ -3,7 +3,7 @@
     <div class="product-plan-title">
       選擇方案
     </div>
-    <div class="plan-content" v-for="plan in planOption" :key="plan.id">
+    <div class="plan-content" v-for="plan in plan.planOption" :key="plan.id">
       <div class="plan-title">
         <div class="d-flex justify-center">
           {{ plan.title }} <span class="title-label">6天前可免費取消</span>
@@ -126,8 +126,8 @@ export default {
   name: 'ProductOptionPlan',
   components: { Calendar },
   props: {
-    planOption: {
-      type: Array,
+    plan: {
+      type: Object,
       required: true
     }
   },
@@ -143,7 +143,7 @@ export default {
     }
   },
   created() {
-    let type = this.planOption[0].ticketTypes
+    let type = this.plan.planOption[0].ticketTypes
     type.forEach((item, index) => {
       this.bookingDetail.type.push({ index, 'name': item.name, quantity: 0 })
     })
@@ -169,7 +169,9 @@ export default {
     bookingNow(plan) {
       const { date, time, totalPrice } = this.bookingDetail
       let data = { ...this.bookingDetail }
-      data.title = plan
+      data.plan = plan
+      data.title = this.plan.title
+      data.image = this.plan.image
 
       if (!date || !time || !totalPrice) {
         this.alert = '請選擇欄位'
@@ -177,7 +179,6 @@ export default {
       } else {
         // localStorage.setItem('booking', JSON.stringify(this.bookingDetail))
         localStorage.setItem('booking', JSON.stringify(data))
-
         this.$router.push('/booking')
       }
     },

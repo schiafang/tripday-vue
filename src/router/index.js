@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Index from '../views/Index.vue'
 import NotFound from '../views/NotFound.vue'
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -59,7 +60,13 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior() { return { x: 0, y: 0 } }
+})
+
+router.beforeEach((to, from, next) => {
+  store.dispatch('fetchCurrentUser')
+  next()
 })
 
 export default router

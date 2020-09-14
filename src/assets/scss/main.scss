@@ -11,6 +11,13 @@ hr {
   background: $border-gray;
 }
 
+input,
+select {
+  border: 1px solid $border-gray;
+  height: 45px;
+  border-radius: 4px;
+}
+
 /*附註說明文字*/
 .caption-tag {
   font-size: .9rem;

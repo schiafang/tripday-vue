@@ -1,9 +1,9 @@
-<template>
+<template >
   <div class="nav">
-    <!-- navbrand index link -->
+    <!-- navbrand -->
     <router-link to="/"><div class="nav-brand">tripday</div></router-link>
 
-    <!-- 離開首頁後的搜尋欄 -->
+    <!-- searchbar -->
     <div v-if="$route.name !== 'Index'">
       <input
         class="nav-search-bar"
@@ -34,6 +34,7 @@
 
     <!-- nav list -->
     <div class="nav-list">
+      <!-- isAuthenticated state-->
       <div
         class="nav-list-auth"
         v-if="isAuthenticated"
@@ -72,8 +73,8 @@
         </div>
       </div>
 
+      <!-- sign form -->
       <div v-else>
-        <!--登入註冊彈出視窗-->
         <SignForm />
       </div>
 
@@ -90,7 +91,6 @@
           <a href="#" class="dropdown-link nav-item-link">USD 美元</a>
         </div>
       </div>
-
       <!-- <div class="nav-item-language dropdown">
         <label for="dropdown-language" class="dropdown-language-label"
           >繁體中文</label
@@ -105,6 +105,7 @@
         </div>
       </div> -->
 
+      <!-- in widescreen unfold nav list -->
       <div v-if="!isSmallWindow && isAuthenticated" class="nav-item">
         <img
           :src="user.avatar"
@@ -126,6 +127,7 @@ export default {
   components: { SignForm },
   data() {
     return {
+      showSignInForm: true,
       showNavlistBack: false,
       checked: false,
       isSmallWindow: false,
@@ -147,8 +149,7 @@ export default {
     }
   },
   watch: {
-    // eslint-disable-next-line
-    $route(to, from) {
+    $route() {
       this.checked = false
       this.showNavlistBack = false
       this.showAuthNavList = false
@@ -183,6 +184,9 @@ export default {
     },
     toggleDeskTopNavList() {
       this.showAuthNavList = !this.showAuthNavList
+    },
+    openDialog() {
+      this.$store.commit('openDialog', true)
     }
   }
 }

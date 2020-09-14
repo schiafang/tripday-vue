@@ -63,7 +63,11 @@
 
 <script>
 /* eslint-disable */
-var swiper = new Swiper('.swiper-container', {
+import Swiper from 'swiper';
+import 'swiper/swiper-bundle.css';
+// import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+// Swiper.use([Navigation, Pagination, Scrollbar, A11y]);
+let swiper = new Swiper('.swiper-container', {
   slidesPerView: 3,
   spaceBetween: 30,
   slidesPerGroup: 3,
