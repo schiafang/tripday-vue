@@ -208,7 +208,7 @@ export default {
       }
 
       localStorage.setItem('booking', JSON.stringify(bookingData))
-      this.$router.push('/booking')
+      this.$router.push('/booking/step1')
     },
     resetOption() {
       this.bookingDetail = {

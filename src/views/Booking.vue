@@ -1,11 +1,11 @@
 <template>
   <div class="booking-container-wrapper">
+    <Spinner v-if="isLoading" />
     <div v-if="isAuthenticated">
       <div class="booking-container">
         <div class="booking-title">
           <div
             class="step-pay"
-            ref="step1"
             :style="{
               color: '#000',
               fontWeight: 900
@@ -16,7 +16,6 @@
           <span class="mx-2"> &#62; </span>
           <div
             class="step-finish"
-            ref="step2"
             :style="{
               color: '#AAA',
               fontWeight: 350
@@ -30,13 +29,17 @@
         <div class="booking-form-block booking-user">
           <button @click="toggleDisplay" class="block-top">
             <div><span class="fold-icon"></span> 訂購人資料</div>
+            <i
+              v-show="checkUser"
+              class="fas fa-check-circle check-form-icon"
+            ></i>
           </button>
 
           <form
             class="form-content"
             ref="userForm"
             :style="{ display: 'block' }"
-            @submit.prevent.stop="checkForm"
+            @submit.prevent.stop="checkUserForm"
           >
             <div class="form-item">
               <label for="" class="required-label">名字</label>
@@ -110,16 +113,28 @@
                     </div>
                     {{ bookingDetail.plan }}
                   </div>
-                  <span>
-                    {{ bookingDetail.date }}
-                  </span>
-                  <span>{{ bookingDetail.time }} </span>
 
-                  <span v-for="(type, index) in type" :key="index">
-                    {{ type.name }} x {{ type.quantity }}
-                  </span>
+                  <div class="d-flex">
+                    <span>
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                      {{ bookingDetail.date }}
+                    </span>
+                    <span>
+                      <i class="far fa-clock"></i>
+                      {{ bookingDetail.time }}
+                    </span>
+
+                    <span v-for="(type, index) in type" :key="index">
+                      <i class="fas fa-user-friends"></i>
+                      {{ type.name }} x {{ type.quantity }}
+                    </span>
+                  </div>
                 </div>
               </div>
+              <i
+                v-if="checkGuest"
+                class="fas fa-check-circle check-form-icon"
+              ></i>
             </div>
           </button>
 
@@ -127,9 +142,12 @@
             class="form-content"
             ref="guestForm"
             :style="{ display: 'block' }"
+            @submit.prevent.stop="checkGuestForm"
           >
             <div class="guest-form">
-              <div class="sub-title">旅客代表人 <button>清空</button></div>
+              <div class="sub-title">
+                旅客代表人 <span @click="cleanPassenger">清空</span>
+              </div>
               <div class="form-item">
                 <label for="" class="required-label">本國名</label>
                 <input
@@ -236,12 +254,24 @@
           <form class="form-content" ref="payForm" :style="{ display: 'none' }">
             <div class="pay-content">
               <div class="pay-option">
-                <input type="radio" name="payOption" id="linePay" />
+                <input
+                  type="radio"
+                  name="payOption"
+                  id="linePay"
+                  value="linePay"
+                  v-model="payWay"
+                />
                 <label for="linePay">LINE PAY</label>
               </div>
               <hr />
               <div class="pay-option">
-                <input type="radio" name="payOption" id="creditCard" />
+                <input
+                  type="radio"
+                  name="payOption"
+                  id="creditCard"
+                  value="creditCard"
+                  v-model="payWay"
+                />
                 <label for="creditCard">信用卡</label>
               </div>
             </div>
@@ -253,7 +283,7 @@
         </div>
 
         <!--付款明細-->
-        <div class="booking-form-block pay-detail" id="payContent">
+        <div class="booking-form-block bill-content" id="payContent">
           <button @click="toggleDisplay" class="block-top">
             <div><span class="fold-icon"></span> 付款明細</div>
           </button>
@@ -261,32 +291,71 @@
           <div class="pay-detail-content">
             <div class="ticket-detail pay-ticket-detail">
               <img :src="bookingDetail.image" alt="" />
-              <div class="ticket-info">
+              <div class="bill-info">
                 <div class="ticket-title">
                   <div class="link-to-product" @click="windowOpen">
                     {{ bookingDetail.title }}
                   </div>
                   {{ bookingDetail.plan }}
-                </div>
-                <span>
-                  {{ bookingDetail.date }}
-                </span>
-                <span>{{ bookingDetail.time }} </span>
 
-                <!-- <span v-for="(type, index) in type" :key="index">
-                  {{ type.name }} x {{ type.quantity }}
-                </span> -->
+                  <!---結帳明細--->
+                  <div class="bill-detail">
+                    <div class="bill-detail-time">
+                      <span>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        {{ bookingDetail.date }}
+                      </span>
+                      <span>
+                        <i class="far fa-clock"></i>{{ bookingDetail.time }}
+                      </span>
+                    </div>
+
+                    <div class="bill-deatil-people">
+                      <div
+                        v-for="(type, index) in type"
+                        :key="index"
+                        class="item"
+                      >
+                        {{ type.name }} x {{ type.quantity }}
+                        <span> TWD 400</span>
+                      </div>
+                    </div>
+
+                    <div class="bill-total">
+                      總金額 <span>{{ bookingDetail.totalPrice }}</span>
+                    </div>
+
+                    <div class="bill-discount" v-if="discount !== 0">
+                      折扣 <span> - {{ discount }}</span>
+                    </div>
+                  </div>
+                  <!------------->
+                </div>
               </div>
             </div>
+
+            <!-- <span v-for="(type, index) in type" :key="index">
+                  {{ type.name }} x {{ type.quantity }}
+                </span> -->
             <div class="total-price">
               支付金額<span> TWD {{ orderDetail.billPrice }}</span>
             </div>
           </div>
         </div>
 
-        <div class="booking-form-block ">
-          TWD {{ bookingDetail.totalPrice }}
-          <button class="continue-btn">確認付款</button>
+        <div class="booking-form-block d-flex justify-end">
+          <transition name="slide-fade">
+            <v-alert
+              v-if="alert"
+              type="error"
+              outlined
+              color="red lighten-2"
+              class="alert"
+            >
+              {{ alert }}
+            </v-alert>
+          </transition>
+          <button class="pay-btn" @click="checkout">確認付款</button>
         </div>
       </div>
     </div>
@@ -301,15 +370,15 @@
 /* eslint-disable */
 // import Datepicker from 'vuejs-datepicker';
 import { mapState } from 'vuex'
+import Spinner from '../components/Spinner'
 
 const couponNumber = [['GOTRIP2020', 500], ['HELLO2WORLD', 150]]
 
 export default {
   name: 'booking',
-  // components: { Datepicker },
+  components: { Spinner },
   data() {
     return {
-      step: 1,
       type: [],
       bookingDetail: {},
       orderDetail: {
@@ -328,7 +397,11 @@ export default {
       passengerLastName: '',
       coupon: '',
       discount: 0,
-      discountTip: ''
+      discountTip: '',
+      payWay: '',
+      checkUser: false,
+      checkGuest: false,
+      alert: ''
     }
   },
   created() {
@@ -360,7 +433,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isAuthenticated', 'user']),
+    ...mapState(['isAuthenticated', 'user', 'isLoading']),
     fullName() {
       return this.lastName + ' ' + this.firstName
     },
@@ -378,11 +451,25 @@ export default {
     windowOpen() {
       //另開新視窗
     },
-    checkForm(valid) {
+    checkUserForm(valid) {
       if (valid) {
-        this.$refs.guestContent.style.display = 'block'
-        window.scroll({ top: 600, behavior: 'smooth' })
+        this.$refs.userForm.style.display = 'none'
+        this.checkUser = true
+        if (!checkGuest) this.$refs.guestForm.style.display = 'block'
       }
+    },
+    checkGuestForm(valid) {
+      if (valid) {
+        this.$refs.guestForm.style.display = 'none'
+        this.$refs.payForm.style.display = 'block'
+        this.checkGuest = true
+        window.scroll({ top: 100, behavior: 'smooth' })
+      }
+    },
+    cleanPassenger() {
+      this.passengerFirstName = ''
+      this.passengerLastName = ''
+      this.orderDetail.gender = ''
     },
     displayCouponInput() {
       this.$refs.couponInput.style.display = 'block'
@@ -404,7 +491,13 @@ export default {
         couponNumber.forEach(i => {
           if (i[0] === val) return this.discount = i[1]
         })
-        this.orderDetail.billPrice -= this.discount
+
+        if (this.discount >= this.bookingDetail.totalPrice) {
+          this.orderDetail.billPrice = 0
+        } else {
+          this.orderDetail.billPrice -= this.discount
+        }
+
         this.$refs.discountTip.style.color = 'green'
         this.discountTip = ` 折扣 ${this.discount} 元`
       } else {
@@ -414,6 +507,31 @@ export default {
         this.coupon = ''
         this.orderDetail.billPrice = this.bookingDetail.totalPrice
       }
+    },
+    checkout(e) {
+      const { fullName, contactNumber, email, mainPassenger } = this.orderDetail
+      if (!fullName || !contactNumber || !email || !mainPassenger) {
+        this.alert = '請填寫必填欄位'
+        return setTimeout(() => { this.alert = null }, 3000)
+      }
+
+      if (this.payWay !== 'linePay' && this.payWay !== 'creditCard') {
+        this.alert = '請選擇付款方式'
+        return setTimeout(() => { this.alert = null }, 3000)
+      }
+
+      //金流api
+      this.$store.state.isLoading = true
+
+      localStorage.setItem('orderList', JSON.stringify(this.orderDetail))
+
+      //模擬loading
+      setTimeout(() => {
+        this.$store.state.isLoading = false
+        this.$router.push('/booking/step2')
+      }, 3500)
+
+      // this.$router.push('/booking/step2')
     }
   }
 }

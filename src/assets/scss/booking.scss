@@ -40,16 +40,21 @@
 }
 
 .booking-form-block {
+  width: 100%;
   margin: 25px 0;
   background-color: #fff;
   border-radius: 6px;
   padding: 15px;
 
   .block-top {
-    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     font-size: 1.1rem;
     font-weight: 900;
     margin-bottom: 15px;
+    position: relative;
 
     .fold-icon {
       pointer-events: none;
@@ -66,12 +71,23 @@
         margin-right: 15px;
       }
     }
+
     .link-to-product {
       pointer-events: auto;
     }
+
     .link-to-product:hover {
       text-decoration: underline;
     }
+  }
+
+  .check-form-icon {
+    position: absolute;
+    font-size: 1.5rem;
+    top: 5px;
+    right: 10px;
+    color: $main-blue;
+    opacity: .8;
   }
 
   .form-content {
@@ -122,9 +138,13 @@
         font-weight: 900;
         margin-bottom: 15px;
 
-        button {
+        span {
           color: $main-blue;
           font-size: 0.9rem;
+          
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
@@ -153,12 +173,14 @@
     }
 
     textarea {
+      font-size: .9rem;
       border: 1px solid $border-gray;
       resize: none;
       border-radius: 6px;
       width: 350px;
       height: 100px;
       margin-bottom: 50px;
+      padding: 10px 15px;
     }
 
     .coupon-option,
@@ -224,7 +246,6 @@
 .ticket-detail {
   display: flex;
   pointer-events: none;
-  height: 80px;
   font-size: 1rem;
   font-weight: normal;
 
@@ -239,15 +260,70 @@
 
   .ticket-title {
     display: block;
+    text-align: left;
     font-weight: 700;
+    line-height: 1.8rem;
+  }
+  
+  .ticket-info span {
+    font-size: .95rem;
+    color: $main-gray;
+    margin: 10px 30px 10px 0;
   }
 }
 
-.pay-detail-content {
+.bill-content {
 
-  .pay-ticket-detail {
-    margin: 15px 0;
-    background-color: rgb(230, 218, 218);
+  .bill-info {
+    width: 100%;
+  }
+
+  .bill-detail {
+    display: block;
+    width: 100%;
+    margin: 10px 0 15px 0;
+    color: $main-gray;
+    font-weight: 400;
+    font-size: .95rem;
+  }
+
+  .bill-detail-time span{
+    margin-right: 30px;
+  }
+
+  .bill-deatil-people {
+    border-bottom: 1px solid $border-gray;
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 30px;
+      margin: 10px 0;
+    }
+  }
+
+  .bill-total,
+  .bill-discount {
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+
+    span {
+      font-weight: 800;
+      color: $main-black;
+    }
+  }
+
+  .bill-discount {
+    font-size: .9rem;
+
+    span {
+      font-weight: 400;
+      color: $main-blue;
+    }
   }
   
   .total-price {
@@ -267,6 +343,23 @@
   }
 }
 
+.pay-btn {
+  font-size: 1rem;
+  background-color: $main-blue;
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px 30px;
+  height: 57px;
+  margin-left: 15px;
+}
+
+.checkout-finish {
+  min-height: 60vh;
+}
+
+.checkout-finish {
+  min-width: 60vh;
+}
 
 @media screen and(min-width: 768px) {
   .booking-container {

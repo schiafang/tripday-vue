@@ -16,6 +16,7 @@ export default new Vuex.Store({
     isAuthenticated: false,
     token: '',
     dialog: false,
+    isLoading: false
   },
   mutations: {
     setCurrentUser(state, user) {
@@ -44,7 +45,6 @@ export default new Vuex.Store({
         if (status === 'error') { throw new Error(data) }
         const { id, name, email, isAdmin } = data
         commit('setCurrentUser', { id, name, email, isAdmin })
-
       } catch (error) {
         console.error(error)
         commit('revokeAuthentication')

@@ -43,9 +43,14 @@ const routes = [
     component: () => import('../views/Cart')
   },
   {
-    path: '/booking',
+    path: '/booking/step1',
     name: 'Booking',
     component: () => import('../views/Booking')
+  },
+  {
+    path: '/booking/step2',
+    name: 'BookingSuccess',
+    component: () => import('../views/BookingSuccess')
   },
   {
     path: '/admin',
@@ -67,9 +72,9 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
   const stateToken = store.state.token
-
+  store.state.isLoading = true
   if (token !== stateToken) { store.dispatch('fetchCurrentUser') }
-
+  store.state.isLoading = false
   next()
 })
 

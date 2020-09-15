@@ -5,6 +5,7 @@
 
       <div class="main-container">
         <router-view />
+        <Spinner v-if="isLoading" />
       </div>
 
       <Footer />
@@ -15,10 +16,15 @@
 <script>
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Spinner from './components/Spinner'
+import { mapState } from 'vuex'
 
 export default {
   name: 'App',
-  components: { Navbar, Footer }
+  components: { Navbar, Footer, Spinner },
+  computed: {
+    ...mapState(['isLoading'])
+  },
 }
 </script>
 

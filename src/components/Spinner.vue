@@ -11,7 +11,7 @@
 
 <style>
 .spinner-content {
-  position: absolute;
+  position: fixed;
   top: 40vh;
   left: calc(50% - 30px);
 }

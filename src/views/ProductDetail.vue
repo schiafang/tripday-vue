@@ -108,9 +108,10 @@ export default {
 
 @media screen and (min-width: 996px) {
   .product-description {
+    opacity: 0.2;
+    margin-top: 100px;
     display: flex;
     flex-direction: row;
-    background-color: rgb(211, 211, 162);
   }
 
   .product-description-container {
@@ -120,7 +121,6 @@ export default {
   .product-nav-tab {
     display: block;
     width: 250px;
-    background-color: rgb(199, 108, 108);
   }
 }
 </style>
