@@ -44,7 +44,7 @@
           <div class="nav-item-user">
             <img :src="user.avatar" alt="avatar" class="user-image" />
             <span class="user-name">
-              {{ user.name }}
+              {{ user.name || user.email }}
             </span>
             <i class="fas fa-cog user-setting"></i>
           </div>

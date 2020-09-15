@@ -9,8 +9,8 @@ export default new Vuex.Store({
     user: {
       id: -1,
       name: '',
+      avatar: '',
       email: '',
-      avatar: 'https://i.imgur.com/Vu6ZZac.png',
       isAdmin: false
     },
     isAuthenticated: false,
@@ -21,7 +21,8 @@ export default new Vuex.Store({
     setCurrentUser(state, user) {
       state.user = {
         ...state.user,
-        ...user
+        ...user,
+        avatar: 'https://i.imgur.com/Vu6ZZac.png',
       }
       state.isAuthenticated = true
       state.token = localStorage.getItem('token')

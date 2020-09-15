@@ -2,8 +2,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 export const axiosInstance = axios.create({
-  // baseURL: 'https://forum-express-api.herokuapp.com/api'
-  baseURL: 'https://tripday-api.herokuapp.com/api'
+  baseURL: 'https://tripday-api.herokuapp.com'
 })
 
 export const Toast = Swal.mixin({
