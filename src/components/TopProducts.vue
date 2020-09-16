@@ -42,6 +42,38 @@ const dummyData = [
     rating: 4.2,
     ratingCount: 4326,
     orderCount: 34532
+  },
+  {
+    id: 3,
+    title: '【季節限定優惠】宜蘭龜山島賞鯨半日遊',
+    image: 'https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_164_28.jpg&sizetype=3',
+    price: 1000,
+    specialPrice: 800,
+    cities: 'yilan',
+    location: {
+      country: '台灣',
+      city: '宜蘭',
+    },
+    address: '',
+    rating: 4.4,
+    ratingCount: 726,
+    orderCount: 1532
+  },
+  {
+    id: 4,
+    title: '【94折優惠】屏東｜國立海洋生物博物館門票',
+    image: 'https://i.imgur.com/Yo3qHVI.jpg',
+    price: 420,
+    specialPrice: null,
+    cities: 'yilan',
+    location: {
+      country: '台灣',
+      city: '屏東',
+    },
+    address: '',
+    rating: 4.4,
+    ratingCount: 726,
+    orderCount: 1532
   }
 ]
 

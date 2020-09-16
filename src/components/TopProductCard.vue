@@ -144,9 +144,9 @@ export default {
 .product-card-image {
   height: 160px;
   width: 100%;
-  object-fit: cover;
 
   img {
+    object-fit: cover;
     border-radius: 6px 6px 0 0;
   }
 }

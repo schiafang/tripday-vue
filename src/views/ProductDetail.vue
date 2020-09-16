@@ -129,7 +129,7 @@ const dummyData = [
     id: uuidv4(),
     title: '【9折優惠】台灣台中｜麗寶樂園渡假區門票',
     image: 'https://img.jollybuy.com/S190625131147471/goods/879b8816f8cf403aa186d20bb8f393d4_Q50.jpg',
-    cover: '',
+    cover: 'https://www.lihpaoresort.com/LihpaolandApp/LihpaolandUi_Discover/images/pban_ticket.jpg',
     description: {
       introduction: '即訂即用台中麗寶樂園門票，不必排隊購票直接至票亭兌換，輕鬆入場！海陸雙樂園探索世界・馬拉灣・ 天空之夢摩天輪，無論大人、小孩都能盡情玩樂，享受美好時光',
       highlights: ['親臨全台最大海陸空主題樂園，一票玩到底 High翻天', '探索樂園內多種刺激遊樂設施，體驗斷軌雲霄飛車的快感', '不用去海邊也能享受沖浪般的清涼刺激，盡在馬拉灣大海嘯']
