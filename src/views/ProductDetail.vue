@@ -125,7 +125,10 @@ export default {
   data() {
     return {
       product: {},
-      plan: {}
+      plan: {
+        product: {},
+        planOption: {}
+      }
     }
   },
   created() {
@@ -136,6 +139,7 @@ export default {
       const id = this.$route.params.id
       this.product = dummyData.find(i => i.id === id) || null
       this.plan.planOption = this.product.planOption
+      this.plan.product = this.product
     }
   }
 }

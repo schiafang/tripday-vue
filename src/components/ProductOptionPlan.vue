@@ -8,7 +8,7 @@
         <div class="d-flex justify-center">
           {{ plan.title }} <span class="title-label">6天前可免費取消</span>
         </div>
-        <div class="price">TWD 550</div>
+        <div class="price">TWD {{ plan.price }}</div>
       </div>
       <ul class="ticket-type">
         <li>學生票：限12歲以上持有學生證之學生適用</li>
@@ -171,8 +171,11 @@ export default {
     this.disabledDates = state.disabledDates
 
     this.plan.planOption[0].ticketTypes.forEach((item, index) => {
-      this.typeTemp.push({ index, 'name': item.name, quantity: 0 })
+      this.typeTemp.push({ index, name: item.name, quantity: 0, price: item.price })
     })
+
+    console.log(this.plan.planOption[0].ticketTypes)
+    console.log(this.typeTemp)
 
     this.bookingDetail.type = this.typeTemp.map(i => ({ ...i }))
   },
@@ -194,12 +197,11 @@ export default {
     bookingNow(plan) {
       const { date, time, totalPrice } = this.bookingDetail
 
-
       if (!date || !totalPrice) {
         this.alert = '請選擇欄位'
         return setTimeout(() => { this.alert = null }, 3000)
       }
-      console.log(this.plan.planOption.ticketTime)
+
       if (this.plan.planOption.ticketTime && !time) {
         this.alert = '請選擇欄位'
         return setTimeout(() => { this.alert = null }, 3000)
@@ -208,9 +210,7 @@ export default {
       let bookingData = {
         ...this.bookingDetail,
         date: moment(date).format('YYYY-MM-DD'),
-        plan,
-        title: this.plan.title,
-        image: this.plan.image
+        plan: this.plan,
       }
 
       localStorage.setItem('booking', JSON.stringify(bookingData))

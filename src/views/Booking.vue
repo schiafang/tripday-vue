@@ -3,7 +3,7 @@
     <Spinner v-if="isLoading" />
     <div v-if="isAuthenticated">
       <div class="booking-container">
-        <div class="booking-title">
+        <div class="booking-step">
           <div
             class="step-pay"
             :style="{
@@ -26,9 +26,20 @@
         </div>
 
         <!--訂購人資料-->
-        <div class="booking-form-block booking-user">
+        <div class="booking-block booking-user">
           <button @click="toggleDisplay" class="block-top">
-            <div><span class="fold-icon"></span> 訂購人資料</div>
+            <div class="stop-event d-flex">
+              <div class="fold-icon-wrapper">
+                <span
+                  ref="userFoldIcon"
+                  class="fold-icon"
+                  :style="{
+                    transform: 'rotate(135deg)'
+                  }"
+                ></span>
+              </div>
+              訂購人資料
+            </div>
             <i
               v-show="checkUser"
               class="fas fa-check-circle check-form-icon"
@@ -38,7 +49,7 @@
           <form
             class="form-content"
             ref="userForm"
-            :style="{ display: 'block' }"
+            :style="{ display: 'block', transition: 'display .3s ease-in-out' }"
             @submit.prevent.stop="checkUserForm"
           >
             <div class="form-item">
@@ -95,37 +106,42 @@
         </div>
 
         <!--旅客資料-->
-        <div class="step-title">旅客資料</div>
+        <div class="booking-sub-title">旅客資料</div>
         <div
-          class="booking-form-block booking-guest"
+          class="booking-block booking-guest"
           id="guestContent"
           ref="guestContent"
         >
           <button @click="toggleDisplay" class="block-top">
-            <div class="d-flex">
-              <span class="fold-icon"></span>
+            <div class="d-flex stop-event">
+              <div class="fold-icon-wrapper">
+                <span
+                  ref="guestFoldIcon"
+                  class="fold-icon"
+                  :style="{ transform: 'rotate(135deg)' }"
+                ></span>
+              </div>
               <div class="ticket-detail">
-                <img :src="bookingDetail.image" alt="" />
+                <img :src="bookingDetail.plan.product.image" alt="" />
                 <div class="ticket-info">
                   <div class="ticket-title">
                     <div class="link-to-product" @click="windowOpen">
-                      {{ bookingDetail.title }}
+                      {{ bookingDetail.plan.product.title }}
                     </div>
-                    {{ bookingDetail.plan }}
+                    {{ bookingDetail.plan.planOption.title }}
                   </div>
 
-                  <div class="d-flex">
+                  <div class="ticket-info-list">
                     <span>
-                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                      <i class="icon-calendar" aria-hidden="true"></i>
                       {{ bookingDetail.date }}
                     </span>
-                    <span>
-                      <i class="far fa-clock"></i>
+                    <span v-if="bookingDetail.time">
+                      <i class="icon-clock"></i>
                       {{ bookingDetail.time }}
                     </span>
-
                     <span v-for="(type, index) in type" :key="index">
-                      <i class="fas fa-user-friends"></i>
+                      <i class="icon-people"></i>
                       {{ type.name }} x {{ type.quantity }}
                     </span>
                   </div>
@@ -145,7 +161,7 @@
             @submit.prevent.stop="checkGuestForm"
           >
             <div class="guest-form">
-              <div class="sub-title">
+              <div class="guest-form-title">
                 旅客代表人 <span @click="cleanPassenger">清空</span>
               </div>
               <div class="form-item">
@@ -194,7 +210,7 @@
             </div> -->
             </div>
 
-            <div class="form-title">訂單備註 <span>(備註事項)</span></div>
+            <div class="form-sub-title">訂單備註 <span>(備註事項)</span></div>
             <textarea
               name="reminder"
               id="reminder"
@@ -203,7 +219,7 @@
               v-model="orderDetail.reminder"
             ></textarea>
 
-            <div class="form-title">使用折扣</div>
+            <div class="form-sub-title">使用折扣</div>
             <div class="coupon-option">
               <input type="radio" name="coupon" id="noCoupon" />
               <label for="noCoupon" @click="hideCouponInput">不使用</label>
@@ -245,10 +261,19 @@
         </div>
 
         <!--付款-->
-        <div class="step-title">付款</div>
-        <div class="booking-form-block booking-pay" id="payContent">
+        <div class="booking-sub-title">付款</div>
+        <div class="booking-block booking-pay" id="payContent">
           <button @click="toggleDisplay" class="block-top">
-            <div><span class="fold-icon"></span> 請選擇付款方式</div>
+            <div class="stop-event d-flex">
+              <div class="fold-icon-wrapper">
+                <span
+                  ref="payFoldIcon"
+                  class="fold-icon"
+                  :style="{ transform: 'rotate(-45deg)' }"
+                ></span>
+              </div>
+              請選擇付款方式
+            </div>
           </button>
 
           <form class="form-content" ref="payForm" :style="{ display: 'none' }">
@@ -283,30 +308,38 @@
         </div>
 
         <!--付款明細-->
-        <div class="booking-form-block bill-content" id="payContent">
+        <div class="booking-block bill-content" id="payContent">
           <button @click="toggleDisplay" class="block-top">
-            <div><span class="fold-icon"></span> 付款明細</div>
+            <div class="stop-event d-flex">
+              <div class="fold-icon-wrapper">
+                <span
+                  class="fold-icon"
+                  :style="{ transform: 'rotate(135deg)' }"
+                ></span>
+              </div>
+              付款明細
+            </div>
           </button>
 
           <div class="pay-detail-content">
             <div class="ticket-detail pay-ticket-detail">
-              <img :src="bookingDetail.image" alt="" />
+              <img :src="bookingDetail.plan.product.image" alt="" />
               <div class="bill-info">
                 <div class="ticket-title">
                   <div class="link-to-product" @click="windowOpen">
-                    {{ bookingDetail.title }}
+                    {{ bookingDetail.plan.product.title }}
                   </div>
-                  {{ bookingDetail.plan }}
+                  {{ bookingDetail.plan.planOption.title }}
 
                   <!---結帳明細--->
                   <div class="bill-detail">
-                    <div class="bill-detail-time">
+                    <div class="ticket-info-list">
                       <span>
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <i class="icon-calendar" aria-hidden="true"></i>
                         {{ bookingDetail.date }}
                       </span>
-                      <span>
-                        <i class="far fa-clock"></i>{{ bookingDetail.time }}
+                      <span v-if="bookingDetail.time">
+                        <i class="icon-clock"></i>{{ bookingDetail.time }}
                       </span>
                     </div>
 
@@ -317,7 +350,7 @@
                         class="item"
                       >
                         {{ type.name }} x {{ type.quantity }}
-                        <span> TWD 400</span>
+                        <span> TWD {{ type.price * type.quantity }}</span>
                       </div>
                     </div>
 
@@ -343,7 +376,7 @@
           </div>
         </div>
 
-        <div class="booking-form-block d-flex justify-end">
+        <div class="booking-block d-flex justify-end">
           <transition name="slide-fade">
             <v-alert
               v-if="alert"
@@ -373,6 +406,8 @@ import { mapState } from 'vuex'
 import Spinner from '../components/Spinner'
 
 const couponNumber = [['GOTRIP2020', 500], ['HELLO2WORLD', 150]]
+const fold = 'rotate(-45deg)'
+const unfold = 'rotate(135deg)'
 
 export default {
   name: 'booking',
@@ -401,7 +436,7 @@ export default {
       payWay: '',
       checkUser: false,
       checkGuest: false,
-      alert: ''
+      alert: '',
     }
   },
   created() {
@@ -445,8 +480,10 @@ export default {
     toggleDisplay(e) {
       if (e.target.classList.value === 'link-to-product') return
 
-      let content = e.target.parentElement.nextElementSibling
+      let content = e.target.nextElementSibling
+      let foldIcon = e.target.children[0].children[0].children[0]
       content.style.display === 'block' ? content.style.display = 'none' : content.style.display = "block"
+      foldIcon.style.transform === unfold ? foldIcon.style.transform = fold : foldIcon.style.transform = unfold
     },
     windowOpen() {
       //另開新視窗
@@ -454,14 +491,20 @@ export default {
     checkUserForm(valid) {
       if (valid) {
         this.$refs.userForm.style.display = 'none'
+        this.$refs.userFoldIcon.style.transform = fold
         this.checkUser = true
-        if (!checkGuest) this.$refs.guestForm.style.display = 'block'
+        if (!this.checkGuest) {
+          this.$refs.guestForm.style.display = 'block'
+          this.$refs.guestFoldIcon.style.transform = unfold
+        }
       }
     },
     checkGuestForm(valid) {
       if (valid) {
         this.$refs.guestForm.style.display = 'none'
+        this.$refs.guestFoldIcon.style.transform = fold
         this.$refs.payForm.style.display = 'block'
+        this.$refs.payFoldIcon.style.transform = unfold
         this.checkGuest = true
         window.scroll({ top: 100, behavior: 'smooth' })
       }
@@ -520,7 +563,7 @@ export default {
         return setTimeout(() => { this.alert = null }, 3000)
       }
 
-      //金流api
+      //TODO:金流api
       this.$store.state.isLoading = true
 
       localStorage.setItem('orderList', JSON.stringify(this.orderDetail))
