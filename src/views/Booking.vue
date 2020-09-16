@@ -487,12 +487,9 @@ export default {
       foldIcon.style.transform === unfold ? foldIcon.style.transform = fold : foldIcon.style.transform = unfold
     },
     windowOpen() {
-      //另開新視窗
-
-      let routeData = this.$router.resolve({ path: `/products/${1}` })
-      window.open(routeData.href, '_blank')
-
-      console.log(routeData)
+      const id = this.bookingDetail.plan.product.id
+      let route = this.$router.resolve({ path: `/products/${id}` })
+      window.open(route.href, '_blank')
     },
     checkUserForm(valid) {
       if (valid) {

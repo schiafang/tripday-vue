@@ -174,9 +174,6 @@ export default {
       this.typeTemp.push({ index, name: item.name, quantity: 0, price: item.price })
     })
 
-    console.log(this.plan.planOption[0].ticketTypes)
-    console.log(this.typeTemp)
-
     this.bookingDetail.type = this.typeTemp.map(i => ({ ...i }))
   },
   methods: {
