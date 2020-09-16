@@ -128,7 +128,7 @@
                     <div class="link-to-product" @click="windowOpen">
                       {{ bookingDetail.plan.product.title }}
                     </div>
-                    {{ bookingDetail.plan.planOption.title }}
+                    {{ bookingDetail.plan.planOption[0].title }}
                   </div>
 
                   <div class="ticket-info-list">
@@ -329,7 +329,7 @@
                   <div class="link-to-product" @click="windowOpen">
                     {{ bookingDetail.plan.product.title }}
                   </div>
-                  {{ bookingDetail.plan.planOption.title }}
+                  {{ bookingDetail.plan.planOption[0].title }}
 
                   <!---結帳明細--->
                   <div class="bill-detail">
@@ -442,7 +442,8 @@ export default {
   created() {
     this.bookingDetail = JSON.parse(localStorage.getItem('booking'))
     this.orderDetail.billPrice = this.bookingDetail.totalPrice
-    this.type = this.bookingDetail.type.filter(i => i.quantity !== 0)
+    this.orderDetail.email = this.$store.state.user.email
+    this.type = this.bookingDetail.type.filter(i => i.quantity !== 0) //取出有選購的票種與數量
   },
   watch: {
     step: {
@@ -487,6 +488,11 @@ export default {
     },
     windowOpen() {
       //另開新視窗
+
+      let routeData = this.$router.resolve({ path: `/products/${1}` })
+      window.open(routeData.href, '_blank')
+
+      console.log(routeData)
     },
     checkUserForm(valid) {
       if (valid) {

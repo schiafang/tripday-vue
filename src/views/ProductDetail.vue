@@ -135,8 +135,8 @@ export default {
     this.fetchProduct()
   },
   methods: {
-    fetchProduct() {
-      const id = this.$route.params.id
+    async fetchProduct() {
+      const id = Number(this.$route.params.id)
       this.product = dummyData.find(i => i.id === id) || null
       this.plan.planOption = this.product.planOption
       this.plan.product = this.product
