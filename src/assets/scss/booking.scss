@@ -235,9 +235,7 @@ i {
 /*旅客代表表格*/
 .guest-form {
   margin: 30px 0 50px 0;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
+  @extend %cardShadowStyle ;
 
   .guest-form-title {
     display: flex;
@@ -377,6 +375,28 @@ i {
 /*booking success page*/
 .checkout-finish {
   min-height: 60vh;
+  width: 100%;
+  background-color: $border-gray;
+
+  .order-detail {
+    @extend %cardShadowStyle;
+    background-color: #FFF;
+
+    .item {
+      margin: 15px 0;
+    }
+    
+    span {
+      font-weight: 500;
+      margin-right: 5px;
+    }
+    
+    i {
+      font-weight: 700;
+      margin-right: 5px;
+      color: $main-gray;
+    }
+  }
 }
 
 @media screen and(min-width: 768px) {

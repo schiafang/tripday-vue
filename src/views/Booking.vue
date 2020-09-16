@@ -1,7 +1,7 @@
 <template>
   <div class="booking-container-wrapper">
     <Spinner v-if="isLoading" />
-    <div v-if="isAuthenticated">
+    <template v-if="isAuthenticated">
       <div class="booking-container">
         <div class="booking-step">
           <div
@@ -391,7 +391,7 @@
           <button class="pay-btn" @click="checkout">確認付款</button>
         </div>
       </div>
-    </div>
+    </template>
 
     <div v-else>
       請先登入
@@ -565,6 +565,8 @@ export default {
         this.alert = '請選擇付款方式'
         return setTimeout(() => { this.alert = null }, 3000)
       }
+
+      this.orderDetail.bookingDetail = this.bookingDetail
 
       //TODO:金流api
       this.$store.state.isLoading = true

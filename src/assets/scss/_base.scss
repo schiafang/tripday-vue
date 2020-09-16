@@ -16,6 +16,13 @@ $pink: #ef7a70;
   align-items: center;
 }
 
+
+%cardShadowStyle {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
+  border-radius: 8px;
+  padding: 15px;
+}
+
 /*nav使用者漸層背景*/
 %userBackgroundGradient {
   background: -moz-linear-gradient(-45deg,  #b8e0d8 0%, #007a99 100%);

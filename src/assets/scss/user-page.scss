@@ -1,3 +1,6 @@
+
+@import 'base';
+
 @mixin contentStyle {
   background-color: #FFF;
   border-radius: 8px;
@@ -11,11 +14,104 @@
 
 .user-content {
   @include contentStyle;
-  height: 400px;
+  height: 600px;
+  overflow-y: scroll;
+  padding: 15px;
+
+  .user-content-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $border-gray;
+    color: $main-gray;
+  }
 }
 
 .user-tab-wrapper {
   display: none;
+}
+
+.order-detail {
+  padding: 0px;
+  margin-bottom: 30px;
+  
+  .top {
+    box-shadow: rgba(95, 95, 95, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    display: block;
+    position: relative;
+    padding: 30px;
+    border-radius: 8px;
+    transition: all .3s ease-in-out;
+    background-color: #FFF;
+    z-index: 1;
+
+    .icon-arrow-up {
+      position: absolute;
+      right: 30px;
+    }
+
+    .order-list-number {
+      float: right;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: $main-gray;
+    }
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: rgb(240, 240, 240) 1px 1px 6px 0px inset, rgba(255, 255, 255, 0.2) -1px -1px 6px 1px inset;
+      opacity: .9;
+      top: 1px;
+    }
+  }
+
+  .content {
+    z-index: 0;
+    background-color: $border-gray;
+    border-radius: 0 0 8px 8px;
+    padding: 10px 30px;
+    margin: 0 2px;
+    transform: scale(1, 0);
+    font-size: .9rem;
+    opacity: 0;
+    transform-origin: top;
+    transition: all .3s ease-in;
+  }
+
+  #orderContent {
+    display: none;
+    position: absolute;
+
+    &:checked {
+      ~ .content {
+        opacity: 1;
+        transform: scale(1, 1);
+      }
+
+      ~ .top .icon-arrow-up {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .item {
+    margin: 15px 0;
+  }
+
+  span {
+    font-weight: 500;
+    margin-right: 5px;
+  }
+
+  i {
+    font-weight: 700;
+    margin-right: 5px;
+    color: $main-gray;
+  }
+
+  
+
 }
 
 @media screen and (min-width: 996px) {
