@@ -1,20 +1,26 @@
 <template>
   <div class="container">
-    <!--商品資訊(隨機一個高分評價)-->
-    <ProductInfo :product="product" />
+    <div v-if="product">
+      <!--商品資訊(隨機一個高分評價)-->
+      <ProductInfo :product="product" />
 
-    <!--方案選擇-->
-    <ProductOptionPlan :plan="plan" />
+      <!--方案選擇-->
+      <ProductOptionPlan :plan="plan" />
 
-    <!--商品下方其他資訊說明-->
-    <div class="product-description">
-      <div class="product-description-container">
-        <h1>商品說明</h1>
-        <div id="productComents" ref="productComents">
-          <ProductCommentCard />
+      <!--商品下方其他資訊說明-->
+      <div class="product-description">
+        <div class="product-description-container">
+          <h1>商品說明</h1>
+          <div id="productComents" ref="productComents">
+            <ProductCommentCard />
+          </div>
         </div>
+        <div class="product-nav-tab">nav tab</div>
       </div>
-      <div class="product-nav-tab">nav tab</div>
+    </div>
+
+    <div v-else class="in-progress-wrapper">
+      <i class="fas fa-hammer"></i> In progress
     </div>
   </div>
 </template>
@@ -25,59 +31,9 @@ import ProductInfo from '../components/ProductInfo'
 import ProductCommentCard from '../components/ProductCommentCard'
 import ProductOptionPlan from '../components/ProductOptionPlan'
 
-// const dummyData = {
-//   id: uuidv4(),
-//   title: '桃園青埔｜Xpark 都會型水生公園門票',
-//   image: 'https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2020/07/15/realtime/8196557.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=800&exp=3600&w=930',
-//   cover: 'https://images.unsplash.com/photo-1547210318-c4ab922fb3a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
-//   description: {
-//     introduction: '由日本橫濱八景島首度跨海來台桃園開設分館「Xpark」，Xpark主打新都會型水族館，驅使最先端的科技，營造出環境的溫度、濕度、氣味、聲音，帶您到地球上每個不可思議的角落，受到啟發、感受療癒、洗滌心靈。在KKday訂購電子票即可掃QRcode入園，不必排隊購票・輕鬆入場！',
-//     highlights: ['由日本高人氣八景島團隊首度跨海來台，打造日系都會型水族館，全台首見', '在Tripday訂購Xpark入園門票，當日掃QRcode即可入館', '結合當地商場，鄰近高鐵站、機場捷運，交通方便，吃喝玩樂一次滿足']
-//   },
-//   price: 550,
-//   specialPrice: null,
-//   cities: 'taoyuan',
-//   location: {
-//     country: '台灣',
-//     city: '桃園',
-//   },
-//   address: '320台灣桃園市中壢區春德路105號',
-//   rating: 4.5,
-//   ratingCount: 7332,
-//   orderCount: 233443,
-//   planOption: [
-//     {
-//       id: uuidv4(),
-//       title: 'Xpark 入園門票',
-//       price: 550, //標價
-//       ticketTime: ['10:00', '11:00', '12:00', '13:00', '14:00'],
-//       ticketTypes: [
-//         {
-//           name: '成人',
-//           limit: '18 - 64 歲',
-//           price: '550'
-//         },
-//         {
-//           name: '兒童',
-//           limit: '4 - 11 歲',
-//           price: '250'
-//         }, {
-//           name: '學生',
-//           limit: '12 歲以上(含)',
-//           price: '450'
-//         }, {
-//           name: '長者',
-//           limit: '65 歲以上(含)',
-//           price: '200'
-//         },
-//       ],
-//     }
-//   ]
-// }
-
 const dummyData = [
   {
-    id: uuidv4(),
+    id: 1,
     title: '桃園青埔｜Xpark 都會型水生公園門票',
     image: 'https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2020/07/15/realtime/8196557.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=800&exp=3600&w=930',
     cover: 'https://images.unsplash.com/photo-1547210318-c4ab922fb3a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
@@ -126,7 +82,7 @@ const dummyData = [
     ]
   },
   {
-    id: uuidv4(),
+    id: 2,
     title: '【9折優惠】台灣台中｜麗寶樂園渡假區門票',
     image: 'https://img.jollybuy.com/S190625131147471/goods/879b8816f8cf403aa186d20bb8f393d4_Q50.jpg',
     cover: 'https://www.lihpaoresort.com/LihpaolandApp/LihpaolandUi_Discover/images/pban_ticket.jpg',
@@ -169,23 +125,18 @@ export default {
   data() {
     return {
       product: {},
-      highlights: [],
-      ticket: {
-        ticketTime: [],
-        ticketTypes: []
-      },
-      // planOption: []
       plan: {}
     }
   },
   created() {
-    let random = Math.floor(Math.random() * 2)
-    const { planOption, title, image } = dummyData[random]
-    this.product = dummyData[random]
-    this.plan.planOption = planOption
-    this.plan.title = title
-    this.plan.image = image
-    this.highlights = dummyData[random].description.highlights
+    this.fetchProduct()
+  },
+  methods: {
+    fetchProduct() {
+      const id = this.$route.params.id
+      this.product = dummyData.find(i => i.id === id) || null
+      this.plan.planOption = this.product.planOption
+    }
   }
 }
 </script>
@@ -193,6 +144,15 @@ export default {
 <style lang="scss" scoped>
 .product-nav-tab {
   display: none;
+}
+
+.in-progress-wrapper {
+  height: 70vh;
+  color: #c26b63;
+  font-size: 36px;
+  text-align: center;
+  font-weight: 600;
+  padding-top: 170px;
 }
 
 @media screen and (min-width: 996px) {
