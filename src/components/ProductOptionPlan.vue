@@ -194,7 +194,13 @@ export default {
     bookingNow(plan) {
       const { date, time, totalPrice } = this.bookingDetail
 
-      if (!date || !time || !totalPrice) {
+
+      if (!date || !totalPrice) {
+        this.alert = '請選擇欄位'
+        return setTimeout(() => { this.alert = null }, 3000)
+      }
+      console.log(this.plan.planOption.ticketTime)
+      if (this.plan.planOption.ticketTime && !time) {
         this.alert = '請選擇欄位'
         return setTimeout(() => { this.alert = null }, 3000)
       }
