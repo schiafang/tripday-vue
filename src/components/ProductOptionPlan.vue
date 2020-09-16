@@ -22,9 +22,9 @@
       <div class="benifit-bar">
         <span>關於此方案</span>
         <div class="row">
-          <div>6天前可免費取消</div>
-          <div>立即確認</div>
-          <div>立即發送憑證</div>
+          <div><i class="icon-refresh"></i> 6天前可免費取消</div>
+          <div><i class="fa fa-flash flash-icon main-color"></i> 立即確認</div>
+          <div><i class="icon-paper-plane"></i> 立即發送憑證</div>
         </div>
       </div>
       <div class="plan-subtitle">

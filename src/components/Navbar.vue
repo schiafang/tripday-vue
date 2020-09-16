@@ -46,7 +46,7 @@
             <span class="user-name">
               {{ user.name || user.email }}
             </span>
-            <i class="fas fa-cog user-setting"></i>
+            <i class="icon-settings user-setting"></i>
           </div>
         </router-link>
 

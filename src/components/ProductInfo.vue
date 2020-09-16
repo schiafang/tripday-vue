@@ -29,8 +29,8 @@
         {{ product.location.city }}
       </div>
       <div class="policy">
-        <div>6天前可免費取消</div>
-        <div>現場請出示 QR code</div>
+        <div><i class="icon-refresh"></i> 6天前可免費取消</div>
+        <div><i class="icon-screen-smartphone"></i> 現場請出示 QR code</div>
       </div>
       <div class="description">
         <div class="introduction">
