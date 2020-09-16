@@ -9,12 +9,18 @@ A front-end project to clone Taiwan travel website
 
 
 ## Demo browse
-####  :point_right: [Demo]()
+####  👉 [Demo](https://schiafang.github.io/tripday-vue/)
 
 You can use below account login or registe now
 ```
 email: 123@123.com  
 password: 123
+```
+
+Coupon code
+```
+GOTRIP2020 
+HELLO2WORLD
 ```
 
 
@@ -57,22 +63,22 @@ password: 123
 
 ## Built with
 
-Javascript
-CSS
+Javascript  
+CSS  
 HTML
 
 
 
 ### Third-part Package and Framework Use 
-[Vue](https://vuejs.org/v2/guide/installation.html)
-[Vuex](https://vuex.vuejs.org/)
-[Sass](https://sass-lang.com/)
-[Vuetify](https://vuetifyjs.com/en/)
-[vuejs-datepicker](https://www.npmjs.com/package/vuejs-datepicker)
-[sweetalert2](https://sweetalert2.github.io/)
-[Fontawesome](https://fontawesome.com/)
-[moment](https://www.npmjs.com/package/moment)
-[uuid](https://www.npmjs.com/package/uuid)
+[Vue](https://vuejs.org/v2/guide/installation.html)  
+[Vuex](https://vuex.vuejs.org/)  
+[Sass](https://sass-lang.com/)  
+[Vuetify](https://vuetifyjs.com/en/)  
+[vuejs-datepicker](https://www.npmjs.com/package/vuejs-datepicker)  
+[sweetalert2](https://sweetalert2.github.io/)  
+[Fontawesome](https://fontawesome.com/)  
+[moment](https://www.npmjs.com/package/moment)  
+[uuid](https://www.npmjs.com/package/uuid)  
 
 
 ## Clone and Setup
@@ -97,6 +103,7 @@ npm run build
 ```
 
 
+<br>
 <br>
 
 #### 專案參考資料來源
