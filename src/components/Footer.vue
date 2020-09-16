@@ -28,9 +28,15 @@
           聯絡我們
         </div>
         <div class="footer-item social-media">
-          <span>Fb</span>
-          <span>Fb</span>
-          <span>Fb</span>
+          <a href="https://www.facebook.com/" target="_blank">
+            <img src="../assets/images/facebook-icon.svg" alt="fb-icon" />
+          </a>
+          <a href="https://www.instagram.com/?hl=en" target="_blank">
+            <img src="../assets/images/instagram-icon.svg" alt="ig-icon" />
+          </a>
+          <a href="https://github.com/schiafang/tripday-vue" target="_blank">
+            <img src="../assets/images/github-icon.svg" alt="github-icon" />
+          </a>
         </div>
       </div>
 
@@ -96,12 +102,10 @@ footer {
   .social-media {
     display: flex;
 
-    span {
-      border-radius: 100%;
-      height: 40px;
-      width: 40px;
+    img {
+      height: 30px;
+      width: 30px;
       margin-right: 15px;
-      background-color: rgb(145, 144, 144);
     }
   }
 
