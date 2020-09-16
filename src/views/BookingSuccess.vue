@@ -23,9 +23,14 @@
             付款完成
           </div>
         </div>
-
         <div class="booking-form-block checkout-finish">
-          {{ orderDetail }}
+          <ul>
+            <li>訂購者: {{ orderDetail.fullName }}</li>
+            <li>聯絡電話: {{ orderDetail.contactNumber }}</li>
+            <li>主要旅客代表: {{ orderDetail.mainPassenger }}</li>
+            <li>備註: {{ orderDetail.reminder || '無' }}</li>
+            <li>結帳總金額: {{ orderDetail.billPrice }}</li>
+          </ul>
         </div>
       </div>
     </div>
