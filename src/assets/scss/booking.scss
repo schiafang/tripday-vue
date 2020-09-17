@@ -397,6 +397,17 @@ i {
       color: $main-gray;
     }
   }
+
+  .orderlist-link {
+    float: right;
+    margin-top: -55px;
+    margin-right: 10px;
+
+    &:hover {
+      background-color: $light-blue;
+      box-shadow: 1px 1px 2px 1px rgba(0,0,0,.1);
+    }
+  }
 }
 
 @media screen and(min-width: 768px) {

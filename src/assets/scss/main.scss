@@ -45,6 +45,13 @@ select {
   color: $main-blue;
 }
 
+.btn {
+  color: #FFF;
+  border-radius: 6px;
+  padding: 8px 15px;
+  background-color: $main-blue;
+}
+
 /*附註說明文字*/
 .caption-tag {
   font-size: .85rem;

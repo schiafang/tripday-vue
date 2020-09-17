@@ -6,18 +6,39 @@
         <div class="user-content-title">
           訂單管理
         </div>
-        <div class="order-detail">
-          <input type="checkbox" id="orderContent" />
-          <label for="orderContent" class="top">
+
+        <template v-if="orderList.length === 0">
+          <div class="user-content-no-data">
+            <div>
+              <span>
+                沒有訂單
+              </span>
+            </div>
+          </div>
+        </template>
+
+        <div
+          class="order-list"
+          v-else
+          v-for="(order, index) in orderList"
+          :key="index"
+        >
+          <input
+            type="checkbox"
+            :id="index + 'orderContent'"
+            class="order-input "
+            @click="openList"
+          />
+          <label :for="index + 'orderContent'" class="top">
             <i class="icon-arrow-up"></i>
             <h4 class="mt-4">
-              {{ orderDetail.bookingDetail.plan.planOption[0].title }}
+              {{ order.bookingDetail.plan.planOption[0].title }}
             </h4>
             <div class="item">
               <i class="icon-people"></i>
               <span
                 class="inline"
-                v-for="(type, index) in orderDetail.bookingDetail.type"
+                v-for="(type, index) in order.bookingDetail.type"
                 :key="index"
               >
                 {{ type.name }} x {{ type.quantity }}
@@ -31,27 +52,27 @@
           <div class="content">
             <div class="item">
               <i class="icon-calendar"></i>
-              <span> 日期:</span>{{ orderDetail.bookingDetail.date }}
+              <span> 日期:</span>{{ order.bookingDetail.date }}
             </div>
             <div class="item">
               <i class="icon-user"></i>
-              <span> 訂購人:</span>{{ orderDetail.fullName }}
+              <span> 訂購人:</span>{{ order.fullName }}
             </div>
             <div class="item">
               <i class="icon-user-following"></i>
-              <span> 主要聯絡人:</span>{{ orderDetail.mainPassenger }}
+              <span> 主要聯絡人:</span>{{ order.mainPassenger }}
             </div>
             <div class="item">
               <i class="icon-phone"></i>
-              <span> 聯絡電話:</span>{{ orderDetail.contactNumber }}
+              <span> 聯絡電話:</span>{{ order.contactNumber }}
             </div>
             <div class="item">
               <i class="icon-note"></i>
-              <span> 備註:</span> {{ orderDetail.reminder || '無' }}
+              <span> 備註:</span> {{ order.reminder || '無' }}
             </div>
             <div class="item">
               <i class="icon-credit-card"></i>
-              <span> 訂單金額:</span> {{ orderDetail.billPrice }}
+              <span> 訂單金額:</span> {{ order.billPrice }}
             </div>
           </div>
         </div>
@@ -69,10 +90,12 @@ export default {
   components: { UserTab },
   data() {
     return {
+      orderList: []
     }
   },
   created() {
-    this.orderDetail = JSON.parse(localStorage.getItem('orderList'))
+    this.orderList.push(JSON.parse(localStorage.getItem('orderList')))
+    this.orderList.push(JSON.parse(localStorage.getItem('orderList'))) //模擬第二筆資料
   },
   computed: {
     ...mapState(['isAuthenticated', 'user'])

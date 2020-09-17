@@ -3,7 +3,21 @@
     <div class="user-container">
       <UserTab />
       <div class="user-content">
-        <h1>{{ user.name || user.email }}'s 收藏清單 Page</h1>
+        <div class="user-content-title">
+          我的收藏
+        </div>
+
+        <template v-if="favorites.length === 0">
+          <div class="user-content-no-data">
+            <div>
+              <span>
+                沒有收藏
+              </span>
+            </div>
+          </div>
+        </template>
+
+        <div class="favorites-list" v-else></div>
       </div>
     </div>
   </div>
@@ -18,6 +32,7 @@ export default {
   components: { UserTab },
   data() {
     return {
+      favorites: []
     }
   },
   computed: {

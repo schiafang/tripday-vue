@@ -74,6 +74,10 @@
               <i class="icon-credit-card"></i>
               <span> 訂單金額:</span> {{ orderDetail.billPrice }}
             </div>
+
+            <router-link to="/user/orderlist">
+              <button class="btn orderlist-link">查看訂單</button>
+            </router-link>
           </div>
         </div>
       </div>
