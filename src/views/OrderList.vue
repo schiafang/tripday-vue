@@ -1,6 +1,6 @@
 <template>
   <div class="user-container-wapper">
-    <div class="user-container">
+    <div v-if="isAuthenticated" class="user-container">
       <UserTab />
       <div class="user-content">
         <div class="user-content-title">
@@ -78,6 +78,10 @@
         </template>
       </div>
     </div>
+
+    <div v-else class="user-container">
+      <h3>請先登入</h3>
+    </div>
   </div>
 </template>
 
@@ -94,8 +98,8 @@ export default {
     }
   },
   created() {
-    this.orderList.push(JSON.parse(localStorage.getItem('orderList')))
-    this.orderList.push(JSON.parse(localStorage.getItem('orderList'))) //模擬第二筆資料
+    const data = JSON.parse(localStorage.getItem('orderList'))
+    if (data) this.orderList = data
   },
   computed: {
     ...mapState(['isAuthenticated', 'user'])

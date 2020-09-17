@@ -571,7 +571,10 @@ export default {
       //TODO:金流api
       this.$store.state.isLoading = true
 
-      localStorage.setItem('orderList', JSON.stringify(this.orderDetail))
+      let orderListData = JSON.parse(localStorage.getItem('orderList')) || []
+      orderListData.push(this.orderDetail)
+      localStorage.setItem('orderList', JSON.stringify(orderListData)) //全部訂單
+      localStorage.setItem('checkout', JSON.stringify(this.orderDetail)) //確認畫面
 
       //模擬loading
       setTimeout(() => {

@@ -101,10 +101,13 @@ export default {
     }
   },
   created() {
-    this.orderDetail = JSON.parse(localStorage.getItem('orderList'))
+    this.orderDetail = JSON.parse(localStorage.getItem('checkout'))
   },
   computed: {
     ...mapState(['isAuthenticated', 'user']),
+  },
+  beforeDestroy() {
+    localStorage.removeItem('checkout')
   }
 }
 </script>

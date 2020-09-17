@@ -1,6 +1,6 @@
 <template>
   <div class="user-container-wapper">
-    <div class="user-container">
+    <div class="user-container" v-if="isAuthenticated">
       <UserTab />
       <div class="user-content">
         <div class="user-content-title">
@@ -19,6 +19,9 @@
 
         <div class="favorites-list" v-else></div>
       </div>
+    </div>
+    <div class="user-container" v-else>
+      <h3>請先登入</h3>
     </div>
   </div>
 </template>
