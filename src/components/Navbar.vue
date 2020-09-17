@@ -10,6 +10,7 @@
         type="text"
         placeholder="輸入目的地、景點或行程名稱"
       />
+      <i class="fas fa-search search-btn"></i>
     </div>
 
     <!-- hambuger/nav-list-toggle -->
