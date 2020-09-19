@@ -87,6 +87,7 @@
           type="checkbox"
           id="dropdown-currency-toggle"
           class="dropdown-currency-toggle"
+          v-model="currencyCheck"
         />
         <div class="dropdown-currency-content">
           <a href="#" class="dropdown-link nav-item-link">USD 美元</a>
@@ -131,10 +132,11 @@ export default {
       showSignInForm: true,
       showNavlistBack: false,
       checked: false,
+      currencyCheck: false,
       isSmallWindow: false,
       showAuthNavList: false,  //切換授權後的 nav-list 的顯示狀態
       screenWidth: window.innerWidth, //監控螢幕大小
-      display: 'block',
+      display: 'block', //寬螢幕使用者清單block
     }
   },
   created() {
@@ -148,6 +150,12 @@ export default {
         that.screenWidth = window.innerWidth
       })()
     }
+
+    document.addEventListener('click', e => {
+      let className = e.target.className
+      if (this.showAuthNavList && className !== 'user-image') this.showAuthNavList = false
+      if (this.currencyCheck && className !== 'dropdown-currency-content') this.currencyCheck = false
+    })
   },
   watch: {
     $route() {
@@ -165,7 +173,6 @@ export default {
         this.display = 'none'
       }
     },
-    //監控是否顯示授權後的nav-list
     showAuthNavList() {
       if (this.screenWidth < 996) this.display = 'block'
       if (this.screenWidth > 996 && this.showAuthNavList) this.display = 'block'
@@ -176,6 +183,7 @@ export default {
     ...mapState(['isAuthenticated', 'user'])
   },
   methods: {
+    //手機螢幕顯示使用者清單
     hideNavList() {
       this.checked = false
       this.showNavlistBack = false
@@ -183,6 +191,7 @@ export default {
     showNavlist() {
       this.showNavlistBack = true
     },
+    //寬螢幕顯示使用者清單
     toggleDeskTopNavList() {
       this.showAuthNavList = !this.showAuthNavList
     },

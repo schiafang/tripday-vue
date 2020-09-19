@@ -6,9 +6,7 @@
     </div>
     <div class="user-tab">
       <router-link to="/user" class="user-tab-link">
-        <div class="user-tab-item" @click="showlink">
-          <i class="icon-settings"></i> 帳號管理
-        </div>
+        <div class="user-tab-item"><i class="icon-settings"></i> 帳號管理</div>
       </router-link>
       <router-link to="/user/orderlist" class="user-tab-link">
         <div class="user-tab-item">
@@ -26,11 +24,7 @@
 
 <script>
 export default {
-  methods: {
-    showlink() {
-      console.log(this.$route)
-    }
-  }
+
 }
 </script>
 
