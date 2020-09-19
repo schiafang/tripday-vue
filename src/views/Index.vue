@@ -3,7 +3,7 @@
     <!-- Banner -->
     <Banner />
 
-    <div class="container">
+    <div class="container-wrapper">
       <!-- Theme -->
 
       <!-- top city -->
@@ -29,9 +29,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.top-products {
-  margin: 20px 0;
-  display: flex;
-  overflow-x: scroll;
+.container-wrapper {
+  padding: 0 15px;
+}
+
+@media screen and (min-width: 996px) {
+  .container-wrapper {
+    padding: 0 130px 150px 130px;
+  }
 }
 </style>

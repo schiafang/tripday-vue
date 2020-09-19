@@ -1,0 +1,256 @@
+@charset "UTF-8";
+/*nav使用者漸層背景*/
+.product-info {
+  width: 100%;
+}
+
+.product-location {
+  font-size: 0.9rem;
+  margin: 15px 0;
+}
+
+.product-cover {
+  height: 150px;
+}
+
+.product-cover img {
+  border-radius: 6px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.product-content {
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+}
+
+.product-content .product-title {
+  font-size: 1.5rem;
+  font-weight: 450;
+  padding: 25px 10px 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+}
+
+.product-content .product-title .sign-tip {
+  position: absolute;
+  right: -15px;
+  top: -15px;
+}
+
+.product-content .product-title .sign-tip::after {
+  content: '請先登入';
+  font-size: .9rem;
+  color: #FFF;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #ef7a70;
+  -webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.product-content .location {
+  color: #666666;
+  padding: 30px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.product-content .location i {
+  opacity: .5;
+  margin-right: 10px;
+}
+
+.product-content .policy {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 5px 0;
+}
+
+.product-content .policy div {
+  margin: 10px 0;
+  white-space: nowrap;
+}
+
+.product-content .description {
+  margin: 30px 0;
+  padding-right: 30px;
+}
+
+.product-content .description .hightlights {
+  margin: 30px 0;
+}
+
+.product-comment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.product-comment .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.product-comment .top .more {
+  margin-right: 5px;
+  color: #666666;
+  font-size: .9rem;
+}
+
+.product-comment .top .more:hover {
+  cursor: pointer;
+}
+
+.product-booking-col {
+  width: 100%;
+  margin: 30px 0;
+}
+
+.booking-card {
+  border: 1px solid #f0f0f0;
+  padding: 15px;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.booking-card .price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.booking-card .price .price-now {
+  font-size: 1.2rem;
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.booking-card .price .original {
+  font-size: .9rem;
+  text-decoration: line-through;
+}
+
+.booking-card .score {
+  margin: 10px 0;
+  font-size: .9rem;
+  color: #666666;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.booking-card .score span {
+  color: #2292A4;
+  margin-right: 3px;
+  font-weight: 700;
+}
+
+.booking-card .plan-btn {
+  height: 50px;
+  font-weight: 500;
+}
+
+.booking-card .plan-btn:hover {
+  opacity: .8;
+}
+
+.booking-card .bottom {
+  font-size: .9rem;
+  margin-top: 15px;
+}
+
+@media screen and (min-width: 996px) {
+  .product-info {
+    width: 100%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 300px;
+        grid-template-columns: 1fr 300px;
+    -ms-grid-rows: auto 350px minmax(500px, 1fr) auto;
+        grid-template-rows: auto 350px minmax(500px, 1fr) auto;
+        grid-template-areas: 'location .' 'cover cover' 'content right' 'comment .';
+  }
+  .product-location {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: location;
+  }
+  .product-cover {
+    height: auto;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: cover;
+  }
+  .product-content {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    grid-area: content;
+    padding-right: 30px;
+  }
+  .product-content .policy {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 25% 25% 25% 25%;
+        grid-template-columns: 25% 25% 25% 25%;
+    padding: 30px 0;
+  }
+  .product-content .policy :nth-child(1) {
+    -ms-grid-column: 1;
+        grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  .product-content .policy :nth-child(2) {
+    -ms-grid-column: 2;
+        grid-column-start: 2;
+    grid-column-end: 3;
+  }
+  .product-comment {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    grid-area: comment;
+  }
+  .product-booking-col {
+    -ms-grid-row: 3;
+    -ms-grid-column: 2;
+    grid-area: right;
+    height: auto;
+  }
+}
+/*# sourceMappingURL=product-info.css.map */

@@ -70,6 +70,32 @@ select {
   opacity: 0;
 }
 
+/*收藏愛心*/
+.add-favorite{
+  font-size: inherit;
+  &:hover {
+    cursor: pointer;
+  }  
+}
+
+.remove-favorite {
+  color: $pink;
+
+  &:hover {
+    cursor: pointer;
+    opacity: .7;
+  }  
+}
+
+
+// .popup {
+//   animation-duration: .6s;
+//   animation-iteration-count: 1;
+//   animation-name: popup;
+//   animation-timing-function: ease-in-out;
+   
+// }
+
 .main-container {
   margin-top: 50px;
 }

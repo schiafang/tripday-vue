@@ -14,7 +14,7 @@
           class="far fa-heart add-favorite"
           @click="addFavorite(product.id)"
         ></i>
-        <!-- <i class="fas fa-heart remove-favorite"></i> -->
+        <i ref="breakHeart" class="fas fa-heart remove-favorite"></i>
         <div
           class="sign-tip"
           ref="signTip"
@@ -71,11 +71,11 @@
           <span>4.3 </span><star />
           (8063) | 已售出 18k +
         </div>
-        <button class="plan-btn">
+        <button class="plan-btn btn">
           選擇方案
         </button>
         <div class="bottom">
-          <i class="fa fa-flash title-flash"></i> 立即確認
+          <i class="fa fa-flash title-flash main-color"></i> 立即確認
         </div>
       </div>
     </div>
@@ -116,6 +116,8 @@ export default {
         setTimeout(() => { this.$refs.signTip.style.opacity = 0 }, 1500)
         return
       }
+
+      this.$refs.breakHeart.classList.add('popup')
 
     }
   }

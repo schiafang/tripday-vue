@@ -79,6 +79,7 @@ HTML
 [Fontawesome](https://fontawesome.com/)  
 [moment](https://www.npmjs.com/package/moment)  
 [uuid](https://www.npmjs.com/package/uuid)  
+[VueSlickCarousel](https://github.com/gs-shop/vue-slick-carousel)
 
 
 ## Clone and Setup

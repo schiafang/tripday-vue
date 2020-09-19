@@ -1,72 +1,64 @@
 @import 'base';
 
-  .product-info {
-    width: 100%;
+.product-info {
+  width: 100%;
+}
+
+.product-location {
+  font-size: 0.9rem;
+  margin: 15px 0;
+}
+
+.product-cover {
+  height: 150px;
+
+  img {
+    border-radius: 6px;
+    object-fit: cover;
   }
+}
 
-  .product-location {
-    font-size: 0.9rem;
-    margin: 15px 0;
-  }
+.product-content {
+  font-size: 0.9rem;
+  line-height: 1.5rem;
 
-  .product-cover {
-    height: 150px;
-
-    img {
-      border-radius: 6px;
-      object-fit: cover;
-    }
-  }
-
-  .product-content {
-    font-size: 0.9rem;
-    line-height: 1.5rem;
-
-    .product-title {
-      font-size: 1.5rem;
-      font-weight: 450;
-      padding: 25px 10px 0 0;
-      display: flex;
-      justify-content: space-between;
-      position: relative;
-
-      .add-favorite,
-      .remove-favorite {
-        &:hover {
-          cursor: pointer;
-        }
-      }
+  .product-title {
+    font-size: 1.5rem;
+    font-weight: 450;
+    padding: 25px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
   
-      .sign-tip {
-        position: absolute;
-        right: -15px;
-        top: -15px;
+    .sign-tip {
+      position: absolute;
+      right: -15px;
+      top: -15px;
 
-        &::after{
-          content: '請先登入';
-          font-size: .9rem;
-          color: #FFF;
-          padding: 5px 10px;
-          border-radius: 4px;
-          background-color: $pink;
-          box-shadow: 2px 2px 5px 1px rgba(0,0,0,.1);
-        }
+      &::after{
+        content: '請先登入';
+        font-size: .9rem;
+        color: #FFF;
+        padding: 5px 10px;
+        border-radius: 4px;
+        background-color: $pink;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,.1);       
       }
     }
+  }
 
 
-    .location {
-      color: $main-gray;
-      padding: 30px 0;
-      border-bottom: 1px solid $border-gray;
+  .location {
+    color: $main-gray;
+    padding: 30px 0;
+    border-bottom: 1px solid $border-gray;
 
-      i {
-        opacity: .5;
-        margin-right: 10px;
-      }
+    i {
+      opacity: .5;
+      margin-right: 10px;
     }
-
-    .policy {
+  }
+  .policy {
       display: flex;
       flex-direction: column;
       font-size: 1rem;
@@ -77,19 +69,19 @@
         margin: 10px 0;
         white-space: nowrap;
       }
-    }
+  }
     
-    .description {
+  .description {
       margin: 30px 0;
       padding-right: 30px;
 
       .hightlights {
         margin: 30px 0;
       }
-    }
   }
+}
 
-  .product-comment {
+.product-comment {
     display: flex;
     flex-direction: column;
 
@@ -108,73 +100,65 @@
         }
       }
     }
-  }
+}
 
-  .product-booking-col {
+.product-booking-col {
     width: 100%;
     margin: 30px 0;
-  }
+}
   
-  .booking-card {
-    border: 1px solid $border-gray;
-    padding: 15px;
-    border-radius: 4px;
+.booking-card {
+  border: 1px solid $border-gray;
+  padding: 15px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+
+  .price {
     display: flex;
-    flex-direction: column;
+    align-items: center;
 
-    .price {
-      display: flex;
-      align-items: center;
-
-      .price-now {
-        font-size: 1.2rem;
-        font-family: 'Varela Round', sans-serif;
-        font-weight: 700;
-        margin-right: 10px;
-      }
-
-      .original {
-        font-size: .9rem;
-        text-decoration: line-through;
-      }
+    .price-now {
+      font-size: 1.2rem;
+      font-family: 'Varela Round', sans-serif;
+      font-weight: 700;
+      margin-right: 10px;
     }
 
-    .score {
-      margin: 10px 0;
+    .original {
       font-size: .9rem;
-      color: $main-gray;
-      display: flex;
-      align-items: center;
-
-      span {
-        color: $main-blue;
-        margin-right: 3px;
-        font-weight: 700;
-      }
-    }
-
-    .plan-btn {
-      height: 50px;
-      color: #FFF;
-      font-weight: 500;
-      border-radius: 6px;
-      background-color: $main-blue;
-      
-      &:hover {
-        opacity: .8;
-      }
-    }
-
-    .bottom {
-      font-size: .9rem;
-      margin-top: 15px;
-
-      i {
-        color: $main-blue;
-      }
+      text-decoration: line-through;
     }
   }
 
+  .score {
+    margin: 10px 0;
+    font-size: .9rem;
+    color: $main-gray;
+    display: flex;
+    align-items: center;
+
+    span {
+      color: $main-blue;
+      margin-right: 3px;
+      font-weight: 700;
+    }
+  }
+
+  .plan-btn {
+    height: 50px;
+    font-weight: 500;
+      
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  .bottom {
+    font-size: .9rem;
+    margin-top: 15px;
+  }
+}
 
 @media screen and (min-width: 996px) {
 

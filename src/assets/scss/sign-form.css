@@ -1,0 +1,145 @@
+@charset "UTF-8";
+/*nav使用者漸層背景*/
+.nav-item-sign {
+  padding: 10px 25px;
+  width: 320px;
+  margin: 10px 0;
+}
+
+.dialog-content {
+  border-radius: 10px;
+  height: 500px;
+  width: 100%;
+  background: white;
+  background-color: #F5EFED;
+  position: relative;
+}
+
+.dialog-top {
+  height: 8px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(135deg, #b8e0d8 0%, #007a99 100%);
+}
+
+.dialog-close {
+  font-size: 1.2rem;
+  padding: 10px 15px 0 0;
+  text-align: right;
+  color: #b8b3b3;
+  height: 40px;
+  font-weight: lighter;
+}
+
+.dialog-close:hover {
+  cursor: pointer;
+  color: brown;
+}
+
+.alert {
+  position: absolute;
+  width: 330px;
+  top: 15px;
+  left: 60px;
+}
+
+.sign-form {
+  margin: 30px 60px;
+  position: relative;
+}
+
+.form-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.sign-email-lable,
+.sign-password-label,
+.sign-check-password-label {
+  position: absolute;
+  top: 70px;
+  left: 10px;
+}
+
+.sign-email-lable i,
+.sign-password-label i,
+.sign-check-password-label i {
+  color: #b6b4b4;
+}
+
+.sign-password-label {
+  top: 145px;
+}
+
+.sign-check-password-label {
+  top: 220px;
+}
+
+.sign-input {
+  border: 0.5px solid gainsboro;
+  width: 100%;
+  height: 45px;
+  border-radius: 4px;
+  padding-left: 35px;
+  margin: 15px 0;
+  color: #666666;
+}
+
+.sign-input::-webkit-input-placeholder {
+  margin-left: 30px;
+}
+
+.sign-input:-ms-input-placeholder {
+  margin-left: 30px;
+}
+
+.sign-input::-ms-input-placeholder {
+  margin-left: 30px;
+}
+
+.sign-input::placeholder {
+  margin-left: 30px;
+}
+
+.sign-input:focus {
+  border: 0.5px solid #2292A4;
+}
+
+.sign-in-btn,
+.sign-up-btn {
+  width: 100%;
+  height: 45px;
+  border-radius: 4px;
+  margin-top: 45px;
+  color: white;
+  font-weight: 500;
+  background: #2292A4;
+}
+
+.sign-up-btn {
+  margin-top: 15px;
+}
+
+.sign-up-link {
+  font-size: 0.9rem;
+  color: gray;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+.sign-up-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 996px) {
+  .nav-item-sign {
+    position: absolute;
+    top: 15px;
+    left: 120px;
+    padding: 0;
+    margin: 0;
+  }
+}
+/*# sourceMappingURL=sign-form.css.map */

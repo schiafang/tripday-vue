@@ -18,71 +18,11 @@
         </div>
       </router-link>
     </div>
-
-    <!-----------vuetify slide----------->
-    <!-- <v-slide-group multiple show-arrows>
-      <v-slide-item
-        v-for="n in 25"
-        :key="n"
-        v-slot:default="{ active, toggle }"
-      >
-        <v-btn
-          class="mx-2"
-          :input-value="active"
-          active-class="purple white--text"
-          depressed
-          rounded
-          @click="toggle"
-        >
-          Options {{ n }}
-        </v-btn>
-      </v-slide-item>
-    </v-slide-group> -->
-
-    <!-----------Swiper----------->
-    <!-- <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">Slide 1</div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
-        <div class="swiper-slide">Slide 4</div>
-        <div class="swiper-slide">Slide 5</div>
-        <div class="swiper-slide">Slide 6</div>
-        <div class="swiper-slide">Slide 7</div>
-        <div class="swiper-slide">Slide 8</div>
-        <div class="swiper-slide">Slide 9</div>
-        <div class="swiper-slide">Slide 10</div>
-      </div>
-
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-    </div> -->
   </div>
 </template>
 
 <script>
 /* eslint-disable */
-import Swiper from 'swiper';
-import 'swiper/swiper-bundle.css';
-// import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-// Swiper.use([Navigation, Pagination, Scrollbar, A11y]);
-let swiper = new Swiper('.swiper-container', {
-  slidesPerView: 3,
-  spaceBetween: 30,
-  slidesPerGroup: 3,
-  loop: true,
-  loopFillGroupWithBlank: true,
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-})
-
 const dummyData = [
   {
     id: 1,
@@ -147,6 +87,7 @@ const dummyData = [
 ]
 
 export default {
+  name: 'TopCities',
   data() {
     return {
       cities: [],
@@ -199,6 +140,7 @@ export default {
   transition: all 0.3s ease-in-out;
   position: relative;
   flex-basis: 100%;
+  margin: 5px;
 
   img {
     border-radius: 8px;
