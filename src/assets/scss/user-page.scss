@@ -1,30 +1,40 @@
-
 @import 'base';
 
 @mixin contentStyle {
   background-color: #FFF;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 .user-container {
-  background-color: #f0f0f0;
+  background-color: $border-gray;
   padding: 15px;
   min-height: 80vh;
 }
 
 .user-content {
   @include contentStyle;
-  height: 600px;
-  overflow-y: scroll;
+  min-height: 600px;
   padding: 15px;
 
   .user-content-title {
     font-weight: 600;
     font-size: 1.5rem;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
+    padding: 0 0 15px 15px;
+    margin: 0 -15px;
     border-bottom: 1px solid $border-gray;
+    color: $main-black;
+  }
+
+  .user-content-subtitle {
+    margin: 30px 0; 
+    font-size: .9rem;
     color: $main-gray;
+
+    span {
+      color: $main-blue;
+      font-weight: 500;
+      margin-right: 5px;
+    }
   }
 }
 
@@ -51,7 +61,8 @@
   }
 }
 
-.order-list {
+/* order-list */
+.order-list-item {
   padding: 0px;
   margin-bottom: 30px;
   
@@ -131,16 +142,13 @@
     margin-right: 5px;
     color: $main-gray;
   }
-
-  
-
 }
 
 @media screen and (min-width: 996px) {
   .user-container {
     padding: 30px 130px;
     display: grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 220px 1fr;
     grid-gap : 30px ;
   }
   
@@ -153,12 +161,30 @@
     display: block;
     grid-column: 1 / 2;
   }
-  
+
   .user-info {
     @include contentStyle;
-    width: 100%;
-    height: 250px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 220px;
+    padding: 15px 30px;
+
+    img {
+      border: 1px solid $border-gray;
+      width: 120px !important;
+      height: 120px !important;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    .user-account {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
   }
+
   
   .user-tab {
     @include contentStyle;
@@ -172,3 +198,47 @@
   }
 }
 
+.user-info {
+  img {
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+  }
+}
+
+.user-tab {
+  padding: 3px 0;
+}
+
+.user-tab-item {
+  margin: 10px 0;
+  font-size: .9rem;
+  color: $main-black;
+  letter-spacing: 1px;
+  max-height: 35px;
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+
+  i {
+    margin-right: 5px;
+  }
+
+  &:hover {
+    background-color: $border-gray;
+  }
+}
+
+.active .user-tab-item{
+  color:  $main-blue;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 3px; 
+    height: 1.5rem;
+    background-color: $main-blue;
+  }
+}

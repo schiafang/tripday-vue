@@ -1,25 +1,38 @@
 <template>
   <div class="user-tab-wrapper">
-    <div class="user-info"></div>
+    <div class="user-info">
+      <img src="../assets/images/default-avatar.svg" alt="" />
+      <div class="user-account">Carey</div>
+    </div>
     <div class="user-tab">
-      <router-link to="/user" class="router-link-exact-active">
-        <div class="user-tab-item">
-          帳號管理
+      <router-link to="/user" class="user-tab-link">
+        <div class="user-tab-item" @click="showlink">
+          <i class="icon-settings"></i> 帳號管理
         </div>
       </router-link>
-      <router-link to="/user/orderlist">
+      <router-link to="/user/orderlist" class="user-tab-link">
         <div class="user-tab-item">
-          訂單管理
+          <i class="icon-note"></i> 訂單查詢
         </div></router-link
       >
-      <router-link to="/user/favorites">
+      <router-link to="/user/favorites" class="user-tab-link">
         <div class="user-tab-item">
-          我的收藏
+          <i class="icon-heart"></i> 我的收藏
         </div></router-link
       >
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    showlink() {
+      console.log(this.$route)
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 @import '../assets/scss/user-page.scss';

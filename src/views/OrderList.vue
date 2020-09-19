@@ -18,8 +18,13 @@
         </template>
 
         <template v-else>
+          <div class="user-content-subtitle">
+            <span> {{ orderList.length }}</span
+            >筆訂單在清單中
+          </div>
+
           <div
-            class="order-list"
+            class="order-list-item"
             v-for="(order, index) in orderList"
             :key="index"
           >

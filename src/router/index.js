@@ -66,6 +66,7 @@ const routes = [
 
 const router = new VueRouter({
   routes,
+  linkExactActiveClass: 'active',
   scrollBehavior() { return { x: 0, y: 0 } }
 })
 
