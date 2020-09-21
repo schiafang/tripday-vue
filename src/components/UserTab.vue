@@ -1,8 +1,8 @@
 <template>
   <div class="user-tab-wrapper">
     <div class="user-info">
-      <img src="../assets/images/default-avatar.svg" alt="" />
-      <div class="user-account">Carey</div>
+      <img :src="avatar" alt="" />
+      <div class="user-account">{{ name || email }}</div>
     </div>
     <div class="user-tab">
       <router-link to="/user" class="user-tab-link">
@@ -23,8 +23,25 @@
 </template>
 
 <script>
-export default {
+import { mapState } from 'vuex'
 
+export default {
+  data() {
+    return {
+      avatar: '',
+      name: '',
+      email: ''
+    }
+  },
+  created() {
+    const { name, email, avatar } = this.$store.state.user
+    this.name = name
+    this.email = email
+    this.avatar = avatar ? avatar : 'https://i.imgur.com/hyCLvT0.png'
+  },
+  computed: {
+    ...mapState(['isAuthenticated', 'user'])
+  },
 }
 </script>
 

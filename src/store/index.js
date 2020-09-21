@@ -12,8 +12,10 @@ export default new Vuex.Store({
     user: {
       id: -1,
       name: '',
+      realname: '',
       avatar: '',
       email: '',
+      tel: '',
       isAdmin: false
     },
     isAuthenticated: false,
@@ -26,7 +28,6 @@ export default new Vuex.Store({
       state.user = {
         ...state.user,
         ...user,
-        avatar: 'https://i.imgur.com/Vu6ZZac.png',
       }
       state.isAuthenticated = true
       state.token = localStorage.getItem('token')
@@ -46,8 +47,8 @@ export default new Vuex.Store({
       try {
         const { data } = await authorizationAPI.getCurrentUser()
         if (status === 'error') { throw new Error(data) }
-        const { id, name, email, isAdmin } = data
-        commit('setCurrentUser', { id, name, email, isAdmin })
+        const { id, name, email, isAdmin, realname, avatar } = data
+        commit('setCurrentUser', { id, name, email, isAdmin, realname, avatar })
       } catch (error) {
         console.error(error)
         commit('revokeAuthentication')

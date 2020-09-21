@@ -1,5 +1,4 @@
 import { axiosInstance } from '../utils/helpers'
-const getToken = () => localStorage.getItem('token')
 
 export default {
   singIn({ email, password }) {
@@ -9,8 +8,6 @@ export default {
     return axiosInstance.post('/api/signup', { email, password, confirmPassword })
   },
   getCurrentUser() {
-    return axiosInstance.get('/get_current_user', {
-      headers: { Authorization: `Bearer ${getToken()}` }
-    })
+    return axiosInstance.get('/get_current_user') //命名
   }
 }

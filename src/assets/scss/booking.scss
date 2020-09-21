@@ -116,31 +116,6 @@ i {
     display: flex;
     flex-direction: column;
     width: 100%;
-  
-    label {
-      font-size: 0.85rem;
-      margin: 20px 0 5px 0;
-      color: $main-gray;
-    }
-  
-    .required-label::after {
-      content: '*';
-      position: relative;
-      color: $pink;
-      top: -2px;
-      left: 2px;
-    }
-  
-    input,
-    select {
-      border: 1px solid $border-gray;
-      height: 45px;
-      padding-left: 10px;
-  
-      &:focus {
-        border: 1px solid $main-blue;
-      }
-    }
   }
   
   .form-sub-title {
