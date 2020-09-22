@@ -2,7 +2,7 @@
   <div class="user-container-wapper">
     <Spinner v-if="isLoading" />
     <div class="user-container" v-if="isAuthenticated">
-      <UserTab />
+      <UserTab :form-data="formData" />
       <div class="user-content">
         <div class="user-content-title user-setting-title">
           帳號設定
@@ -17,39 +17,55 @@
           @submit.prevent.stop="handleSubmit"
         >
           <div class="form-item">
-            <label for="">名稱</label>
-            <input type="text" v-model="formData.name" />
+            <label for="name">名稱</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="使用者名稱"
+              v-model="formData.name"
+            />
           </div>
 
           <div class="form-item">
-            <label for="" class="required-label">真實姓名</label>
+            <label for="realname" class="required-label">真實姓名</label>
             <input
               type="text"
+              name="realname"
               placeholder="例：陳"
               v-model="formData.realname"
             />
           </div>
 
           <div class="form-item">
-            <label for="">電話號碼</label>
-            <input type="text" placeholder="例：陳" v-model="formData.tel" />
+            <label for="tel">電話號碼</label>
+            <input type="text" name="tel" placeholder="例：陳" />
           </div>
 
           <div class="form-item">
-            <label for="" class="required-label">聯絡 Email</label>
-            <input type="emai;" placeholder="例：陳" v-model="formData.email" />
+            <label for="email" class="required-label">聯絡 Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="例：陳"
+              v-model="formData.email"
+              disabled
+            />
           </div>
 
-          <label for="avatar">avatar</label>
-
-          <input
-            id="avatar"
-            type="file"
-            name="avatar"
-            accept="image/*"
-            class="form-control-file"
-          />
-
+          <div class="form-item form-file-item">
+            <img :src="formData.avatar" class="avatar-thumbnail" />
+            <label for="avatar" class="form-control-file-label"
+              ><i class="fas fa-camera-retro"></i
+            ></label>
+            <input
+              id="avatar"
+              type="file"
+              name="avatar"
+              accept="image/*"
+              class="form-control-file"
+              @change="handleFileChange"
+            />
+          </div>
           <button class="submit-btn btn">確認</button>
         </form>
       </div>
@@ -88,22 +104,20 @@ export default {
     ...mapState(['isAuthenticated', 'user', 'isLoading'])
   },
   methods: {
-    // handleFileChange(e) {
-    //   const files = e.target.files
-    //   if (!files.length) return
-    //   const imageURL = window.URL.createObjectURL(files[0])
-    //   this.formData.avatar = imageURL
-    // },
+    handleFileChange(e) {
+      const files = e.target.files
+      if (!files.length) return
+      const imageURL = window.URL.createObjectURL(files[0])
+      this.formData.avatar = imageURL
+    },
     async handleSubmit(e) {
       try {
+        this.$store.state.isLoading = true
+
         const form = e.target
         const formData = new FormData(form)
 
-        this.$store.state.isLoading = true
-
-        this.formData.avatar = formData
-        const res = await userAPI.putUser({ ...this.formData }) //TODO: 修改上傳圖片錯誤
-
+        const res = await userAPI.putUser(formData)
         if (res.data.status !== 'success') { throw new Error(res.data.message) }
 
         this.$store.dispatch('fetchCurrentUser')
@@ -111,6 +125,7 @@ export default {
         this.$store.state.isLoading = false
       } catch (error) {
         console.log(error)
+        this.$store.state.isLoading = false
       }
     }
   }

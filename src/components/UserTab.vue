@@ -26,6 +26,11 @@
 import { mapState } from 'vuex'
 
 export default {
+  props: {
+    formData: {
+      type: Object
+    }
+  },
   data() {
     return {
       avatar: '',
@@ -38,6 +43,14 @@ export default {
     this.name = name
     this.email = email
     this.avatar = avatar ? avatar : 'https://i.imgur.com/hyCLvT0.png'
+  },
+  watch: {
+    formData: {
+      handler: function (e) {
+        this.avatar = e.avatar ? e.avatar : this.$store.state.user.avatar
+      },
+      deep: true
+    }
   },
   computed: {
     ...mapState(['isAuthenticated', 'user'])
