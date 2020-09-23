@@ -3,8 +3,6 @@
     <div class="top-products-title">
       <h2>Top 10 超熱門活動</h2>
     </div>
-    <!-- <TopProductCard :products="products" /> -->
-
     <VueSlickCarousel v-bind="slickSettings" ref="carousel">
       <div
         class="product-card"
@@ -40,11 +38,7 @@
               {{ product.location.country }} {{ product.location.city }}
             </div>
             <div class="card-rating">
-              <div class="star">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i
-                ><i class="fas fa-star"></i><i class="fas fa-star"></i
-                ><i class="fas fa-star"></i>
-              </div>
+              <Star :rating="product.rating" />
               ({{ product.ratingCount }})
             </div>
             <div class="card-price">
@@ -69,7 +63,7 @@
 <script>
 /* eslint-disable */
 import VueSlickCarousel from 'vue-slick-carousel'
-import TopProductCard from '../components/TopProductCard'
+import Star from './Star'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
 const dummyData = [
@@ -237,7 +231,7 @@ const dummyData = [
 
 export default {
   name: 'TopProducts',
-  components: { TopProductCard, VueSlickCarousel },
+  components: { VueSlickCarousel, Star },
   data() {
     return {
       products: [],
@@ -288,7 +282,6 @@ export default {
   methods: {
     showNext() {
       this.$refs.carousel.next()
-      console.log(this.$refs.carousel)
     },
     showPrev() {
       this.$refs.carousel.prev()
@@ -498,12 +491,7 @@ export default {
     align-items: center;
 
     .star {
-      background: $main-blue;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-size: 0.8rem;
-      margin-right: 5px;
+      font-size: 0.8rem !important;
     }
   }
 

@@ -61,14 +61,14 @@
       <div class="booking-card" @click="scrollToPlanOption">
         <div class="price">
           <div class="price-now">
-            TWD 500
+            TWD {{ product.specialPrice || product.price }}
           </div>
-          <div class="original">
-            TWD 600
+          <div class="original" v-show="product.specialPrice">
+            TWD {{ product.price }}
           </div>
         </div>
         <div class="score">
-          <span>{{ product.rating }} </span><star />
+          <span>{{ product.rating }} </span><Star />
           (8063) | 已售出 18k +
         </div>
         <button class="plan-btn btn">
@@ -84,12 +84,12 @@
 
 <script>
 import ProductCommentCard from '../components/ProductCommentCard'
-import star from '../components/star'
+import Star from '../components/Star'
 import { mapState } from 'vuex'
 
 export default {
   name: 'ProductInfo',
-  components: { ProductCommentCard, star },
+  components: { ProductCommentCard, Star },
   props: {
     product: {
       type: Object,
@@ -101,10 +101,7 @@ export default {
   },
   methods: {
     scrollToComments() {
-      // const height = document.querySelector("#productComents").offsetParent
-      document.querySelector("#productComents").scrollIntoView(true)
-      // this.$refs.productComents.$el.scrollIntoView(true)
-      // window.scrollBy(0, height)
+      document.querySelector("#description-reviews").scrollIntoView(true)
     },
     scrollToPlanOption() {
       document.querySelector("#planOption").scrollIntoView(true)

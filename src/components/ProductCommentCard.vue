@@ -5,7 +5,7 @@
         <img class="editor" :src="review.profile_photo_url" alt="" />
       </div>
       <div class="top">
-        <star /> <span>{{ review.rating }}</span>
+        <Star :rating="review.rating" /> <span>{{ review.rating }}</span>
       </div>
       <div class="main">
         <h4>{{ review.author_name }}</h4>
@@ -20,16 +20,15 @@
 </template>
 
 <script>
-import star from './star'
+import Star from './Star'
 import moment from 'moment'
 
 export default {
   name: 'ProductCommentCard',
-  components: { star },
+  components: { Star },
   props: {
     reviews: {
-      type: Array,
-      // required: true
+      type: Array
     }
   },
   filters: {
@@ -38,15 +37,6 @@ export default {
       return value = moment(value * 1000).format('YYYY-MM-DD')
     }
   }
-
-  // watch: {
-  //   reviews: {
-  //     handler(e) {
-  //       console.log(e)
-  //     },
-  //     deep: true
-  //   }
-  // }
 }
 </script>
 

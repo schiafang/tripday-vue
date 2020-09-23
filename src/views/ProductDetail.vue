@@ -10,7 +10,7 @@
       <!--商品下方其他資訊說明-->
       <div class="product-description">
         <div class="product-description-container">
-          <div class="description-block">
+          <div class="description-block" id="placeBlock">
             <div class="description-title">
               體驗地點
             </div>
@@ -48,8 +48,22 @@
             </div>
           </div>
 
-          <div class="description-block">
-            <div id="description-reviews" ref="productComents">
+          <div class="description-block" id="reviewsBlock">
+            <div class="description-title">
+              旅客評價
+
+              <div class="rating-info">
+                <div class="rating-box">
+                  {{ product.rating }}
+                </div>
+
+                <div class="rating-star ml-5">
+                  <Star :rating="product.rating" />
+                  5 則評論
+                </div>
+              </div>
+            </div>
+            <div id="description-reviews">
               <ProductCommentCard :reviews="reviews" />
             </div>
           </div>
@@ -65,13 +79,10 @@
   </div>
 </template>
 
-<script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwGaoSVshfHtms96rBuE8jMM12lZ3uPsI&libraries=places"></script>
-
 <script>
 import { v4 as uuidv4 } from 'uuid'
-import moment from 'moment'
 import ProductInfo from '../components/ProductInfo'
+import Star from '../components/Star'
 import ProductCommentCard from '../components/ProductCommentCard'
 import ProductOptionPlan from '../components/ProductOptionPlan'
 import placeDetailAPI from '../apis/placeDetail'
@@ -169,7 +180,7 @@ const dummyData = [
 
 export default {
   name: 'ProductDetail',
-  components: { ProductInfo, ProductCommentCard, ProductOptionPlan },
+  components: { ProductInfo, ProductCommentCard, ProductOptionPlan, Star },
   data() {
     return {
       product: {},
@@ -179,17 +190,9 @@ export default {
       },
       googleEmbed: '',
       openingWeekday: [],
-      reviews: []
+      reviews: [],
     }
   },
-  // watch: {
-  //   product: {
-  //     handler(e) {
-  //       console.log(e)
-  //     },
-  //     deep: true
-  //   }
-  // },
   async created() {
     this.fetchProduct()
     this.getPlaceDetail()
@@ -212,13 +215,8 @@ export default {
 
         this.reviews = placeDetail.data.result.reviews.sort((a, b) => b.time - a.time)
 
-
-        // this.product.review = []
-        // this.product.review.push(this.reviews[0]) //最新一則評論
-        // this.$set(this.product, 'review', [...this.reviews[0]])
-        console.log(placeDetail.data.result.reviews.time)
-        let test = 1600517139 * 1000
-        console.log('test', moment(test).format('YYYY-MM-DD'))
+        this.product.review = []
+        this.product.review.push(this.reviews[0]) //最新一則評論
       } catch (error) {
         console.log(error)
       }
@@ -297,6 +295,33 @@ export default {
       font-weight: 600;
       margin-bottom: 15px;
     }
+  }
+}
+
+.rating-info {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid $border-gray;
+  padding-bottom: 15px;
+
+  .rating-box {
+    @include flexCenter;
+    @extend %userBackgroundGradient;
+    width: 55px;
+    height: 55px;
+    border-radius: 4px;
+    color: #fff;
+    margin: 15px 0;
+  }
+
+  .rating-star {
+    height: 55px;
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: $main-gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
