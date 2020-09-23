@@ -42,13 +42,16 @@
           </div>
 
           <div class="form-item">
-            <label for="email" class="required-label">聯絡 Email</label>
+            <label for="email" class="required-label"
+              >聯絡 Email
+              <span v-if="rootAccount">(測試帳號不可修改)</span></label
+            >
             <input
               type="email"
               name="email"
               placeholder="例：陳"
               v-model="formData.email"
-              disabled
+              :disabled="rootAccount"
             />
           </div>
 
@@ -94,11 +97,14 @@ export default {
         tel: '',
         avatar: ''
       },
+      rootAccount: false
     }
   },
   created() {
     const { name, realname, email, tel, avatar } = this.$store.state.user
     this.formData = { name, realname, email, tel, avatar }
+
+    if (email === '123@123.com') this.rootAccount = true //不可修改測試帳號
   },
   computed: {
     ...mapState(['isAuthenticated', 'user', 'isLoading'])

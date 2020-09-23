@@ -80,7 +80,7 @@ HTML
 [moment](https://www.npmjs.com/package/moment)  
 [uuid](https://www.npmjs.com/package/uuid)  
 [VueSlickCarousel](https://github.com/gs-shop/vue-slick-carousel)
-
+[Google Maps Embed API](https://developers.google.com/maps/documentation/embed/get-started)
 
 ## Clone and Setup
 [Download](https://github.com/schiafang/tripday-vue/archive/master.zip) or clone repository to your local computer.

@@ -10,26 +10,71 @@
       <!--商品下方其他資訊說明-->
       <div class="product-description">
         <div class="product-description-container">
-          <h1>商品說明</h1>
-          <div id="productComents" ref="productComents">
-            <ProductCommentCard />
+          <div class="description-block">
+            <div class="description-title">
+              體驗地點
+            </div>
+
+            <div class="description-place">
+              <div class="place-title">
+                <span> 地點名稱：{{ product.placeTitle }} </span>
+                地址：{{ product.address }}
+              </div>
+              <div class="place-detail">
+                <!-- <iframe
+                  class="google-map-frame"
+                  frameborder="0"
+                  :src="googleEmbed"
+                  allowfullscreen
+                >
+                </iframe> -->
+
+                <div class="place-detail-info">
+                  <span>如何抵達</span>
+                  <p v-for="(transit, index) in product.transit" :key="index">
+                    {{ transit }}
+                  </p>
+                  <p>自行開車（假日車潮眾多易塞車，建議搭乘大眾交通工具前往</p>
+                </div>
+                <div class="place-detail-info">
+                  <span>
+                    開放時間
+                  </span>
+                  <p v-for="(weekday, index) in openingWeekday" :key="index">
+                    {{ weekday }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="description-block">
+            <div id="description-reviews" ref="productComents">
+              <ProductCommentCard :reviews="reviews" />
+            </div>
           </div>
         </div>
         <div class="product-nav-tab">nav tab</div>
       </div>
     </div>
 
+    <!--商品資料建立中-->
     <div v-else class="in-progress-wrapper">
       <i class="fas fa-hammer"></i> In progress
     </div>
   </div>
 </template>
 
+<script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwGaoSVshfHtms96rBuE8jMM12lZ3uPsI&libraries=places"></script>
+
 <script>
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
+import moment from 'moment'
 import ProductInfo from '../components/ProductInfo'
 import ProductCommentCard from '../components/ProductCommentCard'
 import ProductOptionPlan from '../components/ProductOptionPlan'
+import placeDetailAPI from '../apis/placeDetail'
 
 const dummyData = [
   {
@@ -48,6 +93,7 @@ const dummyData = [
       country: '台灣',
       city: '桃園',
     },
+    placeTitle: 'Xpark',
     address: '320台灣桃園市中壢區春德路105號',
     rating: 4.5,
     ratingCount: 7332,
@@ -79,7 +125,8 @@ const dummyData = [
           },
         ],
       }
-    ]
+    ],
+    transit: ['桃園捷運：A18 站下車，徒步約8分鐘', '高鐵：桃園站6號出口，徒步約9分鐘', '公車：高鐵桃園站下車，徒步約10分鐘']
   },
   {
     id: 2,
@@ -97,6 +144,7 @@ const dummyData = [
       country: '台灣',
       city: '台中',
     },
+    placeTitle: '麗寶樂園',
     address: '臺中市后里區福容路8號',
     rating: 4.1,
     ratingCount: 1321,
@@ -128,11 +176,24 @@ export default {
       plan: {
         product: {},
         planOption: {}
-      }
+      },
+      googleEmbed: '',
+      openingWeekday: [],
+      reviews: []
     }
   },
-  created() {
+  // watch: {
+  //   product: {
+  //     handler(e) {
+  //       console.log(e)
+  //     },
+  //     deep: true
+  //   }
+  // },
+  async created() {
     this.fetchProduct()
+    this.getPlaceDetail()
+    this.googleEmbed = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDwGaoSVshfHtms96rBuE8jMM12lZ3uPsI&q=${this.product.address}`
   },
   methods: {
     async fetchProduct() {
@@ -140,14 +201,103 @@ export default {
       this.product = dummyData.find(i => i.id === id) || null
       this.plan.planOption = this.product.planOption
       this.plan.product = this.product
+    },
+    async getPlaceDetail() {
+      try {
+        const res = await placeDetailAPI.getPlaceID(this.product.placeTitle)
+        const placeID = res.data.candidates[0].place_id
+        const placeDetail = await placeDetailAPI.getPlaceDetail(placeID)
+        this.openingWeekday = placeDetail.data.result.opening_hours.weekday_text
+        this.product.rating = placeDetail.data.result.rating
+
+        this.reviews = placeDetail.data.result.reviews.sort((a, b) => b.time - a.time)
+
+
+        // this.product.review = []
+        // this.product.review.push(this.reviews[0]) //最新一則評論
+        // this.$set(this.product, 'review', [...this.reviews[0]])
+        console.log(placeDetail.data.result.reviews.time)
+        let test = 1600517139 * 1000
+        console.log('test', moment(test).format('YYYY-MM-DD'))
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/_base.scss';
+.google-map {
+  width: 100%;
+  height: 400px;
+}
+
 .product-nav-tab {
   display: none;
+}
+
+.description-block {
+  padding: 45px 0;
+  border-bottom: 1px solid $border-gray;
+}
+
+.description-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.description-place {
+  border: 1px solid $border-gray;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+
+  .place-title {
+    padding: 15px;
+    color: $main-gray;
+    font-size: 0.9rem;
+    border-bottom: 1px solid $border-gray;
+
+    span {
+      color: $main-black;
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+
+  .place-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .google-map-frame {
+    width: 100%;
+    height: 350px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+  }
+
+  .place-detail-info {
+    margin: 15px 0;
+    width: 100%;
+    display: block;
+    font-size: 0.8rem;
+    line-height: 0.6rem;
+
+    span {
+      display: inline-block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+  }
 }
 
 .in-progress-wrapper {
@@ -161,7 +311,7 @@ export default {
 
 @media screen and (min-width: 996px) {
   .product-description {
-    opacity: 0.2;
+    // opacity: 0.2;
     margin-top: 100px;
     display: flex;
     flex-direction: row;

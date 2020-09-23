@@ -1,18 +1,19 @@
 <template>
   <div class="comments-content">
-    <div class="comment-card">
+    <div class="comment-card" v-for="(review, index) in reviews" :key="index">
       <div class="left">
-        <img class="editor" src="../assets/images/default-avatar.svg" alt="" />
+        <img class="editor" :src="review.profile_photo_url" alt="" />
       </div>
-      <div class="top"><star /> <span>Carey</span></div>
+      <div class="top">
+        <star /> <span>{{ review.rating }}</span>
+      </div>
       <div class="main">
-        <h4>人很多</h4>
+        <h4>{{ review.author_name }}</h4>
         <p class="text" ref="text" id="text">
-          很台式的水族館 ，企鵝很可愛，水母希望有魚缸式的
-          不是都圓柱形的，種類也不夠多，販望多點特色商品而不是賣豆乾夠多，販賣部很弱，希望多點特色商品而不是
+          {{ review.text }}
         </p>
         <!-- <label for="text">more</label> -->
-        <span class="date">於 2020/09/10 評價</span>
+        <span class="date">於 {{ review.time | reviewTime }} 評價</span>
       </div>
     </div>
   </div>
@@ -20,16 +21,32 @@
 
 <script>
 import star from './star'
-
-// var cHeight = document.querySelector('.text')[1].clientHeight
-// var sHeight = document.querySelector('.text')[1].scrollHeight
-// if (sHeight > cHeight) {
-//   console.log('overflow')
-// } 
+import moment from 'moment'
 
 export default {
   name: 'ProductCommentCard',
-  components: { star }
+  components: { star },
+  props: {
+    reviews: {
+      type: Array,
+      // required: true
+    }
+  },
+  filters: {
+    reviewTime: function (value) {
+      if (!value) return ''
+      return value = moment(value * 1000).format('YYYY-MM-DD')
+    }
+  }
+
+  // watch: {
+  //   reviews: {
+  //     handler(e) {
+  //       console.log(e)
+  //     },
+  //     deep: true
+  //   }
+  // }
 }
 </script>
 

@@ -53,7 +53,7 @@
           更多評價 <i class="fas fa-angle-right"></i>
         </div>
       </div>
-      <ProductCommentCard />
+      <ProductCommentCard :reviews="product.review" />
     </div>
 
     <!--選購欄--->
@@ -68,7 +68,7 @@
           </div>
         </div>
         <div class="score">
-          <span>4.3 </span><star />
+          <span>{{ product.rating }} </span><star />
           (8063) | 已售出 18k +
         </div>
         <button class="plan-btn btn">
