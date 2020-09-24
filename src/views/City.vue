@@ -1,14 +1,195 @@
 <template>
   <div class="city-page">
-    <div class="city-content">
-      <h2 class="no-data">此城市沒有資料:(</h2>
+    <h2 v-if="products.length === 0" class="no-data">此城市沒有資料:(</h2>
+    <div v-else class="city-content">
+      <ProductCard :products="products" />
     </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
+import ProductCard from '../components/ProductCard'
+import productAPI from '../apis/product'
+
+const dummyData = [
+  {
+    id: 1,
+    title: '桃園青埔｜Xpark 都會型水生公園門票',
+    image: 'https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2020/07/15/realtime/8196557.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=800&exp=3600&w=930',
+    price: 550,
+    specialPrice: null,
+    cities: 'taoyuan',
+    location: {
+      country: '台灣',
+      city: '桃園',
+    },
+    rating: 4.5,
+    ratingCount: 7332,
+    orderCount: 233443
+  },
+  {
+    id: 2,
+    title: '台灣台中｜麗寶樂園渡假區門票【9折優惠】',
+    image: 'https://img.jollybuy.com/S190625131147471/goods/879b8816f8cf403aa186d20bb8f393d4_Q50.jpg',
+    price: 600,
+    specialPrice: 540,
+    cities: 'taichung',
+    location: {
+      country: '台灣',
+      city: '台中',
+    },
+    rating: 4.2,
+    ratingCount: 4326,
+    orderCount: 34532
+  },
+  {
+    id: 3,
+    title: '【季節限定優惠】宜蘭龜山島賞鯨半日遊',
+    image: 'https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_164_28.jpg&sizetype=3',
+    price: 1000,
+    specialPrice: 800,
+    cities: 'yilan',
+    location: {
+      country: '台灣',
+      city: '宜蘭',
+    },
+    rating: 4.4,
+    ratingCount: 726,
+    orderCount: 1532
+  },
+  {
+    id: 4,
+    title: '【94折優惠】屏東｜國立海洋生物博物館門票',
+    image: 'https://i.imgur.com/Yo3qHVI.jpg',
+    price: 420,
+    specialPrice: null,
+    cities: 'yilan',
+    location: {
+      country: '台灣',
+      city: '屏東',
+    },
+    address: '',
+    rating: 4.4,
+    ratingCount: 726,
+    orderCount: 1532
+  },
+  {
+    id: 5,
+    title: '【限時優惠】台北 101 觀景台門票',
+    image: 'https://ws.taipei-101.com.tw/upload/banner3/20200330/056db186b7534256a16e963f481aec11/056db186b7534256a16e963f481aec11.jpg',
+    price: 600,
+    specialPrice: 300,
+    cities: 'taipei',
+    location: {
+      country: '台灣',
+      city: '台北',
+    },
+    rating: 4.5,
+    ratingCount: 1348,
+    orderCount: 14234
+  },
+  {
+    id: 6,
+    title: '台灣宜蘭｜國立傳統藝術中心門票',
+    image: 'https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_6679_23.jpg&sizetype=3',
+    price: 135,
+    specialPrice: null,
+    cities: 'yilan',
+    location: {
+      country: '台灣',
+      city: '宜蘭',
+    },
+    rating: 4.8,
+    ratingCount: 832,
+    orderCount: 1334
+  },
+  {
+    id: 7,
+    title: '台北士林｜兒童新樂園一日票',
+    image: 'https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_A12-00382_1.jpg&sizetype=3',
+    price: 200,
+    specialPrice: 170,
+    cities: 'taipei',
+    location: {
+      country: '台灣',
+      city: '台北',
+    },
+    rating: 4.8,
+    ratingCount: 764,
+    orderCount: 15322
+  },
+  {
+    id: 8,
+    title: '【50%優惠】劍湖山世界主題樂園門票｜水陸一日通票',
+    image: 'https://scontent.ftpe3-2.fna.fbcdn.net/v/t1.0-9/119663607_10158724735191425_2655505770129767774_o.jpg?_nc_cat=103&_nc_sid=8bfeb9&_nc_ohc=9xWcBOeXva0AX_aOzMC&_nc_ht=scontent.ftpe3-2.fna&oh=14770bc56db558131d82525f265e4ae4&oe=5F905ADC',
+    price: 899,
+    specialPrice: 450,
+    cities: 'yuanlin',
+    location: {
+      country: '台灣',
+      city: '雲林',
+    },
+    rating: 4.8,
+    ratingCount: 231,
+    orderCount: 5326
+  },
+  {
+    id: 9,
+    title: '台灣台南｜奇美博物館門票 ',
+    image: 'https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_2574_1.jpg&sizetype=3',
+    price: 200,
+    specialPrice: null,
+    cities: 'tinan',
+    location: {
+      country: '台灣',
+      city: '台南',
+    },
+    rating: 4.9,
+    ratingCount: 431,
+    orderCount: 2445
+  },
+  {
+    id: 10,
+    title: '花蓮｜多羅滿賞鯨遊船半日遊',
+    image: 'https://scontent.ftpe3-1.fna.fbcdn.net/v/t1.0-9/118933479_3313017368789492_4873800149085235301_o.jpg?_nc_cat=104&_nc_sid=730e14&_nc_ohc=BJgnd9HnekAAX9CGzz8&_nc_ht=scontent.ftpe3-1.fna&oh=4b8b94abbeefb3cf1aff462709bcf467&oe=5F901250',
+    price: 750,
+    specialPrice: null,
+    cities: 'hualian',
+    location: {
+      country: '台灣',
+      city: '花蓮',
+    },
+    address: '',
+    rating: 4.6,
+    ratingCount: 752,
+    orderCount: 3453
+  }
+]
+
 export default {
-  name: 'City'
+  name: 'City',
+  components: { ProductCard },
+  data() {
+    return {
+      products: [],
+    }
+  },
+  created() {
+    // this.products = dummyData  //Test
+    this.fetchCityProduct()
+  },
+  methods: {
+    async fetchCityProduct() {
+      try {
+        const city = this.$route.query.city
+        const res = await productAPI.getCityProducts(city)
+        this.products = res.data
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 }
 </script>
 
@@ -20,5 +201,15 @@ export default {
 .no-data {
   padding: 100px;
   text-align: center;
+}
+
+.city-content {
+  padding: 0 15px;
+}
+
+@media screen and (min-width: 996px) {
+  .city-content {
+    padding: 0 130px;
+  }
 }
 </style>

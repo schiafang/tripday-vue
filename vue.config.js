@@ -3,7 +3,6 @@ module.exports = {
     "vuetify"
   ],
   publicPath: process.env.NODE_ENV === 'production' ? '/tripday-vue/' : '/'
-  ,
   // configureWebpack: {
   //   plugins: [
   //     new HtmlWebpackPlugin({

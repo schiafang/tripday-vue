@@ -1,5 +1,5 @@
 <template>
-  <div class="product-info">
+  <div class="product-info" v-if="Object.keys(product).length !== 0">
     <div class="product-location">
       {{ product.location.country }} > {{ product.location.city }}
     </div>
@@ -9,12 +9,17 @@
     <div class="product-content">
       <div class="product-title">
         {{ product.title }}
-
         <i
+          ref="breakHeart"
+          class="fas fa-heart remove-favorite"
+          v-if="isFavorited"
+          @click="removeFavorite(product.id)"
+        ></i>
+        <i
+          v-else
           class="far fa-heart add-favorite"
           @click="addFavorite(product.id)"
         ></i>
-        <i ref="breakHeart" class="fas fa-heart remove-favorite"></i>
         <div
           class="sign-tip"
           ref="signTip"
@@ -28,7 +33,7 @@
         <i class="fas fa-map-marker-alt"></i> {{ product.location.country }} -
         {{ product.location.city }}
       </div>
-      <div class="policy">
+      <div class="policy" v-if="product.planOption">
         <div><i class="icon-refresh"></i> 6天前可免費取消</div>
         <div><i class="icon-screen-smartphone"></i> 現場請出示 QR code</div>
       </div>
@@ -46,7 +51,7 @@
         </ul>
       </div>
     </div>
-    <div class="product-comment">
+    <div class="product-comment" v-if="product.review">
       <div class="top">
         <h3>旅客評價</h3>
         <div class="more" @click="scrollToComments">
@@ -57,7 +62,7 @@
     </div>
 
     <!--選購欄--->
-    <div class="product-booking-col">
+    <div class="product-booking-col" v-if="product.planOption">
       <div class="booking-card" @click="scrollToPlanOption">
         <div class="price">
           <div class="price-now">
@@ -96,6 +101,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      isFavorited: false
+    }
+  },
   computed: {
     ...mapState(['isAuthenticated'])
   },
@@ -113,9 +123,14 @@ export default {
         setTimeout(() => { this.$refs.signTip.style.opacity = 0 }, 1500)
         return
       }
-
-      this.$refs.breakHeart.classList.add('popup')
-
+    },
+    removeFavorite(id) {
+      console.log(id)
+      if (!this.isAuthenticated) {
+        this.$refs.signTip.style.opacity = 1
+        setTimeout(() => { this.$refs.signTip.style.opacity = 0 }, 1500)
+        return
+      }
     }
   }
 }

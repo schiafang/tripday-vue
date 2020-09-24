@@ -6,7 +6,7 @@
       "image": "https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2020/07/15/realtime/8196557.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=800&exp=3600&w=930",
       "price": 550,
       "specialPrice": null,
-      "cities": "taoyuan",
+      "city": "taoyuan",
       "location": {
         "country": "台灣",
         "city": "桃園"
@@ -21,7 +21,7 @@
       "image": "https://img.jollybuy.com/S190625131147471/goods/879b8816f8cf403aa186d20bb8f393d4_Q50.jpg",
       "price": 600,
       "specialPrice": 540,
-      "cities": "taichung",
+      "city": "taichung",
       "location": {
         "country": "台灣",
         "city": "台中"
@@ -36,7 +36,7 @@
       "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_164_28.jpg&sizetype=3",
       "price": 1000,
       "specialPrice": 800,
-      "cities": "yilan",
+      "city": "yilan",
       "location": {
         "country": "台灣",
         "city": "宜蘭"
@@ -51,7 +51,7 @@
       "image": "https://i.imgur.com/Yo3qHVI.jpg",
       "price": 420,
       "specialPrice": null,
-      "cities": "pingtung",
+      "city": "pingtung",
       "location": {
         "country": "台灣",
         "city": "屏東"
@@ -66,7 +66,7 @@
       "image": "https://ws.taipei-101.com.tw/upload/banner3/20200330/056db186b7534256a16e963f481aec11/056db186b7534256a16e963f481aec11.jpg",
       "price": 600,
       "specialPrice": 300,
-      "cities": "taipei",
+      "city": "taipei",
       "location": {
         "country": "台灣",
         "city": "台北"
@@ -81,7 +81,7 @@
       "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_6679_23.jpg&sizetype=3",
       "price": 135,
       "specialPrice": null,
-      "cities": "yilan",
+      "city": "yilan",
       "location": {
         "country": "台灣",
         "city": "宜蘭"
@@ -96,7 +96,7 @@
       "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_A12-00382_1.jpg&sizetype=3",
       "price": 200,
       "specialPrice": 170,
-      "cities": "taipei",
+      "city": "taipei",
       "location": {
         "country": "台灣",
         "city": "台北"
@@ -111,7 +111,7 @@
       "image": "https://scontent.ftpe3-2.fna.fbcdn.net/v/t1.0-9/119663607_10158724735191425_2655505770129767774_o.jpg?_nc_cat=103&_nc_sid=8bfeb9&_nc_ohc=9xWcBOeXva0AX_aOzMC&_nc_ht=scontent.ftpe3-2.fna&oh=14770bc56db558131d82525f265e4ae4&oe=5F905ADC",
       "price": 899,
       "specialPrice": 450,
-      "cities": "yuanlin",
+      "city": "yuanlin",
       "location": {
         "country": "台灣",
         "city": "雲林"
@@ -126,7 +126,7 @@
       "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_2574_1.jpg&sizetype=3",
       "price": 200,
       "specialPrice": null,
-      "cities": "tinan",
+      "city": "tinan",
       "location": {
         "country": "台灣",
         "city": "台南"
@@ -141,7 +141,7 @@
       "image": "https://scontent.ftpe3-1.fna.fbcdn.net/v/t1.0-9/118933479_3313017368789492_4873800149085235301_o.jpg?_nc_cat=104&_nc_sid=730e14&_nc_ohc=BJgnd9HnekAAX9CGzz8&_nc_ht=scontent.ftpe3-1.fna&oh=4b8b94abbeefb3cf1aff462709bcf467&oe=5F901250",
       "price": 750,
       "specialPrice": null,
-      "cities": "hualian",
+      "city": "hualian",
       "location": {
         "country": "台灣",
         "city": "花蓮"
@@ -149,6 +149,375 @@
       "rating": 4.6,
       "ratingCount": 752,
       "orderCount": 3453
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "桃園青埔｜Xpark 都會型水生公園門票",
+      "image": "https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2020/07/15/realtime/8196557.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=800&exp=3600&w=930",
+      "cover": "https://images.unsplash.com/photo-1547210318-c4ab922fb3a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80",
+      "description": {
+        "introduction": "由日本橫濱八景島首度跨海來台桃園開設分館「Xpark」，Xpark主打新都會型水族館，驅使最先端的科技，營造出環境的溫度、濕度、氣味、聲音，帶您到地球上每個不可思議的角落，受到啟發、感受療癒、洗滌心靈。在KKday訂購電子票即可掃QRcode入園，不必排隊購票・輕鬆入場！",
+        "highlights": [
+          "由日本高人氣八景島團隊首度跨海來台，打造日系都會型水族館，全台首見",
+          "在Tripday訂購Xpark入園門票，當日掃QRcode即可入館",
+          "結合當地商場，鄰近高鐵站、機場捷運，交通方便，吃喝玩樂一次滿足"
+        ]
+      },
+      "price": 550,
+      "specialPrice": null,
+      "city": "taoyuan",
+      "location": {
+        "country": "台灣",
+        "city": "桃園"
+      },
+      "placeTitle": "Xpark",
+      "address": "320台灣桃園市中壢區春德路105號",
+      "rating": 4.5,
+      "ratingCount": 7332,
+      "orderCount": 233443,
+      "planOption": [
+        {
+          "id": 101,
+          "title": "Xpark 入園門票",
+          "price": 550,
+          "ticketTime": [
+            "10: 00",
+            "11: 00",
+            "12: 00",
+            "13: 00",
+            "14: 00"
+          ],
+          "ticketTypes": [
+            {
+              "name": "成人",
+              "limit": "18 - 64 歲",
+              "price": "550"
+            },
+            {
+              "name": "兒童",
+              "limit": "4 - 11 歲",
+              "price": "250"
+            },
+            {
+              "name": "學生",
+              "limit": "12 歲以上(含)",
+              "price": "450"
+            },
+            {
+              "name": "長者",
+              "limit": "65 歲以上(含)",
+              "price": "200"
+            }
+          ]
+        }
+      ],
+      "transit": [
+        "桃園捷運：A18 站下車，徒步約8分鐘",
+        "高鐵：桃園站6號出口，徒步約9分鐘",
+        "公車：高鐵桃園站下車，徒步約10分鐘"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "【9折優惠】台灣台中｜麗寶樂園渡假區門票",
+      "image": "https://img.jollybuy.com/S190625131147471/goods/879b8816f8cf403aa186d20bb8f393d4_Q50.jpg",
+      "cover": "https://www.lihpaoresort.com/LihpaolandApp/LihpaolandUi_Discover/images/pban_ticket.jpg",
+      "description": {
+        "introduction": "即訂即用台中麗寶樂園門票，不必排隊購票直接至票亭兌換，輕鬆入場！海陸雙樂園探索世界・馬拉灣・ 天空之夢摩天輪，無論大人、小孩都能盡情玩樂，享受美好時光",
+        "highlights": [
+          "親臨全台最大海陸空主題樂園，一票玩到底 High翻天",
+          "探索樂園內多種刺激遊樂設施，體驗斷軌雲霄飛車的快感",
+          "不用去海邊也能享受沖浪般的清涼刺激，盡在馬拉灣大海嘯"
+        ]
+      },
+      "price": 600,
+      "specialPrice": 590,
+      "city": "taichung",
+      "location": {
+        "country": "台灣",
+        "city": "台中"
+      },
+      "placeTitle": "麗寶樂園",
+      "address": "臺中市后里區福容路8號",
+      "rating": 4.1,
+      "ratingCount": 1321,
+      "orderCount": 123223,
+      "planOption": [
+        {
+          "id": 102,
+          "title": "馬拉灣 1 日票 - 水樂園",
+          "price": 540,
+          "ticketTime": null,
+          "ticketTypes": [
+            {
+              "name": "人數",
+              "limit": "",
+              "price": 590
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "【季節限定優惠】宜蘭龜山島賞鯨半日遊",
+      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_164_28.jpg&sizetype=3",
+      "description": {
+        "introduction": "",
+        "highlights": []
+      },
+      "price": 1000,
+      "specialPrice": 800,
+      "city": "yilan",
+      "location": {
+        "country": "台灣",
+        "city": "宜蘭"
+      },
+      "placeTitle": "龜山島",
+      "address": null,
+      "rating": 4.4,
+      "ratingCount": 567,
+      "orderCount": 1562
+    },
+    {
+      "id": 4,
+      "title": "【94折優惠】屏東｜國立海洋生物博物館門票",
+      "image": "https://i.imgur.com/Yo3qHVI.jpg",
+      "description": {
+        "introduction": "",
+        "highlights": []
+      },
+      "price": 420,
+      "specialPrice": null,
+      "city": "pingtung",
+      "location": {
+        "country": "台灣",
+        "city": "屏東"
+      },
+      "placeTitle": "國立海洋生物博物館",
+      "address": "944401屏東縣車城鄉後灣村後灣路2號",
+      "rating": 4.7,
+      "ratingCount": 857,
+      "orderCount": 3151
+    },
+    {
+      "id": 5,
+      "title": "【限時優惠】台北 101 觀景台門票",
+      "image": "https://ws.taipei-101.com.tw/upload/banner3/20200330/056db186b7534256a16e963f481aec11/056db186b7534256a16e963f481aec11.jpg",
+      "description": {
+        "introduction": "",
+        "highlights": []
+      },
+      "price": 600,
+      "specialPrice": 300,
+      "city": "taipei",
+      "location": {
+        "country": "台灣",
+        "city": "台北"
+      },
+      "placeTitle": "台北101觀景台",
+      "address": "110台北市信義區信義路五段7號89樓",
+      "rating": 4.5,
+      "ratingCount": 1565,
+      "orderCount": 14464,
+      "transit": [
+        "信義線：台北101站，4 號出口",
+        "板南線：市政府站，2 號出口步行約 10 分鐘",
+        "公車：搭乘至市府站、世貿站、信義行政中心、君悅飯店路線之公車，均可到達台北101停車站下車。"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "台灣宜蘭｜國立傳統藝術中心門票",
+      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_6679_23.jpg&sizetype=3",
+      "description": {
+        "introduction": "",
+        "highlights": []
+      },
+      "price": 135,
+      "specialPrice": null,
+      "city": "yilan",
+      "location": {
+        "country": "台灣",
+        "city": "宜蘭"
+      },
+      "placeTitle": "Xpark",
+      "address": "320台灣桃園市中壢區春德路105號",
+      "rating": 4.8,
+      "ratingCount": 832,
+      "orderCount": 1334
+    },
+    {
+      "id": 7,
+      "title": "台北士林｜兒童新樂園一日票",
+      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_A12-00382_1.jpg&sizetype=3",
+      "description": {
+        "introduction": "",
+        "highlights": []
+      },
+      "price": 200,
+      "specialPrice": 170,
+      "city": "taipei",
+      "location": {
+        "country": "台灣",
+        "city": "台北"
+      },
+      "placeTitle": "Xpark",
+      "address": "320台灣桃園市中壢區春德路105號",
+      "rating": 4.8,
+      "ratingCount": 742,
+      "orderCount": 12334
+    },
+    {
+      "id": 8,
+      "title": "【50%優惠】劍湖山世界主題樂園門票｜水陸一日通票",
+      "image": "https://scontent.ftpe3-2.fna.fbcdn.net/v/t1.0-9/119663607_10158724735191425_2655505770129767774_o.jpg?_nc_cat=103&_nc_sid=8bfeb9&_nc_ohc=9xWcBOeXva0AX_aOzMC&_nc_ht=scontent.ftpe3-2.fna&oh=14770bc56db558131d82525f265e4ae4&oe=5F905ADC",
+      "description": {
+        "introduction": "",
+        "highlights": []
+      },
+      "price": 899,
+      "specialPrice": 450,
+      "city": "yuanlin",
+      "location": {
+        "country": "台灣",
+        "city": "雲林"
+      },
+      "placeTitle": "Xpark",
+      "address": "320台灣桃園市中壢區春德路105號",
+      "rating": 4.3,
+      "ratingCount": 179,
+      "orderCount": 5242
+    },
+    {
+      "id": 9,
+      "title": "台灣台南｜奇美博物館門票",
+      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_2574_1.jpg&sizetype=3",
+      "description": {
+        "introduction": "",
+        "highlights": []
+      },
+      "price": 200,
+      "specialPrice": null,
+      "city": "tinan",
+      "location": {
+        "country": "台灣",
+        "city": "台南"
+      },
+      "placeTitle": "Xpark",
+      "address": "320台灣桃園市中壢區春德路105號",
+      "rating": 4.9,
+      "ratingCount": 472,
+      "orderCount": 1453
+    },
+    {
+      "id": 10,
+      "title": "花蓮｜多羅滿賞鯨遊船半日遊",
+      "image": "https://scontent.ftpe3-1.fna.fbcdn.net/v/t1.0-9/118933479_3313017368789492_4873800149085235301_o.jpg?_nc_cat=104&_nc_sid=730e14&_nc_ohc=BJgnd9HnekAAX9CGzz8&_nc_ht=scontent.ftpe3-1.fna&oh=4b8b94abbeefb3cf1aff462709bcf467&oe=5F901250",
+      "description": {
+        "introduction": "",
+        "highlights": []
+      },
+      "price": 750,
+      "specialPrice": null,
+      "city": "hualian",
+      "location": {
+        "country": "台灣",
+        "city": "花蓮"
+      },
+      "placeTitle": "Xpark",
+      "address": "320台灣桃園市中壢區春德路105號",
+      "rating": 4.6,
+      "ratingCount": 752,
+      "orderCount": 3453
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "city": "taipei",
+      "title": "台北",
+      "image": "https://images.unsplash.com/photo-1527161949507-468bc84b280e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80"
+    },
+    {
+      "id": 2,
+      "city": "newTaipei",
+      "title": "新北",
+      "image": "https://images.unsplash.com/photo-1584813402514-203dc64e82ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "id": 3,
+      "city": "hsinchu",
+      "title": "新竹",
+      "image": "https://taiwaneverything.cc/wp-content/uploads/2019/10/41.png"
+    },
+    {
+      "id": 4,
+      "city": "hualian",
+      "title": "花蓮",
+      "image": "https://tour-hualien.hl.gov.tw/api/1561110306642.GIF"
+    },
+    {
+      "id": 5,
+      "city": "chiayi",
+      "title": "嘉義",
+      "image": "https://www.ali-nsa.net/zh-tw/content/images/static/ali-img-2-md.jpg"
+    },
+    {
+      "id": 6,
+      "city": "tainan",
+      "title": "台南",
+      "image": "https://www.twtainan.net/image/33112/1024x768"
+    },
+    {
+      "id": 7,
+      "city": "nantou",
+      "title": "南投",
+      "image": "http://www.sunmoonlake.gov.tw/zh-tw/image/3182/1024x768"
+    },
+    {
+      "id": 8,
+      "city": "taichung",
+      "title": "台中",
+      "image": "https://i.imgur.com/SzbovBw.jpg"
+    },
+    {
+      "id": 9,
+      "city": "pingtung",
+      "title": "屏東",
+      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_318.jpg&sizetype=3"
+    },
+    {
+      "id": 10,
+      "city": "keelung",
+      "title": "基隆",
+      "image": "https://www.necoast-nsa.gov.tw/FileArtPic.ashx?id=905&w=600&h=400"
+    },
+    {
+      "id": 11,
+      "city": "taoyuan",
+      "title": "桃園",
+      "image": "https://t3.gstatic.com/images?q=tbn:ANd9GcStX3ZCWhabByaIhbljSZ7WlHaBWR9Hy5qs9MnKTuHqzlqhR97xdchBh2KnP7AaEMwDyPkC2DUK7O9xRA"
+    },
+    {
+      "id": 12,
+      "city": "taitung",
+      "title": "台東",
+      "image": "https://tour.taitung.gov.tw/image/24103/1024x768"
+    },
+    {
+      "id": 13,
+      "city": "kaohsiung",
+      "title": "高雄",
+      "image": "https://khh.travel/image/18369/?r=1590474222587"
+    },
+    {
+      "id": 14,
+      "city": "penghu",
+      "title": "澎湖",
+      "image": "https://www.penghu-nsa.gov.tw/uploads/%E5%90%89%E8%B2%9D%E5%B6%BC.jpg?3093465"
     }
   ]
 }

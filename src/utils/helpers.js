@@ -5,6 +5,10 @@ export const axiosInstance = axios.create({
   baseURL: 'https://tripday-api.herokuapp.com'
 })
 
+export const axiosInstanceJSON = axios.create({
+  baseURL: process.env.NODE_ENV === 'production' ? 'http://my-json-server.typicode.com/schiafang/tripday-vue' : 'http://localhost:3000/'
+})
+
 axiosInstance.interceptors.request.use(
   config => {
     const token = localStorage.getItem('token')

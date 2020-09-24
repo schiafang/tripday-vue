@@ -70,7 +70,7 @@
         </div>
 
         <!--選擇票種與數量-->
-        <div class="types-option">
+        <div class="types-option" v-if="bookingDetail.type.length !== 0">
           <span class="caption-tag">選擇數量</span>
           <div class="types-option-quantity">
             <div
@@ -131,7 +131,6 @@
 
 <script>
 /* eslint-disable */
-// import Calendar from './Calendar'
 import Datepicker from 'vuejs-datepicker'
 import { zh, en } from 'vuejs-datepicker/dist/locale'
 import moment from 'moment'
@@ -163,18 +162,19 @@ export default {
         type: [],
         totalPrice: 0,
       },
-      typeTemp: [], //暫存created時的type資料
       alert: null
     }
   },
   created() {
     this.disabledDates = state.disabledDates
 
-    this.plan.planOption[0].ticketTypes.forEach((item, index) => {
-      this.typeTemp.push({ index, name: item.name, quantity: 0, price: item.price })
+    this.$nextTick(function () {
+      let typeTemp = []
+      this.plan.planOption[0].ticketTypes.forEach((item, index) => {
+        return typeTemp.push({ index, name: item.name, quantity: 0, price: item.price })
+      })
+      this.bookingDetail.type = typeTemp.map(i => ({ ...i }))  //更新後加入 quantity 屬性的 ticketTypes
     })
-
-    this.bookingDetail.type = this.typeTemp.map(i => ({ ...i }))
   },
   methods: {
     counterPlus(price, index) {

@@ -1,18 +1,19 @@
 <template>
   <div class="comments-content">
+    <Spinner v-if="reviews.length === 0" />
     <div class="comment-card" v-for="(review, index) in reviews" :key="index">
       <div class="left">
         <img class="editor" :src="review.profile_photo_url" alt="" />
       </div>
       <div class="top">
-        <Star :rating="review.rating" /> <span>{{ review.rating }}</span>
+        <Star :rating="review.rating" />
       </div>
       <div class="main">
         <h4>{{ review.author_name }}</h4>
-        <p class="text" ref="text" id="text">
+        <p class="text" ref="text" id="reviewText">
           {{ review.text }}
         </p>
-        <!-- <label for="text">more</label> -->
+        <label for="reviewText" @click="showMore">more</label>
         <span class="date">於 {{ review.time | reviewTime }} 評價</span>
       </div>
     </div>
@@ -22,10 +23,11 @@
 <script>
 import Star from './Star'
 import moment from 'moment'
+import Spinner from '../components/Spinner'
 
 export default {
   name: 'ProductCommentCard',
-  components: { Star },
+  components: { Star, Spinner },
   props: {
     reviews: {
       type: Array
@@ -35,6 +37,11 @@ export default {
     reviewTime: function (value) {
       if (!value) return ''
       return value = moment(value * 1000).format('YYYY-MM-DD')
+    }
+  },
+  methods: {
+    showMore() {
+
     }
   }
 }

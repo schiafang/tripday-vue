@@ -1,13 +1,14 @@
 <template>
-  <div class="top-products">
-    <div class="top-products-title">
-      <h2>Top 10 超熱門活動</h2>
-    </div>
-    <VueSlickCarousel v-bind="slickSettings" ref="carousel">
+  <div class="top-products-content">
+    <VueSlickCarousel
+      v-bind="slickSettings"
+      ref="carousel"
+      v-if="products.length !== 0"
+    >
       <div
         class="product-card"
         v-for="(product, index) in products"
-        :key="index"
+        :key="product.id"
       >
         <router-link
           :to="{ name: 'ProductDetail', params: { id: product.id } }"
@@ -24,7 +25,7 @@
               src="https://cdn.kkday.com/pc-web/assets/img/ic_top10_label.svg"
               alt=""
             />
-            <h3>{{ index + 1 }}</h3>
+            <div class="rank-index-wrapper">{{ index + 1 }}</div>
           </div>
           <div class="product-card-detail">
             <div class="card-title">
@@ -63,179 +64,35 @@
 <script>
 /* eslint-disable */
 import VueSlickCarousel from 'vue-slick-carousel'
-import Star from './Star'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-
-const dummyData = [
-  {
-    id: 1,
-    title: '桃園青埔｜Xpark 都會型水生公園門票',
-    image: 'https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2020/07/15/realtime/8196557.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=800&exp=3600&w=930',
-    price: 550,
-    specialPrice: null,
-    cities: 'taoyuan',
-    location: {
-      country: '台灣',
-      city: '桃園',
-    },
-    address: '',
-    rating: 4.5,
-    ratingCount: 7332,
-    orderCount: 233443
-  },
-  {
-    id: 2,
-    title: '台灣台中｜麗寶樂園渡假區門票【9折優惠】',
-    image: 'https://img.jollybuy.com/S190625131147471/goods/879b8816f8cf403aa186d20bb8f393d4_Q50.jpg',
-    price: 600,
-    specialPrice: 540,
-    cities: 'taichung',
-    location: {
-      country: '台灣',
-      city: '台中',
-    },
-    address: '',
-    rating: 4.2,
-    ratingCount: 4326,
-    orderCount: 34532
-  },
-  {
-    id: 3,
-    title: '【季節限定優惠】宜蘭龜山島賞鯨半日遊',
-    image: 'https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_164_28.jpg&sizetype=3',
-    price: 1000,
-    specialPrice: 800,
-    cities: 'yilan',
-    location: {
-      country: '台灣',
-      city: '宜蘭',
-    },
-    address: '',
-    rating: 4.4,
-    ratingCount: 726,
-    orderCount: 1532
-  },
-  {
-    id: 4,
-    title: '【94折優惠】屏東｜國立海洋生物博物館門票',
-    image: 'https://i.imgur.com/Yo3qHVI.jpg',
-    price: 420,
-    specialPrice: null,
-    cities: 'yilan',
-    location: {
-      country: '台灣',
-      city: '屏東',
-    },
-    address: '',
-    rating: 4.4,
-    ratingCount: 726,
-    orderCount: 1532
-  },
-  {
-    id: 1,
-    title: '桃園青埔｜Xpark 都會型水生公園門票',
-    image: 'https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2020/07/15/realtime/8196557.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=800&exp=3600&w=930',
-    price: 550,
-    specialPrice: null,
-    cities: 'taoyuan',
-    location: {
-      country: '台灣',
-      city: '桃園',
-    },
-    address: '',
-    rating: 4.5,
-    ratingCount: 7332,
-    orderCount: 233443
-  },
-  {
-    id: 2,
-    title: '台灣台中｜麗寶樂園渡假區門票【9折優惠】',
-    image: 'https://img.jollybuy.com/S190625131147471/goods/879b8816f8cf403aa186d20bb8f393d4_Q50.jpg',
-    price: 600,
-    specialPrice: 540,
-    cities: 'taichung',
-    location: {
-      country: '台灣',
-      city: '台中',
-    },
-    address: '',
-    rating: 4.2,
-    ratingCount: 4326,
-    orderCount: 34532
-  },
-  {
-    id: 3,
-    title: '【季節限定優惠】宜蘭龜山島賞鯨半日遊',
-    image: 'https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_164_28.jpg&sizetype=3',
-    price: 1000,
-    specialPrice: 800,
-    cities: 'yilan',
-    location: {
-      country: '台灣',
-      city: '宜蘭',
-    },
-    address: '',
-    rating: 4.4,
-    ratingCount: 726,
-    orderCount: 1532
-  },
-  {
-    id: 4,
-    title: '【94折優惠】屏東｜國立海洋生物博物館門票',
-    image: 'https://i.imgur.com/Yo3qHVI.jpg',
-    price: 420,
-    specialPrice: null,
-    cities: 'yilan',
-    location: {
-      country: '台灣',
-      city: '屏東',
-    },
-    address: '',
-    rating: 4.4,
-    ratingCount: 726,
-    orderCount: 1532
-  },
-  {
-    id: 3,
-    title: '【季節限定優惠】宜蘭龜山島賞鯨半日遊',
-    image: 'https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_164_28.jpg&sizetype=3',
-    price: 1000,
-    specialPrice: 800,
-    cities: 'yilan',
-    location: {
-      country: '台灣',
-      city: '宜蘭',
-    },
-    address: '',
-    rating: 4.4,
-    ratingCount: 726,
-    orderCount: 1532
-  },
-  {
-    id: 4,
-    title: '【94折優惠】屏東｜國立海洋生物博物館門票',
-    image: 'https://i.imgur.com/Yo3qHVI.jpg',
-    price: 420,
-    specialPrice: null,
-    cities: 'yilan',
-    location: {
-      country: '台灣',
-      city: '屏東',
-    },
-    address: '',
-    rating: 4.4,
-    ratingCount: 726,
-    orderCount: 1532
-  }
-]
+import Star from './Star'
 
 export default {
   name: 'TopProducts',
   components: { VueSlickCarousel, Star },
+  props: {
+    products: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
-      products: [],
-      slickSettings: {
+      slickSettings: {}
+    }
+  },
+  created() {
+    this.setSlickSetting()
+  },
+  methods: {
+    showNext() {
+      this.$refs.carousel.next()
+    },
+    showPrev() {
+      this.$refs.carousel.prev()
+    },
+    setSlickSetting() {
+      this.slickSettings = {
         infinite: false,
         arrows: true,
         focusOnSelect: true,
@@ -275,32 +132,23 @@ export default {
         ]
       }
     }
-  },
-  created() {
-    this.products = dummyData
-  },
-  methods: {
-    showNext() {
-      this.$refs.carousel.next()
-    },
-    showPrev() {
-      this.$refs.carousel.prev()
-    }
-  },
+  }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scope>
 @import '../assets/scss/_base.scss';
+@import '../assets/scss/product-card.scss';
 
 /** slick */
 .slick-slide {
   padding: 0 5px;
 }
 
-// .carousel-btn,
 .slick-arrow {
+  @include flexCenter;
   background-color: #fff;
+  opacity: 0.7;
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   position: absolute;
@@ -309,7 +157,6 @@ export default {
   top: 150px;
   font-weight: 900;
   color: transparent;
-  @include flexCenter;
   z-index: 999;
 
   &.slick-disabled {
@@ -347,12 +194,7 @@ export default {
   }
 }
 
-.top-products-contents {
-  display: flex;
-  overflow: hidden;
-}
-
-.top-products {
+.top-products-content {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -362,54 +204,6 @@ export default {
 .product-card {
   min-width: 270px;
   min-height: 305px;
-  border: 1px solid $border-gray;
-  border-radius: 6px;
-  position: relative;
-  transition: all 0.3s ease-in-out;
-
-  &:hover {
-    .product-card-image,
-    .product-card-detail {
-      opacity: 0.7;
-    }
-
-    .flash-label {
-      top: 134px;
-      opacity: 1;
-    }
-
-    .product-card-detail .card-title .title-flash {
-      transform: rotate3d(0, 1, 0, 6rad);
-      color: $yellow;
-      opacity: 1;
-    }
-  }
-}
-
-.flash-label {
-  position: absolute;
-  top: 150px;
-  left: 5px;
-  padding: 5px 10px;
-  font-size: 0.7rem;
-  color: #fff;
-  border-radius: 3px;
-  background: $main-blue;
-  box-shadow: 1px 2px 5px 3px rgba($color: #000000, $alpha: 0.2);
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
-  letter-spacing: 1px;
-
-  .flash-icon {
-    margin-right: 3px;
-  }
-
-  .fa-caret-down {
-    font-size: 1.5rem;
-    position: absolute;
-    top: 17px;
-    color: $main-blue;
-  }
 }
 
 .rank-label {
@@ -420,112 +214,12 @@ export default {
   color: #fff;
   width: 40px;
 
-  h3 {
+  .rank-index-wrapper {
+    width: 20px;
+    text-align: center;
     position: absolute;
-    top: 5px;
-    left: 15px;
-  }
-}
-
-.product-card-image {
-  height: 160px;
-  width: 100%;
-
-  img {
-    object-fit: cover;
-    border-radius: 6px 6px 0 0;
-  }
-}
-
-.product-card-detail {
-  padding: 10px;
-  font-size: 0.8rem;
-  color: $main-gray;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 1fr auto auto 30px;
-  grid-gap: 3px;
-  grid-template-areas:
-    'title title'
-    'ordered .'
-    'place price'
-    'rate price';
-
-  .card-title {
-    grid-area: title;
-    width: 200px;
-    font-size: 1rem;
-    font-weight: 450;
-    color: $main-black;
-    letter-spacing: 0.8px;
-    margin-bottom: 5px;
-
-    .title-flash {
-      transform: rotate3d(0, 0, 0, 0);
-      transition: transform 0.3s ease-out;
-      color: $main-blue;
-      margin: 3px;
-    }
-  }
-
-  .card-ordered {
-    grid-area: ordered;
-    i {
-      color: $gray;
-      margin-right: 3px;
-    }
-  }
-
-  .card-place {
-    grid-area: place;
-    i {
-      color: $gray;
-      margin-right: 3px;
-    }
-  }
-
-  .card-rating {
-    grid-area: rate;
-    height: 100%;
-    display: flex;
-    align-items: center;
-
-    .star {
-      font-size: 0.8rem !important;
-    }
-  }
-
-  .card-price {
-    grid-area: price;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-
-    .original {
-      text-decoration: line-through;
-      height: 15px;
-    }
-
-    .price-now {
-      font-weight: 600;
-      span {
-        font-size: 1.2rem;
-        color: $main-blue;
-      }
-    }
-  }
-}
-
-@media screen and (min-width: 996px) {
-  .slick-arrow {
-    &.slick-next {
-      margin-right: -45px;
-    }
-
-    &.slick-prev {
-      margin-left: -45px;
-    }
+    top: 7px;
+    left: 10px;
   }
 }
 </style>

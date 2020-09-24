@@ -5,11 +5,10 @@
     </div>
     <div class="top-cities-content">
       <router-link
-        v-for="(city, index) in cities"
-        :to="{ name: 'Cities', query: { city: city.city } }"
+        v-for="city in randomCities"
+        :to="{ path: '/cities', query: { city: city.city } }"
         :key="city.id"
         class="city-card"
-        :class="{}"
       >
         <img :src="city.image" alt="" @mouseover="mouseover(index)" />
         <div class="city-card-bottom">
@@ -22,81 +21,32 @@
 </template>
 
 <script>
-/* eslint-disable */
-const dummyData = [
-  {
-    id: 1,
-    city: 'taipei',
-    title: '台北',
-    image: 'https://images.unsplash.com/photo-1527161949507-468bc84b280e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80',
-  },
-  {
-    id: 2,
-    city: 'newTaipei',
-    title: '新北',
-    image: 'https://images.unsplash.com/photo-1584813402514-203dc64e82ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id: 3,
-    city: 'hsinchu',
-    title: '新竹',
-    image: 'https://taiwaneverything.cc/wp-content/uploads/2019/10/41.png'
-  },
-  {
-    id: 4,
-    city: 'hualian',
-    title: '花蓮',
-    image: 'https://tour-hualien.hl.gov.tw/api/1561110306642.GIF'
-  },
-  {
-    id: 5,
-    city: 'chiayi',
-    title: '嘉義',
-    image: 'https://www.ali-nsa.net/zh-tw/content/images/static/ali-img-2-md.jpg'
-  },
-  {
-    id: 6,
-    city: 'tainan',
-    title: '台南',
-    image: 'https://www.twtainan.net/image/33112/1024x768'
-  },
-  {
-    id: 7,
-    city: 'nantou',
-    title: '南投',
-    image: 'http://www.sunmoonlake.gov.tw/zh-tw/image/3182/1024x768'
-  },
-  {
-    id: 8,
-    city: 'taichung',
-    title: '台中',
-    image: 'https://i.imgur.com/SzbovBw.jpg'
-  },
-  {
-    id: 9,
-    city: 'pingtung',
-    title: '屏東',
-    image: 'https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_318.jpg&sizetype=3'
-  },
-  {
-    id: 10,
-    city: 'keelung',
-    title: '基隆',
-    image: 'https://www.necoast-nsa.gov.tw/FileArtPic.ashx?id=905&w=600&h=400'
-  },
-]
+import productAPI from '../apis/product'
 
 export default {
   name: 'TopCities',
   data() {
     return {
       cities: [],
+      randomCities: [],
       isFocus: false,
       index: ''
     }
   },
   created() {
-    function shuffle(arr) {
+    this.fetchCities()
+  },
+  methods: {
+    async fetchCities() {
+      try {
+        const res = await productAPI.getCities()
+        this.cities = res.data
+        this.randomCities = this.shuffle(this.cities).slice(0, 5)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    shuffle(arr) {
       let point = arr.length
 
       while (point) {
@@ -106,10 +56,7 @@ export default {
         arr[random] = current
       }
       return arr
-    }
-    this.cities = shuffle(dummyData).slice(0, 5)
-  },
-  methods: {
+    },
     mouseover(index) {
       this.index = index
     }
@@ -193,44 +140,5 @@ export default {
       background: rgba(255, 255, 255, 0.4);
     }
   }
-}
-
-body {
-  position: relative;
-  height: 100%;
-}
-
-body {
-  background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  padding: 0;
-}
-
-.swiper-container {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  width: 300px;
-
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
 }
 </style>

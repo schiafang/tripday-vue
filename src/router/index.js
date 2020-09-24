@@ -33,7 +33,7 @@ const routes = [
     component: () => import('../views/Favorites')
   },
   {
-    path: '/cities/:id',
+    path: '/cities',
     name: 'Cities',
     component: () => import('../views/City')
   },
