@@ -3,7 +3,7 @@
     <h2 v-if="products.length === 0" class="no-data">此城市沒有資料:(</h2>
     <div v-else class="city-container">
       <div class="city-banner">
-        <img :src="city.image" alt="" />
+        <img v-lazy="city.image" alt="" />
         <div class="banner-title">
           {{ city.title }}
         </div>
@@ -43,6 +43,22 @@
         <ProductCard :products="products" />
 
         <button class="btn mb-5">更多在地行程</button>
+
+        <div class="explore-cities">
+          <div class="explore-cities-title">
+            探索熱門城市
+          </div>
+          <VueSlickCarousel
+            v-bind="slickSettings"
+            ref="carousel"
+            v-if="Object.keys(slickSettings).length !== 0"
+          >
+            <div class="city-card" v-for="city in cities" :key="city.id">
+              <img v-lazy="city.image" alt="" />
+              <span> {{ city.title }}</span>
+            </div>
+          </VueSlickCarousel>
+        </div>
       </div>
     </div>
   </div>
@@ -53,6 +69,8 @@
 import ProductCard from '../components/ProductCard'
 import productAPI from '../apis/product'
 import GoogleMapsApiLoader from 'google-maps-api-loader'
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
 const dummyData = [
   {
@@ -211,13 +229,14 @@ const dummyData = [
 
 export default {
   name: 'City',
-  components: { ProductCard },
+  components: { ProductCard, VueSlickCarousel },
   data() {
     return {
       products: [],
       city: {},
       cities: [],
-      googleMap: null
+      googleMap: null,
+      slickSettings: {}
     }
   },
   created() {
@@ -265,6 +284,7 @@ export default {
       const res = await productAPI.getCities()
       this.cities = res.data
       this.city = res.data.filter(i => i.city === this.$route.query.city)[0]
+      this.setSlickSetting()
     },
     markerAnimation() {
       var marker
@@ -275,14 +295,53 @@ export default {
         animation: google.maps.Animation.DROP,
         position: { lat: 59.327, lng: 18.067 }
       })
-
-      console.log(marker)
+    },
+    setSlickSetting() {
+      this.slickSettings = {
+        infinite: false,
+        arrows: true,
+        focusOnSelect: true,
+        slidesToShow: 5,
+        touchThreshold: 5,
+        speed: 700,
+        initialSlide: 0,
+        responsive: [
+          {
+            breakpoint: 575,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+            }
+          },
+          {
+            breakpoint: 1100,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 4,
+            }
+          },
+          {
+            breakpoint: 1350,
+            settings: {
+              slidesToShow: 5,
+              slidesToScroll: 5,
+            }
+          },
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToShow: 6,
+              slidesToScroll: 6,
+            }
+          },
+        ]
+      }
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../assets/scss/product-card.scss';
 @import '../assets/scss/_base.scss';
 
@@ -322,7 +381,7 @@ export default {
 
 .city-content,
 .city-content-main {
-  padding: 15px;
+  padding: 30px 15px;
   font-size: 0.8rem;
   color: $main-gray;
   display: flex;
@@ -334,17 +393,10 @@ export default {
   align-items: center;
 }
 
-.breadcrumbs {
-  margin: 15px 0;
-  font-size: 0.8rem;
-
-  a {
-    color: $main-blue;
-  }
-
-  .router-link-active.active {
-    font-weight: 900;
-  }
+.city-introduction {
+  padding-right: 30px;
+  font-size: 0.95rem;
+  margin: 30px 0;
 }
 
 .city-map {
@@ -407,7 +459,66 @@ export default {
   position: absolute;
   left: calc(50% - 20px);
   top: 50px;
-  z-index: 99;
+  z-index: 1;
+}
+
+.explore-cities {
+  background-color: $border-gray;
+  width: 100%;
+  height: 500px;
+  padding: 40px 0;
+
+  .explore-cities-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: $main-black;
+    margin-bottom: 15px;
+  }
+
+  .city-card {
+    position: relative;
+
+    img {
+      height: 280px;
+      border-radius: 6px;
+    }
+
+    span {
+      position: absolute;
+      font-size: 1.3rem;
+      bottom: 15px;
+      left: 15px;
+      color: #fff;
+      font-weight: 900;
+    }
+
+    &:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+  }
+
+  .slick-arrow {
+    background-color: transparent;
+    box-shadow: none;
+    top: 120px;
+    transition: all 0.2s;
+
+    &.slick-next:after,
+    &.slick-prev:after {
+      top: -8px;
+      right: 3px;
+      width: 20px;
+      height: 20px;
+      border-top: 4px solid $main-gray;
+      border-right: 4px solid $main-gray;
+    }
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
 }
 
 @media screen and (min-width: 996px) {
@@ -420,7 +531,7 @@ export default {
 
   .city-content,
   .city-content-main {
-    padding: 15px 130px;
+    padding: 45px 130px;
   }
 
   .city-content {

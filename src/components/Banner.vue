@@ -1,6 +1,6 @@
 <template>
   <div class="banner">
-    <img :src="banner" alt="" class="banner-img" />
+    <img v-lazy="banner" alt="" class="banner-img" />
     <div class="search-bar">
       <input
         class="search-input"
@@ -35,7 +35,11 @@ export default {
   },
   methods: {
     search() {
-      this.$router.push({ name: 'ProductList', query: { q: this.searchInput } })
+      if (this.searchInput.trim().length !== 0) {
+        this.$router.push({ name: 'ProductList', query: { q: this.searchInput } })
+      } else {
+        return
+      }
     }
   }
 }

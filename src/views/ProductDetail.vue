@@ -1,13 +1,10 @@
 <template>
   <div class="container">
     <div v-if="Object.keys(product).length !== 0">
-      <!--商品資訊(隨機一個高分評價)-->
       <ProductInfo :product="product" />
 
-      <!--方案選擇-->
       <ProductOptionPlan :plan="plan" v-if="plan.planOption" />
 
-      <!--商品下方其他資訊說明-->
       <div class="product-description">
         <div class="product-description-container">
           <div class="description-block" id="placeBlock">

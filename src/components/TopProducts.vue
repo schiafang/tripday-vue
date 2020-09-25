@@ -14,7 +14,7 @@
           :to="{ name: 'ProductDetail', params: { id: product.id } }"
         >
           <div class="product-card-image">
-            <img :src="product.image" alt="" />
+            <img v-lazy="product.image" alt="" />
           </div>
           <div class="flash-label">
             <i class="fas fa-caret-down"></i>
@@ -66,133 +66,24 @@
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import Star from './Star'
+import { productSlide } from './../utils/mixins'
 
 export default {
   name: 'TopProducts',
   components: { VueSlickCarousel, Star },
+  mixins: [productSlide],
   props: {
     products: {
       type: Array,
       required: true
     }
-  },
-  data() {
-    return {
-      slickSettings: {}
-    }
-  },
-  created() {
-    this.setSlickSetting()
-  },
-  methods: {
-    showNext() {
-      this.$refs.carousel.next()
-    },
-    showPrev() {
-      this.$refs.carousel.prev()
-    },
-    setSlickSetting() {
-      this.slickSettings = {
-        infinite: false,
-        arrows: true,
-        focusOnSelect: true,
-        slidesToShow: 5,
-        touchThreshold: 5,
-        speed: 700,
-        initialSlide: 0,
-        responsive: [
-          {
-            breakpoint: 575,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-            }
-          },
-          {
-            breakpoint: 1100,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-            }
-          },
-          {
-            breakpoint: 1350,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
-            }
-          },
-          {
-            breakpoint: 1600,
-            settings: {
-              slidesToShow: 4,
-              slidesToScroll: 4,
-            }
-          },
-        ]
-      }
-    }
   }
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss">
 @import '../assets/scss/_base.scss';
 @import '../assets/scss/product-card.scss';
-
-/** slick */
-.slick-slide {
-  padding: 0 5px;
-}
-
-.slick-arrow {
-  @include flexCenter;
-  background-color: #fff;
-  opacity: 0.7;
-  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  position: absolute;
-  width: 45px;
-  height: 45px;
-  top: 150px;
-  font-weight: 900;
-  color: transparent;
-  z-index: 999;
-
-  &.slick-disabled {
-    opacity: 0;
-  }
-
-  &.slick-next:after,
-  &.slick-prev:after {
-    position: relative;
-    top: -10px;
-    content: '';
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    border-top: 2px solid $second-gray;
-    border-right: 2px solid $second-gray;
-  }
-
-  &.slick-prev:after {
-    transform: rotate(-135deg);
-    left: 3px;
-  }
-
-  &.slick-next:after {
-    transform: rotate(45deg);
-    right: 3px;
-  }
-
-  &.slick-next {
-    right: 0px;
-  }
-
-  &.slick-prev {
-    left: 0;
-  }
-}
 
 .top-products-content {
   width: 100%;

@@ -10,7 +10,7 @@
         :key="city.id"
         class="city-card"
       >
-        <img :src="city.image" alt="" @mouseover="mouseover(index)" />
+        <img v-lazy="city.image" alt="" @mouseover="mouseover(index)" />
         <div class="city-card-bottom">
           <span class="city-title">{{ city.title }}</span>
           <div class="city-label"><span>熱門景點</span></div>

@@ -193,7 +193,11 @@ export default {
       this.$store.commit('revokeAuthentication')
     },
     search() {
-      this.$router.push({ name: 'ProductList', query: { q: this.searchInput } })
+      if (this.searchInput.trim().length !== 0) {
+        this.$router.push({ name: 'ProductList', query: { q: this.searchInput } })
+      } else {
+        return
+      }
     }
   }
 }

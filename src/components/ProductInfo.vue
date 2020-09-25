@@ -1,10 +1,20 @@
 <template>
   <div class="product-info" v-if="Object.keys(product).length !== 0">
-    <div class="product-location">
-      {{ product.location.country }} > {{ product.location.city }}
+    <div class="breadcrumbs">
+      <router-link to="/">
+        首頁
+      </router-link>
+      <span> > </span>
+      <router-link :to="`/productlist`">
+        {{ product.location.country }}
+      </router-link>
+      <span> > </span>
+      <router-link :to="`/cities?city=${product.city}`">
+        {{ product.location.city }}
+      </router-link>
     </div>
     <div class="product-cover">
-      <img :src="product.cover || product.image" alt="" />
+      <img v-lazy="product.cover || product.image" alt="" />
     </div>
     <div class="product-content">
       <div class="product-title">

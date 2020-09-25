@@ -22,7 +22,7 @@
             </div>
 
             <div class="product-card-image">
-              <img :src="product.image" alt="" />
+              <img v-lazy="product.image" alt="" />
             </div>
 
             <div class="flash-label">

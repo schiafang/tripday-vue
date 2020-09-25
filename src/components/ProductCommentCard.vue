@@ -2,8 +2,14 @@
   <div class="comments-content">
     <Spinner v-if="reviews.length === 0" />
     <div class="comment-card" v-for="(review, index) in reviews" :key="index">
-      <div class="left">
-        <img class="editor" :src="review.profile_photo_url" alt="" />
+      <div
+        class="left"
+        v-lazy-container="{
+          selector: 'img',
+          error: 'https://i.imgur.com/UKLLvH6.png'
+        }"
+      >
+        <img class="editor" :data-src="review.profile_photo_url" alt="" />
       </div>
       <div class="top">
         <Star :rating="review.rating" />
