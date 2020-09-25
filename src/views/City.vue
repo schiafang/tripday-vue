@@ -17,7 +17,7 @@
             首頁
           </router-link>
           <span> > </span>
-          <router-link :to="`/products?q=${台灣}`">
+          <router-link :to="`/productlist`">
             台灣
           </router-link>
           <span> > </span>
@@ -28,8 +28,14 @@
         <div class="city-introduction">
           {{ city.introduction }}
         </div>
-        <div class="city-map">
-          googlemap
+
+        <div class="city-map" @mouseover="markerAnimation">
+          <img
+            class="google-map-marker"
+            src="../assets/images/google-map-marker.svg"
+            alt=""
+          />
+          <img src="../assets/images/map.png" alt="" />
         </div>
       </div>
 
@@ -46,6 +52,7 @@
 /* eslint-disable */
 import ProductCard from '../components/ProductCard'
 import productAPI from '../apis/product'
+import GoogleMapsApiLoader from 'google-maps-api-loader'
 
 const dummyData = [
   {
@@ -209,12 +216,39 @@ export default {
     return {
       products: [],
       city: {},
-      cities: []
+      cities: [],
+      googleMap: null
     }
   },
   created() {
     this.products = dummyData  //Test
-    // this.fetchCityProduct()
+    GoogleMapsApiLoader({ apiKey: process.env.VUE_APP_GOOGLEAPI }).then(function (googleApi) {
+      var autocomplete = new googleApi.maps.places.AutocompleteService()
+    })
+
+    function initMap() {
+      var map = new winsow.google.maps.Map(document.querySelector('.map'), {
+        zoom: 13,
+        center: { lat: 59.325, lng: 18.070 }
+      });
+
+      marker = new winsow.google.maps.Marker({
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        position: { lat: 59.327, lng: 18.067 }
+      })
+      marker.addListener('click', toggleBounce);
+    }
+
+    function toggleBounce() {
+      if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+      } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+      }
+    }
+    // this.fetchCityProduct() 
     this.fetchCities()
   },
   methods: {
@@ -231,7 +265,18 @@ export default {
       const res = await productAPI.getCities()
       this.cities = res.data
       this.city = res.data.filter(i => i.city === this.$route.query.city)[0]
-      console.log(this.city)
+    },
+    markerAnimation() {
+      var marker
+      var map = document.querySelector('.city-map')
+      marker = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        position: { lat: 59.327, lng: 18.067 }
+      })
+
+      console.log(marker)
     }
   }
 }
@@ -303,9 +348,66 @@ export default {
 }
 
 .city-map {
-  background-color: rgb(223, 216, 208);
+  border: 1px solid $border-gray;
+  border-radius: 6px;
+  box-shadow: 1px 1px 3px 1px rgba(222, 222, 222, 0.2);
   height: 200px;
   width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: '檢視地圖';
+    @include flexCenter;
+    position: relative;
+    bottom: 40px;
+    width: 100%;
+    height: 40px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: $main-black;
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  img {
+    transition: all 0.6s ease-in-out;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    img {
+      transform: scale(1.5);
+    }
+
+    .google-map-marker {
+      transform: scale(1);
+      @keyframes bounce {
+        0% {
+          top: 50px;
+        }
+        50% {
+          top: 15px;
+        }
+        100% {
+          top: 50px;
+        }
+      }
+      animation-name: bounce;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+.google-map-marker {
+  width: 40px;
+  height: auto;
+  position: absolute;
+  left: calc(50% - 20px);
+  top: 50px;
+  z-index: 99;
 }
 
 @media screen and (min-width: 996px) {
