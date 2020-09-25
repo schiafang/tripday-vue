@@ -76,7 +76,6 @@ export default {
 
 .top-cities-content {
   display: flex;
-  grid-gap: 10px;
   width: 100%;
   overflow: hidden;
 }

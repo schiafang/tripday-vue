@@ -11,9 +11,13 @@
 
       <!-- top product -->
       <div class="top-products-title">
-        <h2>Top 10 超熱門活動</h2>
+        <h2 class="mb-3">Top 10 超熱門活動</h2>
+        <TopProducts :products="products" />
       </div>
-      <TopProducts :products="products" />
+
+      <button class="btn more-products" @click="moreProducts">
+        更多在地行程
+      </button>
     </div>
   </div>
 </template>
@@ -45,6 +49,9 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    moreProducts() {
+      this.$router.push({ name: 'ProductList' })
     }
   },
 }
@@ -55,8 +62,8 @@ export default {
   padding: 0 15px;
 }
 
-.top-products-title {
-  margin-bottom: 15px;
+.more-products {
+  float: right;
 }
 
 @media screen and (min-width: 996px) {

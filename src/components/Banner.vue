@@ -1,32 +1,49 @@
 <template>
   <div class="banner">
     <img :src="banner" alt="" class="banner-img" />
-    <!-- search bar -->
     <div class="search-bar">
       <input
         class="search-input"
         type="text"
         placeholder="輸入目的地、景點或行程名稱"
-        v-model="search"
+        v-model="searchInput"
+        @keyup.enter="search"
       />
-      <div class="search-btn"><i class="fas fa-search"></i></div>
+      <button class="search-btn" @click="search">
+        <i class="fas fa-search"></i>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+const bannerAll = ['https://images.unsplash.com/photo-1470004914212-05527e49370b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1526&q=80',
+  'https://images.unsplash.com/photo-1598441173154-a7064043dc4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80',
+  'https://images.unsplash.com/photo-1568110929146-c5e9854fc7a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80',
+  'https://images.unsplash.com/photo-1591356442491-99d7775bc7b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
+]
+
 export default {
   data() {
     return {
-      banner: 'https://images.unsplash.com/photo-1470004914212-05527e49370b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1526&q=80',
-      // banner: 'https://images.unsplash.com/photo-1598441173154-a7064043dc4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80',
-      search: ''
+      banner: '',
+      searchInput: ''
+    }
+  },
+  created() {
+    this.banner = bannerAll[Math.floor(Math.random() * bannerAll.length)]
+  },
+  methods: {
+    search() {
+      this.$router.push({ name: 'ProductList', query: { q: this.searchInput } })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/_base.scss';
+
 .banner {
   width: 100%;
   height: 380px;
@@ -39,8 +56,7 @@ export default {
 
 .search-bar {
   display: flex;
-  height: 45px;
-  width: 250px;
+  width: 100%;
   position: absolute;
   top: 150px;
   left: 30px;
@@ -49,27 +65,34 @@ export default {
 .search-input {
   border-radius: 3px 0 0 3px;
   padding-left: 10px;
-  height: 45px;
-  width: 100%;
-  background-color: #f5efed;
+  height: 50px;
+  width: 400px;
+  background-color: $main-white;
+  opacity: 0.9;
+
+  &:focus {
+    opacity: 1;
+    border: 1px solid $main-blue;
+  }
 }
 
 .search-btn {
-  text-align: center;
-  padding: 11.25px 0;
-  height: 45px;
-  width: 45px;
+  @include flexCenter;
+  height: 50px;
+  width: 50px;
   border-radius: 0 3px 3px 0;
   color: #fff;
   background: #2292a4;
-  // position: absolute;
-  // top: 80px;
-  // left: 380px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
 }
 
 @media screen and (min-width: 996px) {
   .search-bar {
-    width: 350px;
+    width: 400px;
     left: 130px;
   }
 }

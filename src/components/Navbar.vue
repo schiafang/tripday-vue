@@ -9,8 +9,10 @@
         class="nav-search-bar"
         type="text"
         placeholder="輸入目的地、景點或行程名稱"
+        v-model="searchInput"
+        @keyup.enter="search"
       />
-      <i class="fas fa-search search-btn"></i>
+      <i class="fas fa-search search-btn" @click="search"></i>
     </div>
 
     <!-- hambuger/nav-list-toggle -->
@@ -79,6 +81,7 @@
         <SignForm />
       </div>
 
+      <!-- currency -->
       <div class="nav-item nav-item-currency">
         <label for="dropdown-currency-toggle" class="dropdown-currency-label"
           >TWD</label
@@ -93,19 +96,6 @@
           <a href="#" class="dropdown-link nav-item-link">USD 美元</a>
         </div>
       </div>
-      <!-- <div class="nav-item-language dropdown">
-        <label for="dropdown-language" class="dropdown-language-label"
-          >繁體中文</label
-        >
-        <input
-          type="checkbox"
-          id="dropdown-language"
-          class="dropdown-language"
-        />
-        <div class="dropdown-language-content">
-          <a href="#" class="nav-item-link">English</a>
-        </div>
-      </div> -->
 
       <!-- in widescreen unfold nav list -->
       <div v-if="!isSmallWindow && isAuthenticated" class="nav-item">
@@ -136,7 +126,8 @@ export default {
       isSmallWindow: false,
       showAuthNavList: false,  //切換授權後的 nav-list 的顯示狀態
       screenWidth: window.innerWidth, //監控螢幕大小
-      display: 'block', //寬螢幕使用者清單block
+      display: 'block', //寬螢幕使用者清單block,
+      searchInput: ''
     }
   },
   created() {
@@ -200,6 +191,9 @@ export default {
     },
     logout() {
       this.$store.commit('revokeAuthentication')
+    },
+    search() {
+      this.$router.push({ name: 'ProductList', query: { q: this.searchInput } })
     }
   }
 }

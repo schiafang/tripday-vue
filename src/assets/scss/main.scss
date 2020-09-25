@@ -81,6 +81,21 @@ select {
   border-radius: 6px;
   padding: 8px 15px;
   background-color: $main-blue;
+  font-weight: 600;
+}
+
+img {
+  object-fit: cover;
+}
+
+.breadcrumbs {
+  font-size: .9rem;
+  color: $main-blue ;
+
+  span {
+    margin: 0 5px;
+    color: $main-gray;
+  }
 }
 
 /*附註說明文字*/

@@ -1,8 +1,43 @@
 <template>
   <div class="city-page">
     <h2 v-if="products.length === 0" class="no-data">此城市沒有資料:(</h2>
-    <div v-else class="city-content">
-      <ProductCard :products="products" />
+    <div v-else class="city-container">
+      <div class="city-banner">
+        <img :src="city.image" alt="" />
+        <div class="banner-title">
+          {{ city.title }}
+        </div>
+        <button class="city-switch">
+          <i class="fas fa-globe-asia mr-1"></i> 切換目的地
+        </button>
+      </div>
+      <div class="city-content">
+        <div class="breadcrumbs">
+          <router-link to="/">
+            首頁
+          </router-link>
+          <span> > </span>
+          <router-link :to="`/products?q=${台灣}`">
+            台灣
+          </router-link>
+          <span> > </span>
+          <router-link :to="`/cities?city=${city.city}`">
+            {{ city.title }}
+          </router-link>
+        </div>
+        <div class="city-introduction">
+          {{ city.introduction }}
+        </div>
+        <div class="city-map">
+          googlemap
+        </div>
+      </div>
+
+      <div class="city-content-main">
+        <ProductCard :products="products" />
+
+        <button class="btn mb-5">更多在地行程</button>
+      </div>
     </div>
   </div>
 </template>
@@ -173,11 +208,14 @@ export default {
   data() {
     return {
       products: [],
+      city: {},
+      cities: []
     }
   },
   created() {
-    // this.products = dummyData  //Test
-    this.fetchCityProduct()
+    this.products = dummyData  //Test
+    // this.fetchCityProduct()
+    this.fetchCities()
   },
   methods: {
     async fetchCityProduct() {
@@ -188,12 +226,21 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    async fetchCities() {
+      const res = await productAPI.getCities()
+      this.cities = res.data
+      this.city = res.data.filter(i => i.city === this.$route.query.city)[0]
+      console.log(this.city)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/product-card.scss';
+@import '../assets/scss/_base.scss';
+
 .city-page {
   min-height: 550px;
 }
@@ -203,13 +250,88 @@ export default {
   text-align: center;
 }
 
-.city-content {
-  padding: 0 15px;
+.city-banner {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  color: #fff;
+  font-weight: 900;
+  font-size: 0.9rem;
+
+  .banner-title {
+    position: absolute;
+    font-size: 36px;
+    top: 100px;
+    left: 15px;
+  }
+
+  .city-switch {
+    position: absolute;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    padding: 7px 15px;
+    top: 160px;
+    left: 15px;
+  }
+}
+
+.city-content,
+.city-content-main {
+  padding: 15px;
+  font-size: 0.8rem;
+  color: $main-gray;
+  display: flex;
+  flex-direction: column;
+}
+
+.city-content-main {
+  background-color: $border-gray;
+  align-items: center;
+}
+
+.breadcrumbs {
+  margin: 15px 0;
+  font-size: 0.8rem;
+
+  a {
+    color: $main-blue;
+  }
+
+  .router-link-active.active {
+    font-weight: 900;
+  }
+}
+
+.city-map {
+  background-color: rgb(223, 216, 208);
+  height: 200px;
+  width: 100%;
 }
 
 @media screen and (min-width: 996px) {
+  .city-banner {
+    .banner-title,
+    .city-switch {
+      left: 130px;
+    }
+  }
+
+  .city-content,
+  .city-content-main {
+    padding: 15px 130px;
+  }
+
   .city-content {
-    padding: 0 130px;
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
+
+  .city-introduction {
+    grid-column: 1 / 2;
+  }
+
+  .city-map {
+    grid-column: 2 / 3;
   }
 }
 </style>

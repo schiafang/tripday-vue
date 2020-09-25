@@ -31,6 +31,24 @@
   }
 }
 
+.product-card-favorites {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #FFF;
+  color: $gray;
+  font-size: 1.2rem;
+  z-index: 99;
+  @include flexCenter;
+
+  .remove-favorite {
+    color: $pink;
+  }
+}
+
 .flash-label {
   position: absolute;
   top: 150px;

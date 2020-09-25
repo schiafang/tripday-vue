@@ -343,8 +343,8 @@
         "country": "台灣",
         "city": "宜蘭"
       },
-      "placeTitle": "Xpark",
-      "address": "320台灣桃園市中壢區春德路105號",
+      "placeTitle": "宜蘭傳藝中心",
+      "address": "26841宜蘭縣五結鄉季新村五濱路二段201號",
       "rating": 4.8,
       "ratingCount": 832,
       "orderCount": 1334
@@ -364,8 +364,8 @@
         "country": "台灣",
         "city": "台北"
       },
-      "placeTitle": "Xpark",
-      "address": "320台灣桃園市中壢區春德路105號",
+      "placeTitle": "臺北市兒童新樂園",
+      "address": "111063 臺北市士林區承德路5段55號",
       "rating": 4.8,
       "ratingCount": 742,
       "orderCount": 12334
@@ -385,8 +385,8 @@
         "country": "台灣",
         "city": "雲林"
       },
-      "placeTitle": "Xpark",
-      "address": "320台灣桃園市中壢區春德路105號",
+      "placeTitle": "劍湖山世界主題樂園",
+      "address": "646雲林縣古坑鄉永光村大湖口67號",
       "rating": 4.3,
       "ratingCount": 179,
       "orderCount": 5242
@@ -406,8 +406,8 @@
         "country": "台灣",
         "city": "台南"
       },
-      "placeTitle": "Xpark",
-      "address": "320台灣桃園市中壢區春德路105號",
+      "placeTitle": "奇美博物館",
+      "address": "71755臺南市仁德區文華路二段66號",
       "rating": 4.9,
       "ratingCount": 472,
       "orderCount": 1453
@@ -427,8 +427,8 @@
         "country": "台灣",
         "city": "花蓮"
       },
-      "placeTitle": "Xpark",
-      "address": "320台灣桃園市中壢區春德路105號",
+      "placeTitle": "多羅滿賞鯨公司",
+      "address": "970花蓮市民權路37號",
       "rating": 4.6,
       "ratingCount": 752,
       "orderCount": 3453
@@ -439,85 +439,99 @@
       "id": 1,
       "city": "taipei",
       "title": "台北",
-      "image": "https://images.unsplash.com/photo-1527161949507-468bc84b280e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80"
+      "image": "https://images.unsplash.com/photo-1527161949507-468bc84b280e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80",
+      "introduction": "臺北擁有濃厚的人文底蘊，鑽進大街小巷內翻索歷史留下的痕跡。走進大稻埕的百年茶坊，親手沖煮回甘可口的茗茶；搭乘高速電梯 37 秒內直達知名世界地標101頂樓，站在台北市中心眺望街景。前往中山站，走訪文青小店，探索在地人文特色，品嚐台灣經典美食，蚵仔煎、滷肉飯、臭豆腐、麻辣鍋，在這座充滿多元文化的環境中，放鬆享受友善、溫暖的人文城市。"
     },
     {
       "id": 2,
       "city": "newTaipei",
       "title": "新北",
-      "image": "https://images.unsplash.com/photo-1584813402514-203dc64e82ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+      "image": "https://images.unsplash.com/photo-1584813402514-203dc64e82ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+      "introduction": ""
     },
     {
       "id": 3,
       "city": "hsinchu",
       "title": "新竹",
-      "image": "https://taiwaneverything.cc/wp-content/uploads/2019/10/41.png"
+      "image": "https://taiwaneverything.cc/wp-content/uploads/2019/10/41.png",
+      "introduction": ""
     },
     {
       "id": 4,
       "city": "hualian",
       "title": "花蓮",
-      "image": "https://tour-hualien.hl.gov.tw/api/1561110306642.GIF"
+      "image": "https://tour-hualien.hl.gov.tw/api/1561110306642.GIF",
+      "introduction": ""
     },
     {
       "id": 5,
       "city": "chiayi",
       "title": "嘉義",
-      "image": "https://www.ali-nsa.net/zh-tw/content/images/static/ali-img-2-md.jpg"
+      "image": "https://www.ali-nsa.net/zh-tw/content/images/static/ali-img-2-md.jpg",
+      "introduction": ""
     },
     {
       "id": 6,
       "city": "tainan",
       "title": "台南",
-      "image": "https://www.twtainan.net/image/33112/1024x768"
+      "image": "https://www.twtainan.net/image/33112/1024x768",
+      "introduction": ""
     },
     {
       "id": 7,
       "city": "nantou",
       "title": "南投",
-      "image": "http://www.sunmoonlake.gov.tw/zh-tw/image/3182/1024x768"
+      "image": "http://www.sunmoonlake.gov.tw/zh-tw/image/3182/1024x768",
+      "introduction": ""
     },
     {
       "id": 8,
       "city": "taichung",
       "title": "台中",
-      "image": "https://i.imgur.com/SzbovBw.jpg"
+      "image": "https://i.imgur.com/SzbovBw.jpg",
+      "introduction": ""
     },
     {
       "id": 9,
       "city": "pingtung",
       "title": "屏東",
-      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_318.jpg&sizetype=3"
+      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_318.jpg&sizetype=3",
+      "introduction": ""
     },
     {
       "id": 10,
       "city": "keelung",
       "title": "基隆",
-      "image": "https://www.necoast-nsa.gov.tw/FileArtPic.ashx?id=905&w=600&h=400"
+      "image": "https://www.necoast-nsa.gov.tw/FileArtPic.ashx?id=905&w=600&h=400",
+      "introduction": ""
     },
     {
       "id": 11,
       "city": "taoyuan",
       "title": "桃園",
-      "image": "https://t3.gstatic.com/images?q=tbn:ANd9GcStX3ZCWhabByaIhbljSZ7WlHaBWR9Hy5qs9MnKTuHqzlqhR97xdchBh2KnP7AaEMwDyPkC2DUK7O9xRA"
+      "image": "https://t3.gstatic.com/images?q=tbn:ANd9GcStX3ZCWhabByaIhbljSZ7WlHaBWR9Hy5qs9MnKTuHqzlqhR97xdchBh2KnP7AaEMwDyPkC2DUK7O9xRA",
+      "introduction": ""
     },
     {
       "id": 12,
       "city": "taitung",
       "title": "台東",
-      "image": "https://tour.taitung.gov.tw/image/24103/1024x768"
+      "image": "https://tour.taitung.gov.tw/image/24103/1024x768",
+      "introduction": ""
     },
     {
       "id": 13,
       "city": "kaohsiung",
       "title": "高雄",
-      "image": "https://khh.travel/image/18369/?r=1590474222587"
+      "image": "https://khh.travel/image/18369/?r=1590474222587",
+      "introduction": ""
     },
     {
       "id": 14,
       "city": "penghu",
       "title": "澎湖",
-      "image": "https://www.penghu-nsa.gov.tw/uploads/%E5%90%89%E8%B2%9D%E5%B6%BC.jpg?3093465"
+      "image": "https://www.penghu-nsa.gov.tw/uploads/%E5%90%89%E8%B2%9D%E5%B6%BC.jpg?3093465",
+      "introduction": ""
     }
   ]
 }

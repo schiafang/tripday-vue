@@ -285,8 +285,6 @@
     position: absolute;
     top: 15px;
     left: 120px;
-    padding: 0;
-    margin: 0;
     
     &:hover {
       cursor: pointer;
@@ -295,8 +293,6 @@
 
   .nav-item-currency {
     margin-top: 3px;
-    position: relative;
-    margin-right: 120px;
   }
 
   .dropdown-currency-label {

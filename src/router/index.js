@@ -18,6 +18,11 @@ const routes = [
     component: () => import('../views/ProductDetail')
   },
   {
+    path: '/productlist',
+    name: 'ProductList',
+    component: () => import('../views/ProductList')
+  },
+  {
     path: '/user',
     name: 'User',
     component: () => import('../views/User')
@@ -36,11 +41,6 @@ const routes = [
     path: '/cities',
     name: 'Cities',
     component: () => import('../views/City')
-  },
-  {
-    path: '/cart',
-    name: 'Cart',
-    component: () => import('../views/Cart')
   },
   {
     path: '/booking/step1',

@@ -1,9 +1,17 @@
 @import 'base';
 
 .nav-item-sign {
-  padding: 10px 25px;
+  position: relative;
+  padding: 10px 0;
   width: 320px;
   margin: 10px 0;
+  left: 15px;
+
+  &:hover {
+    background-color: $border-gray;
+    left:0;
+    padding-left: 15px;
+  }
 }
 
 .dialog-content {
@@ -121,11 +129,18 @@
 
 @media screen and (min-width: 996px) {
   .nav-item-sign {
-    position: absolute;
-    top: 15px;
-    left: 120px;
-    padding: 0;
-    margin: 0;
-  }
+    position: static;
+    top: 10px;
+    left: 100px;
+    padding: 5px 0;
+    margin-right: 15px;
+    width: 100px;
+    text-align: center;
 
+    &:hover {
+      left: 120px;
+      background-color: $border-gray;
+      padding-left: 0;
+    }
+  }
 }

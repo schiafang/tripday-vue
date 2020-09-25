@@ -12,5 +12,11 @@ export default {
   },
   getCityProducts(city) {
     return axiosInstanceJSON.get(`/products?city=${city}`)
-  }
+  },
+  searchProducts(string) {
+    return axiosInstanceJSON.get(`/products?q=${string}`)
+  },
+  getProducts() {
+    return axiosInstanceJSON.get('/products')
+  },
 }
