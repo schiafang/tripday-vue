@@ -10,7 +10,7 @@
         type="text"
         placeholder="輸入目的地、景點或行程名稱"
         v-model="searchInput"
-        @keyup.enter="search"
+        @keydown.enter="search"
       />
       <i class="fas fa-search search-btn" @click="search"></i>
     </div>
@@ -195,10 +195,11 @@ export default {
     search() {
       if (this.searchInput.trim().length !== 0) {
         this.$router.push({ name: 'ProductList', query: { q: this.searchInput } })
+        this.searchInput = ''
       } else {
         return
       }
-    }
+    },
   }
 }
 </script>

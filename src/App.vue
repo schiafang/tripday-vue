@@ -24,10 +24,6 @@ export default {
   components: { Navbar, Footer, Spinner },
   computed: {
     ...mapState(['isLoading'])
-  },
+  }
 }
 </script>
-
-<style lang="scss">
-@import 'assets/scss/main.scss';
-</style>

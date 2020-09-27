@@ -1,21 +1,13 @@
 <template>
   <div>
-    <!-- Banner -->
     <Banner />
-
     <div class="container-wrapper">
-      <!-- Theme -->
-
-      <!-- top city -->
       <TopCities />
-
-      <!-- top product -->
       <div class="top-products-title">
         <h2 class="mb-3">Top 10 超熱門活動</h2>
         <TopProducts :products="products" />
       </div>
-
-      <button class="btn more-products" @click="moreProducts">
+      <button class="btn more-products my-5" @click="moreProducts">
         更多在地行程
       </button>
     </div>
@@ -30,9 +22,7 @@ import productAPI from '../apis/product'
 
 export default {
   name: 'Index',
-  components: {
-    Banner, TopCities, TopProducts
-  },
+  components: { Banner, TopCities, TopProducts },
   data() {
     return {
       products: []

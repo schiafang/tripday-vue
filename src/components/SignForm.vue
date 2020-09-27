@@ -7,7 +7,7 @@
         </div>
       </template>
       <!-- dialog content -->
-      <div class="dialog-content">
+      <div class="signform-dialog-content">
         <div class="dialog-top">
           <v-progress-linear
             :active="isLoading"

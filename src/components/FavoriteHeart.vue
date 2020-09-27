@@ -82,6 +82,23 @@ export default {
   }
 }
 
+.sign-tip {
+  position: absolute;
+  right: -15px;
+  top: -15px;
+
+  &::after {
+    content: '請先登入';
+    font-size: 0.9rem;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: $pink;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/** ProductInfo Page heart */
 .heart-wrapper .favorite-icon {
   position: static;
   font-size: 1.6rem;

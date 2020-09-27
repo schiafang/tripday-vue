@@ -7,9 +7,35 @@
         <div class="banner-title">
           {{ city.title }}
         </div>
-        <button class="city-switch">
+
+        <button class="city-switch" @click="cityDialog = true">
           <i class="fas fa-globe-asia mr-1"></i> 切換目的地
         </button>
+
+        <v-dialog
+          v-model="cityDialog"
+          max-width="390"
+          transition="slide-y-transition"
+        >
+          <div class="city-dialog-content">
+            <div class="dialog-top"></div>
+            <div class="dialog-close" @click="cityDialog = !cityDialog">
+              <i class="fas fa-times"></i>
+            </div>
+            <div class="dialog-title">
+              切換目的地
+            </div>
+            <div class="city-list">
+              <h4 class="mb-3">台灣</h4>
+              <span
+                v-for="city in cities"
+                :key="city.id"
+                @click="switchCity(city.city)"
+                >{{ city.title }}</span
+              >
+            </div>
+          </div>
+        </v-dialog>
       </div>
       <div class="city-content">
         <div class="breadcrumbs">
@@ -42,12 +68,13 @@
       <div class="city-content-main">
         <ProductCard :products="products" />
 
-        <button class="btn mb-5">更多在地行程</button>
+        <button class="btn mb-5" disabled>更多在地行程</button>
 
         <div class="explore-cities">
           <div class="explore-cities-title">
             探索熱門城市
           </div>
+
           <VueSlickCarousel
             v-bind="slickSettings"
             ref="carousel"
@@ -236,7 +263,8 @@ export default {
       city: {},
       cities: [],
       googleMap: null,
-      slickSettings: {}
+      slickSettings: {},
+      cityDialog: false
     }
   },
   created() {
@@ -336,8 +364,16 @@ export default {
           },
         ]
       }
+    },
+    switchCity(city) {
+      this.cityDialog = false
+      this.$router.push({ path: '/cities', query: { city: city } })
     }
-  }
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.fetchCities()
+    next()
+  },
 }
 </script>
 
@@ -521,6 +557,35 @@ export default {
   }
 }
 
+.city-dialog-content {
+  border-radius: 10px;
+  background-color: #fff;
+  padding-bottom: 30px;
+}
+
+.dialog-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  padding: 0 30px 30px 30px;
+  border-bottom: 1px solid $border-gray;
+}
+
+.city-list {
+  padding: 15px 30px;
+
+  span {
+    font-size: 0.9rem;
+    color: $main-black;
+    margin-right: 15px;
+    white-space: nowrap;
+
+    &:hover {
+      cursor: pointer;
+      color: $main-blue;
+    }
+  }
+}
+
 @media screen and (min-width: 996px) {
   .city-banner {
     .banner-title,
@@ -531,7 +596,7 @@ export default {
 
   .city-content,
   .city-content-main {
-    padding: 45px 130px;
+    padding: 30px 130px;
   }
 
   .city-content {

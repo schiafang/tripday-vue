@@ -7,7 +7,7 @@
         type="text"
         placeholder="輸入目的地、景點或行程名稱"
         v-model="searchInput"
-        @keyup.enter="search"
+        @keydown.enter="search"
       />
       <button class="search-btn" @click="search">
         <i class="fas fa-search"></i>
@@ -37,6 +37,7 @@ export default {
     search() {
       if (this.searchInput.trim().length !== 0) {
         this.$router.push({ name: 'ProductList', query: { q: this.searchInput } })
+        this.searchInput = ''
       } else {
         return
       }

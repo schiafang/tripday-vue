@@ -14,36 +14,13 @@
   }
 }
 
-.dialog-content {
+.signform-dialog-content {
   border-radius: 10px;
   height: 500px;
   width: 100%;
   background: white;
   background-color: #F5EFED;
   position: relative;
-}
-
-.dialog-top {
-  height: 8px;
-  width: 100%;
-  border-radius: 10px 10px 0 0;
-  background: -moz-linear-gradient(-45deg, #b8e0d8 0%, #007a99 100%);
-  background: -webkit-linear-gradient(-45deg, #b8e0d8 0%, #007a99 100%);
-  background: linear-gradient(135deg, #b8e0d8 0%, #007a99 100%);
-}
-
-.dialog-close {
-  font-size: 1.2rem;
-  padding: 10px 15px 0 0;
-  text-align: right;
-  color: rgb(184, 179, 179);
-  height: 40px;
-  font-weight: lighter;
-
-  &:hover {
-    cursor: pointer;
-    color: brown;
-  }
 }
 
 .alert {
