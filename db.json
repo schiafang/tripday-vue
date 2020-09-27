@@ -11,6 +11,10 @@
         "country": "台灣",
         "city": "桃園"
       },
+      "policy": {
+        "check": "立即確認",
+        "cancel": "6天前可免費取消"
+      },
       "rating": 4.5,
       "ratingCount": 7332,
       "orderCount": 233443
@@ -25,6 +29,10 @@
       "location": {
         "country": "台灣",
         "city": "台中"
+      },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
       },
       "rating": 4.2,
       "ratingCount": 3242,
@@ -41,6 +49,10 @@
         "country": "台灣",
         "city": "宜蘭"
       },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
+      },
       "rating": 4.4,
       "ratingCount": 567,
       "orderCount": 1562
@@ -55,6 +67,10 @@
       "location": {
         "country": "台灣",
         "city": "屏東"
+      },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
       },
       "rating": 4.7,
       "ratingCount": 857,
@@ -71,6 +87,10 @@
         "country": "台灣",
         "city": "台北"
       },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
+      },
       "rating": 4.5,
       "ratingCount": 1565,
       "orderCount": 14464
@@ -85,6 +105,10 @@
       "location": {
         "country": "台灣",
         "city": "宜蘭"
+      },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
       },
       "rating": 4.8,
       "ratingCount": 832,
@@ -101,6 +125,10 @@
         "country": "台灣",
         "city": "台北"
       },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
+      },
       "rating": 4.8,
       "ratingCount": 742,
       "orderCount": 12334
@@ -115,6 +143,10 @@
       "location": {
         "country": "台灣",
         "city": "雲林"
+      },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
       },
       "rating": 4.3,
       "ratingCount": 179,
@@ -131,6 +163,10 @@
         "country": "台灣",
         "city": "台南"
       },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
+      },
       "rating": 4.9,
       "ratingCount": 472,
       "orderCount": 1453
@@ -145,6 +181,10 @@
       "location": {
         "country": "台灣",
         "city": "花蓮"
+      },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
       },
       "rating": 4.6,
       "ratingCount": 752,
@@ -171,6 +211,10 @@
       "location": {
         "country": "台灣",
         "city": "桃園"
+      },
+      "policy": {
+        "check": "立即確認",
+        "cancel": "6天前可免費取消"
       },
       "placeTitle": "Xpark",
       "address": "320台灣桃園市中壢區春德路105號",
@@ -239,6 +283,10 @@
         "country": "台灣",
         "city": "台中"
       },
+      "policy": {
+        "check": "立即確認",
+        "cancel": "3天前可免費取消"
+      },
       "placeTitle": "麗寶樂園",
       "address": "臺中市后里區福容路8號",
       "rating": 4.1,
@@ -275,6 +323,10 @@
         "country": "台灣",
         "city": "宜蘭"
       },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
+      },
       "placeTitle": "龜山島",
       "address": null,
       "rating": 4.4,
@@ -296,6 +348,10 @@
         "country": "台灣",
         "city": "屏東"
       },
+      "policy": {
+        "check": "立即確認",
+        "cancel": "3天前可免費取消"
+      },
       "placeTitle": "國立海洋生物博物館",
       "address": "944401屏東縣車城鄉後灣村後灣路2號",
       "rating": 4.7,
@@ -316,6 +372,10 @@
       "location": {
         "country": "台灣",
         "city": "台北"
+      },
+      "policy": {
+        "check": "立即確認",
+        "cancel": "2天前可免費取消"
       },
       "placeTitle": "台北101觀景台",
       "address": "110台北市信義區信義路五段7號89樓",
@@ -343,6 +403,10 @@
         "country": "台灣",
         "city": "宜蘭"
       },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
+      },
       "placeTitle": "宜蘭傳藝中心",
       "address": "26841宜蘭縣五結鄉季新村五濱路二段201號",
       "rating": 4.8,
@@ -363,6 +427,10 @@
       "location": {
         "country": "台灣",
         "city": "台北"
+      },
+      "policy": {
+        "check": "立即確認",
+        "cancel": "2天前可免費取消"
       },
       "placeTitle": "臺北市兒童新樂園",
       "address": "111063 臺北市士林區承德路5段55號",
@@ -385,6 +453,10 @@
         "country": "台灣",
         "city": "雲林"
       },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
+      },
       "placeTitle": "劍湖山世界主題樂園",
       "address": "646雲林縣古坑鄉永光村大湖口67號",
       "rating": 4.3,
@@ -406,6 +478,10 @@
         "country": "台灣",
         "city": "台南"
       },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
+      },
       "placeTitle": "奇美博物館",
       "address": "71755臺南市仁德區文華路二段66號",
       "rating": 4.9,
@@ -426,6 +502,10 @@
       "location": {
         "country": "台灣",
         "city": "花蓮"
+      },
+      "policy": {
+        "check": "立即確認",
+        "cancel": null
       },
       "placeTitle": "多羅滿賞鯨公司",
       "address": "970花蓮市民權路37號",

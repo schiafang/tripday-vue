@@ -19,25 +19,10 @@
     <div class="product-content">
       <div class="product-title">
         {{ product.title }}
-        <i
-          ref="breakHeart"
-          class="fas fa-heart remove-favorite"
-          v-if="isFavorited"
-          @click="removeFavorite(product.id)"
-        ></i>
-        <i
-          v-else
-          class="far fa-heart add-favorite"
-          @click="addFavorite(product.id)"
-        ></i>
-        <div
-          class="sign-tip"
-          ref="signTip"
-          :style="{
-            opacity: 0,
-            transition: 'opacity .2s ease-in-out'
-          }"
-        ></div>
+
+        <div class="heart-wrapper">
+          <FavoriteHeart :id="product.id" />
+        </div>
       </div>
       <div class="location">
         <i class="fas fa-map-marker-alt"></i> {{ product.location.country }} -
@@ -99,12 +84,13 @@
 
 <script>
 import ProductCommentCard from '../components/ProductCommentCard'
+import FavoriteHeart from '../components/FavoriteHeart'
 import Star from '../components/Star'
 import { mapState } from 'vuex'
 
 export default {
   name: 'ProductInfo',
-  components: { ProductCommentCard, Star },
+  components: { ProductCommentCard, Star, FavoriteHeart },
   props: {
     product: {
       type: Object,
@@ -127,16 +113,18 @@ export default {
       document.querySelector("#planOption").scrollIntoView(true)
     },
     addFavorite(id) {
-      console.log(id)
-      if (!this.isAuthenticated) {
+      if (this.isAuthenticated) {
+        this.$store.commit('addFavorite', id)
+      } else {
         this.$refs.signTip.style.opacity = 1
         setTimeout(() => { this.$refs.signTip.style.opacity = 0 }, 1500)
         return
       }
     },
     removeFavorite(id) {
-      console.log(id)
-      if (!this.isAuthenticated) {
+      if (this.isAuthenticated) {
+        this.$store.commit('removeFavorite', id)
+      } else {
         this.$refs.signTip.style.opacity = 1
         setTimeout(() => { this.$refs.signTip.style.opacity = 0 }, 1500)
         return

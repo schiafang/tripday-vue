@@ -27,26 +27,10 @@
     font-weight: 450;
     padding: 25px 10px 0 0;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     position: relative;
-  
-    .sign-tip {
-      position: absolute;
-      right: -15px;
-      top: -15px;
-
-      &::after{
-        content: '請先登入';
-        font-size: .9rem;
-        color: #FFF;
-        padding: 5px 10px;
-        border-radius: 4px;
-        background-color: $pink;
-        box-shadow: 2px 2px 5px 1px rgba(0,0,0,.1);       
-      }
-    }
   }
-
 
   .location {
     color: $main-gray;
@@ -58,6 +42,7 @@
       margin-right: 10px;
     }
   }
+
   .policy {
       display: flex;
       flex-direction: column;

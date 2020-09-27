@@ -13,13 +13,7 @@
           <router-link
             :to="{ name: 'ProductDetail', params: { id: product.id } }"
           >
-            <div class="product-card-favorites">
-              <i
-                class="far fa-heart add-favorite"
-                @click.stop.prevent="addFavorite"
-              ></i>
-              <!-- <i class="fas fa-heart remove-favorite"></i> -->
-            </div>
+            <FavoriteHeart :id="product.id" />
 
             <div class="product-card-image">
               <img v-lazy="product.image" alt="" />
@@ -63,18 +57,15 @@
 
 <script>
 import Star from './Star'
+import FavoriteHeart from '../components/FavoriteHeart'
 
 export default {
   name: 'TopProductCard',
-  components: { Star },
+  components: { Star, FavoriteHeart },
   props: {
     products: {
       type: Array,
       required: true
-    }
-  },
-  methods: {
-    addFavorite() {
     }
   }
 }

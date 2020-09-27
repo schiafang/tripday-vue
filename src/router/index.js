@@ -20,7 +20,7 @@ const routes = [
   {
     path: '/productlist',
     name: 'ProductList',
-    component: () => import('../views/ProductList')
+    component: () => import('../views/ProductList'),
   },
   {
     path: '/user',
@@ -78,5 +78,4 @@ router.beforeEach((to, from, next) => {
   store.state.isLoading = false
   next()
 })
-
 export default router

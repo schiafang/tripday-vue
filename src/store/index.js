@@ -18,9 +18,9 @@ export default new Vuex.Store({
       tel: '',
       isAdmin: false
     },
+    favoriteProducts: [],
     isAuthenticated: false,
     token: '',
-    dialog: false,
     isLoading: false
   },
   mutations: {
@@ -32,14 +32,28 @@ export default new Vuex.Store({
       state.isAuthenticated = true
       state.token = localStorage.getItem('token')
     },
-    openDialog(state, payload) {
-      state.dialog = payload
-    },
     revokeAuthentication(state) {
-      state.user = {}
+      state.user = {
+        id: -1,
+        name: '',
+        realname: '',
+        avatar: '',
+        email: '',
+        tel: '',
+        isAdmin: false
+      }
       state.isAuthenticated = false
       state.token = ''
+      state.favoriteProducts = []
       localStorage.removeItem('token')
+    },
+    addFavorite(state, id) {
+      if (!state.favoriteProducts.includes(id)) state.favoriteProducts.push(id)
+    },
+    removeFavorite(state, id) {
+      if (state.favoriteProducts.includes(id)) {
+        state.favoriteProducts = state.favoriteProducts.filter(i => i !== id)
+      }
     }
   },
   actions: {

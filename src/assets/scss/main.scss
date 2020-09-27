@@ -98,7 +98,6 @@ img[lazy=loaded] {
 
 .breadcrumbs {
   font-size: .8rem;
-  color: $main-blue !important;
   padding: 15px 0;
 
   span {
@@ -107,11 +106,35 @@ img[lazy=loaded] {
   }
 
   a {
-    color: $main-blue;
+    color: $main-blue !important;
   }
   
   .router-link-active.active {
     font-weight: 900;
+  }
+}
+
+/* dialog */
+.dialog-top {
+  height: 8px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  background: -moz-linear-gradient(-45deg, #b8e0d8 0%, #007a99 100%);
+  background: -webkit-linear-gradient(-45deg, #b8e0d8 0%, #007a99 100%);
+  background: linear-gradient(135deg, #b8e0d8 0%, #007a99 100%);
+}
+
+.dialog-close {
+  font-size: 1.2rem;
+  padding: 10px 15px 0 0;
+  text-align: right;
+  color: rgb(184, 179, 179);
+  height: 40px;
+  font-weight: lighter;
+
+  &:hover {
+    cursor: pointer;
+    color: brown;
   }
 }
 
@@ -204,6 +227,21 @@ img[lazy=loaded] {
   }  
 }
 
+  .sign-tip {
+      position: absolute;
+      right: -15px;
+      top: -15px;
+
+      &::after{
+        content: '請先登入';
+        font-size: .9rem;
+        color: #FFF;
+        padding: 5px 10px;
+        border-radius: 4px;
+        background-color: $pink;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,.1);       
+      }
+    }
 
 // .popup {
 //   animation-duration: .6s;

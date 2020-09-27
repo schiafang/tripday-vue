@@ -4,6 +4,7 @@ import router from './router'
 import vuetify from './plugins/vuetify'
 import store from './store'
 import VueLazyload from 'vue-lazyload'
+import './assets/scss/main.scss'
 
 Vue.config.productionTip = false
 Vue.use(VueLazyload)

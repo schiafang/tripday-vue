@@ -4,13 +4,15 @@
   width: 100%;
 }
 
-.product-card {
+.product-card,
+.product-list-card {
   min-width: 270px;
   min-height: 305px;
   border: 1px solid $border-gray;
   border-radius: 6px;
   position: relative;
   transition: all 0.3s ease-in-out;
+  overflow: hidden;
 
   &:hover {
     .product-card-image,
@@ -31,24 +33,12 @@
   }
 }
 
-.product-card-favorites {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #FFF;
-  color: $gray;
-  font-size: 1.2rem;
-  z-index: 1;
-  @include flexCenter;
-
-  .remove-favorite {
-    color: $pink;
-  }
+.product-card-image {
+  height: 160px;
+  width: 100%;
 }
 
+//立即確認標籤
 .flash-label {
   position: absolute;
   top: 150px;
@@ -75,29 +65,12 @@
   }
 }
 
-.product-card-image {
-  height: 160px;
-  width: 100%;
-
-  img {
-    object-fit: cover;
-    border-radius: 6px 6px 0 0;
-  }
-}
-
-.product-card-detail {
+.product-card-detail,
+.product-list-card-detail {
+  background-color: #FFF;
   padding: 10px;
   font-size: 0.8rem;
   color: $main-gray;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 1fr auto auto 30px;
-  grid-gap: 3px;
-  grid-template-areas:
-    'title title'
-    'ordered .'
-    'place price'
-    'rate price';
 
   .card-title {
     grid-area: title;
@@ -109,17 +82,11 @@
     color: $main-black;
     letter-spacing: 0.8px;
     margin-bottom: 5px;
-
-    .title-flash {
-      transform: rotate3d(0, 0, 0, 0);
-      transition: transform 0.3s ease-out;
-      color: $main-blue;
-      margin: 3px;
-    }
   }
 
   .card-ordered {
     grid-area: ordered;
+
     i {
       color: $gray;
       margin-right: 3px;
@@ -128,6 +95,7 @@
 
   .card-place {
     grid-area: place;
+
     i {
       color: $gray;
       margin-right: 3px;
@@ -167,6 +135,98 @@
   }
 }
 
+.product-card-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr auto auto 30px;
+  grid-gap: 3px;
+  grid-template-areas:
+    'title title'
+    'ordered .'
+    'place price'
+    'rate price';
+
+  .title-flash {
+    transition: transform 0.3s ease-out;
+    color: $main-blue;
+    margin: 3px;
+    transform: rotate3d(0, 0, 0, 0);  
+  }
+}
+
+.product-list-card-detail {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px 10px 10px;
+  border-radius: 0 0 8px 8px;
+
+  .check-span,
+  .cancel-span {
+    color: #FFF;
+    font-size: .7rem;
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-weight: 700;
+    background-color: $yellow;
+    margin-right: 5px;
+  }
+
+  .cancel-span {
+    background-color: $pink;
+  }
+
+  .card-title {
+    font-weight: 700;
+    height: auto;
+    margin: 10px 0;
+  }
+
+  .card-introduction {
+    margin-bottom: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .card-policy,
+  .card-date {
+    font-size: .7rem;
+  }
+
+  .card-bottom {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .card-ordered .fa-hotjar {
+    color: $yellow;
+  }
+
+}
+
+@media screen and (min-width: 762px) {
+  .product-list-card {
+    display: flex;
+    width: 100%;
+    min-height: 220px;
+
+    .product-card-image {
+      min-height: 220px;
+      max-width: 240px;
+      border-radius: 8px 0 0 8px;
+    }
+  
+    .product-list-card-detail {
+      padding: 20px;
+      width: 100%;
+      height: 220px;
+    }
+  }
+}
+
 @media screen and (min-width: 996px) {
   .slick-arrow {
     &.slick-next {
@@ -177,4 +237,6 @@
       margin-left: -45px;
     }
   }
+
+  
 }

@@ -17,7 +17,9 @@
           </div>
         </template>
 
-        <div class="favorites-list" v-else></div>
+        <div class="favorites-list" v-else>
+          <ProductListCard :products="favorites" />
+        </div>
       </div>
     </div>
     <div class="user-container" v-else>
@@ -28,18 +30,42 @@
 
 <script>
 import UserTab from '../components/UserTab'
+import productAPI from '../apis/product'
 import { mapState } from 'vuex'
+import ProductListCard from '../components/ProductListCard'
 
 export default {
   name: 'User',
-  components: { UserTab },
+  components: { UserTab, ProductListCard },
   data() {
     return {
-      favorites: []
+      favorites: [],
+      products: []
     }
   },
+  created() {
+    this.fetchProducts()
+  },
   computed: {
-    ...mapState(['isAuthenticated', 'user'])
+    ...mapState(['isAuthenticated', 'user', 'favoriteProducts'])
+  },
+  watch: {
+    favoriteProducts() {
+      this.fetchProducts()
+    }
+  },
+  methods: {
+    async fetchProducts() {
+      try {
+        const res = await productAPI.getProducts()
+        this.products = res.data
+        this.favorites = this.products.filter(i => {
+          return this.favoriteProducts.includes(i.id)
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 }
 </script>
