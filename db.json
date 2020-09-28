@@ -1,196 +1,4 @@
 {
-  "topProducts": [
-    {
-      "id": 1,
-      "title": "桃園青埔｜Xpark 都會型水生公園門票",
-      "image": "https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2020/07/15/realtime/8196557.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=800&exp=3600&w=930",
-      "price": 550,
-      "specialPrice": null,
-      "city": "taoyuan",
-      "location": {
-        "country": "台灣",
-        "city": "桃園"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": "6天前可免費取消"
-      },
-      "rating": 4.5,
-      "ratingCount": 7332,
-      "orderCount": 233443
-    },
-    {
-      "id": 2,
-      "title": "【9折優惠】台灣台中｜麗寶樂園渡假區門票",
-      "image": "https://img.jollybuy.com/S190625131147471/goods/879b8816f8cf403aa186d20bb8f393d4_Q50.jpg",
-      "price": 600,
-      "specialPrice": 540,
-      "city": "taichung",
-      "location": {
-        "country": "台灣",
-        "city": "台中"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "rating": 4.2,
-      "ratingCount": 3242,
-      "orderCount": 6424
-    },
-    {
-      "id": 3,
-      "title": "【季節限定優惠】宜蘭龜山島賞鯨半日遊",
-      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_164_28.jpg&sizetype=3",
-      "price": 1000,
-      "specialPrice": 800,
-      "city": "yilan",
-      "location": {
-        "country": "台灣",
-        "city": "宜蘭"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "rating": 4.4,
-      "ratingCount": 567,
-      "orderCount": 1562
-    },
-    {
-      "id": 4,
-      "title": "【94折優惠】屏東｜國立海洋生物博物館門票",
-      "image": "https://i.imgur.com/Yo3qHVI.jpg",
-      "price": 420,
-      "specialPrice": null,
-      "city": "pingtung",
-      "location": {
-        "country": "台灣",
-        "city": "屏東"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "rating": 4.7,
-      "ratingCount": 857,
-      "orderCount": 3151
-    },
-    {
-      "id": 5,
-      "title": "【限時優惠】台北 101 觀景台門票",
-      "image": "https://ws.taipei-101.com.tw/upload/banner3/20200330/056db186b7534256a16e963f481aec11/056db186b7534256a16e963f481aec11.jpg",
-      "price": 600,
-      "specialPrice": 300,
-      "city": "taipei",
-      "location": {
-        "country": "台灣",
-        "city": "台北"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "rating": 4.5,
-      "ratingCount": 1565,
-      "orderCount": 14464
-    },
-    {
-      "id": 6,
-      "title": "台灣宜蘭｜國立傳統藝術中心門票",
-      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_6679_23.jpg&sizetype=3",
-      "price": 135,
-      "specialPrice": null,
-      "city": "yilan",
-      "location": {
-        "country": "台灣",
-        "city": "宜蘭"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "rating": 4.8,
-      "ratingCount": 832,
-      "orderCount": 1334
-    },
-    {
-      "id": 7,
-      "title": "台北士林｜兒童新樂園一日票",
-      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_A12-00382_1.jpg&sizetype=3",
-      "price": 200,
-      "specialPrice": 170,
-      "city": "taipei",
-      "location": {
-        "country": "台灣",
-        "city": "台北"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "rating": 4.8,
-      "ratingCount": 742,
-      "orderCount": 12334
-    },
-    {
-      "id": 8,
-      "title": "【50%優惠】劍湖山世界主題樂園門票｜水陸一日通票",
-      "image": "https://scontent.ftpe3-2.fna.fbcdn.net/v/t1.0-9/119663607_10158724735191425_2655505770129767774_o.jpg?_nc_cat=103&_nc_sid=8bfeb9&_nc_ohc=9xWcBOeXva0AX_aOzMC&_nc_ht=scontent.ftpe3-2.fna&oh=14770bc56db558131d82525f265e4ae4&oe=5F905ADC",
-      "price": 899,
-      "specialPrice": 450,
-      "city": "yuanlin",
-      "location": {
-        "country": "台灣",
-        "city": "雲林"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "rating": 4.3,
-      "ratingCount": 179,
-      "orderCount": 5242
-    },
-    {
-      "id": 9,
-      "title": "台灣台南｜奇美博物館門票",
-      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_2574_1.jpg&sizetype=3",
-      "price": 200,
-      "specialPrice": null,
-      "city": "tinan",
-      "location": {
-        "country": "台灣",
-        "city": "台南"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "rating": 4.9,
-      "ratingCount": 472,
-      "orderCount": 1453
-    },
-    {
-      "id": 10,
-      "title": "花蓮｜多羅滿賞鯨遊船半日遊",
-      "image": "https://scontent.ftpe3-1.fna.fbcdn.net/v/t1.0-9/118933479_3313017368789492_4873800149085235301_o.jpg?_nc_cat=104&_nc_sid=730e14&_nc_ohc=BJgnd9HnekAAX9CGzz8&_nc_ht=scontent.ftpe3-1.fna&oh=4b8b94abbeefb3cf1aff462709bcf467&oe=5F901250",
-      "price": 750,
-      "specialPrice": null,
-      "city": "hualian",
-      "location": {
-        "country": "台灣",
-        "city": "花蓮"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "rating": 4.6,
-      "ratingCount": 752,
-      "orderCount": 3453
-    }
-  ],
   "products": [
     {
       "id": 1,
@@ -211,6 +19,10 @@
       "location": {
         "country": "台灣",
         "city": "桃園"
+      },
+      "geocode": {
+        "lat": 25.0166872,
+        "lng": 121.2132832
       },
       "policy": {
         "check": "立即確認",
@@ -283,6 +95,10 @@
         "country": "台灣",
         "city": "台中"
       },
+      "geocode": {
+        "lat": 24.3246135,
+        "lng": 120.7001185
+      },
       "policy": {
         "check": "立即確認",
         "cancel": "3天前可免費取消"
@@ -323,12 +139,16 @@
         "country": "台灣",
         "city": "宜蘭"
       },
+      "geocode": {
+        "lat": 24.8423735,
+        "lng": 121.9501551
+      },
       "policy": {
         "check": "立即確認",
         "cancel": null
       },
       "placeTitle": "龜山島",
-      "address": null,
+      "address": "",
       "rating": 4.4,
       "ratingCount": 567,
       "orderCount": 1562
@@ -348,6 +168,10 @@
         "country": "台灣",
         "city": "屏東"
       },
+      "geocode": {
+        "lat": 22.0460173,
+        "lng": 120.6989058
+      },
       "policy": {
         "check": "立即確認",
         "cancel": "3天前可免費取消"
@@ -357,261 +181,6 @@
       "rating": 4.7,
       "ratingCount": 857,
       "orderCount": 3151
-    },
-    {
-      "id": 5,
-      "title": "【限時優惠】台北 101 觀景台門票",
-      "image": "https://ws.taipei-101.com.tw/upload/banner3/20200330/056db186b7534256a16e963f481aec11/056db186b7534256a16e963f481aec11.jpg",
-      "description": {
-        "introduction": "",
-        "highlights": []
-      },
-      "price": 600,
-      "specialPrice": 300,
-      "city": "taipei",
-      "location": {
-        "country": "台灣",
-        "city": "台北"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": "2天前可免費取消"
-      },
-      "placeTitle": "台北101觀景台",
-      "address": "110台北市信義區信義路五段7號89樓",
-      "rating": 4.5,
-      "ratingCount": 1565,
-      "orderCount": 14464,
-      "transit": [
-        "信義線：台北101站，4 號出口",
-        "板南線：市政府站，2 號出口步行約 10 分鐘",
-        "公車：搭乘至市府站、世貿站、信義行政中心、君悅飯店路線之公車，均可到達台北101停車站下車。"
-      ]
-    },
-    {
-      "id": 6,
-      "title": "台灣宜蘭｜國立傳統藝術中心門票",
-      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_6679_23.jpg&sizetype=3",
-      "description": {
-        "introduction": "",
-        "highlights": []
-      },
-      "price": 135,
-      "specialPrice": null,
-      "city": "yilan",
-      "location": {
-        "country": "台灣",
-        "city": "宜蘭"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "placeTitle": "宜蘭傳藝中心",
-      "address": "26841宜蘭縣五結鄉季新村五濱路二段201號",
-      "rating": 4.8,
-      "ratingCount": 832,
-      "orderCount": 1334
-    },
-    {
-      "id": 7,
-      "title": "台北士林｜兒童新樂園一日票",
-      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_A12-00382_1.jpg&sizetype=3",
-      "description": {
-        "introduction": "",
-        "highlights": []
-      },
-      "price": 200,
-      "specialPrice": 170,
-      "city": "taipei",
-      "location": {
-        "country": "台灣",
-        "city": "台北"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": "2天前可免費取消"
-      },
-      "placeTitle": "臺北市兒童新樂園",
-      "address": "111063 臺北市士林區承德路5段55號",
-      "rating": 4.8,
-      "ratingCount": 742,
-      "orderCount": 12334
-    },
-    {
-      "id": 8,
-      "title": "【50%優惠】劍湖山世界主題樂園門票｜水陸一日通票",
-      "image": "https://scontent.ftpe3-2.fna.fbcdn.net/v/t1.0-9/119663607_10158724735191425_2655505770129767774_o.jpg?_nc_cat=103&_nc_sid=8bfeb9&_nc_ohc=9xWcBOeXva0AX_aOzMC&_nc_ht=scontent.ftpe3-2.fna&oh=14770bc56db558131d82525f265e4ae4&oe=5F905ADC",
-      "description": {
-        "introduction": "",
-        "highlights": []
-      },
-      "price": 899,
-      "specialPrice": 450,
-      "city": "yuanlin",
-      "location": {
-        "country": "台灣",
-        "city": "雲林"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "placeTitle": "劍湖山世界主題樂園",
-      "address": "646雲林縣古坑鄉永光村大湖口67號",
-      "rating": 4.3,
-      "ratingCount": 179,
-      "orderCount": 5242
-    },
-    {
-      "id": 9,
-      "title": "台灣台南｜奇美博物館門票",
-      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_2574_1.jpg&sizetype=3",
-      "description": {
-        "introduction": "",
-        "highlights": []
-      },
-      "price": 200,
-      "specialPrice": null,
-      "city": "tinan",
-      "location": {
-        "country": "台灣",
-        "city": "台南"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "placeTitle": "奇美博物館",
-      "address": "71755臺南市仁德區文華路二段66號",
-      "rating": 4.9,
-      "ratingCount": 472,
-      "orderCount": 1453
-    },
-    {
-      "id": 10,
-      "title": "花蓮｜多羅滿賞鯨遊船半日遊",
-      "image": "https://scontent.ftpe3-1.fna.fbcdn.net/v/t1.0-9/118933479_3313017368789492_4873800149085235301_o.jpg?_nc_cat=104&_nc_sid=730e14&_nc_ohc=BJgnd9HnekAAX9CGzz8&_nc_ht=scontent.ftpe3-1.fna&oh=4b8b94abbeefb3cf1aff462709bcf467&oe=5F901250",
-      "description": {
-        "introduction": "",
-        "highlights": []
-      },
-      "price": 750,
-      "specialPrice": null,
-      "city": "hualian",
-      "location": {
-        "country": "台灣",
-        "city": "花蓮"
-      },
-      "policy": {
-        "check": "立即確認",
-        "cancel": null
-      },
-      "placeTitle": "多羅滿賞鯨公司",
-      "address": "970花蓮市民權路37號",
-      "rating": 4.6,
-      "ratingCount": 752,
-      "orderCount": 3453
-    }
-  ],
-  "cities": [
-    {
-      "id": 1,
-      "city": "taipei",
-      "title": "台北",
-      "image": "https://images.unsplash.com/photo-1527161949507-468bc84b280e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80",
-      "introduction": "臺北擁有濃厚的人文底蘊，鑽進大街小巷內翻索歷史留下的痕跡。走進大稻埕的百年茶坊，親手沖煮回甘可口的茗茶；搭乘高速電梯 37 秒內直達知名世界地標101頂樓，站在台北市中心眺望街景。前往中山站，走訪文青小店，探索在地人文特色，品嚐台灣經典美食，蚵仔煎、滷肉飯、臭豆腐、麻辣鍋，在這座充滿多元文化的環境中，放鬆享受友善、溫暖的人文城市。"
-    },
-    {
-      "id": 2,
-      "city": "newTaipei",
-      "title": "新北",
-      "image": "https://images.unsplash.com/photo-1584813402514-203dc64e82ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
-      "introduction": ""
-    },
-    {
-      "id": 3,
-      "city": "hsinchu",
-      "title": "新竹",
-      "image": "https://taiwaneverything.cc/wp-content/uploads/2019/10/41.png",
-      "introduction": ""
-    },
-    {
-      "id": 4,
-      "city": "hualian",
-      "title": "花蓮",
-      "image": "https://tour-hualien.hl.gov.tw/api/1561110306642.GIF",
-      "introduction": ""
-    },
-    {
-      "id": 5,
-      "city": "chiayi",
-      "title": "嘉義",
-      "image": "https://www.ali-nsa.net/zh-tw/content/images/static/ali-img-2-md.jpg",
-      "introduction": ""
-    },
-    {
-      "id": 6,
-      "city": "tainan",
-      "title": "台南",
-      "image": "https://www.twtainan.net/image/33112/1024x768",
-      "introduction": ""
-    },
-    {
-      "id": 7,
-      "city": "nantou",
-      "title": "南投",
-      "image": "http://www.sunmoonlake.gov.tw/zh-tw/image/3182/1024x768",
-      "introduction": ""
-    },
-    {
-      "id": 8,
-      "city": "taichung",
-      "title": "台中",
-      "image": "https://i.imgur.com/SzbovBw.jpg",
-      "introduction": ""
-    },
-    {
-      "id": 9,
-      "city": "pingtung",
-      "title": "屏東",
-      "image": "https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_C100_318.jpg&sizetype=3",
-      "introduction": ""
-    },
-    {
-      "id": 10,
-      "city": "keelung",
-      "title": "基隆",
-      "image": "https://www.necoast-nsa.gov.tw/FileArtPic.ashx?id=905&w=600&h=400",
-      "introduction": ""
-    },
-    {
-      "id": 11,
-      "city": "taoyuan",
-      "title": "桃園",
-      "image": "https://t3.gstatic.com/images?q=tbn:ANd9GcStX3ZCWhabByaIhbljSZ7WlHaBWR9Hy5qs9MnKTuHqzlqhR97xdchBh2KnP7AaEMwDyPkC2DUK7O9xRA",
-      "introduction": ""
-    },
-    {
-      "id": 12,
-      "city": "taitung",
-      "title": "台東",
-      "image": "https://tour.taitung.gov.tw/image/24103/1024x768",
-      "introduction": ""
-    },
-    {
-      "id": 13,
-      "city": "kaohsiung",
-      "title": "高雄",
-      "image": "https://khh.travel/image/18369/?r=1590474222587",
-      "introduction": ""
-    },
-    {
-      "id": 14,
-      "city": "penghu",
-      "title": "澎湖",
-      "image": "https://www.penghu-nsa.gov.tw/uploads/%E5%90%89%E8%B2%9D%E5%B6%BC.jpg?3093465",
-      "introduction": ""
     }
   ]
 }
