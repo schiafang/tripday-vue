@@ -92,11 +92,6 @@ export default {
   margin-bottom: 50px;
 }
 
-.product-card {
-  min-width: 270px;
-  min-height: 305px;
-}
-
 .rank-label {
   @include flexCenter;
   position: absolute;
@@ -104,6 +99,7 @@ export default {
   right: 10px;
   color: #fff;
   width: 40px;
+  z-index: 1;
 
   .rank-index-wrapper {
     width: 20px;

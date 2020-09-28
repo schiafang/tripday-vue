@@ -54,6 +54,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/_base.scss';
+
 .comment-card {
   width: auto;
   margin: 30px 0;
@@ -98,11 +100,7 @@ export default {
       letter-spacing: 0.8px;
       line-height: 1.4rem;
       max-height: 46px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      @include textOverflow(2);
     }
 
     .date {

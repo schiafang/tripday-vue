@@ -6,7 +6,7 @@ export const axiosInstance = axios.create({
 })
 
 export const axiosInstanceJSON = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? 'http://my-json-server.typicode.com/schiafang/tripday-vue' : 'http://localhost:3000/'
+  baseURL: process.env.NODE_ENV === 'production' ? 'https://cors-anywhere.herokuapp.com/https://tripday-json-server.vercel.app' : 'http://localhost:3000/'
 })
 
 axiosInstance.interceptors.request.use(

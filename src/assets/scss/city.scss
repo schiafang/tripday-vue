@@ -1,0 +1,254 @@
+
+@import 'product-card.scss';
+@import 'base';
+
+.city-page {
+  min-height: 550px;
+}
+
+.no-data {
+  padding: 200px 100px;
+  text-align: center;
+}
+
+.city-banner {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  color: #fff;
+  font-weight: 900;
+  font-size: 0.9rem;
+
+  .banner-title {
+    position: absolute;
+    font-size: 36px;
+    top: 100px;
+    left: 15px;
+  }
+
+  .city-switch {
+    position: absolute;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    padding: 7px 15px;
+    top: 160px;
+    left: 15px;
+  }
+}
+
+.city-content,
+.city-content-main {
+  padding: 30px 15px;
+  font-size: 0.8rem;
+  color: $main-gray;
+  display: flex;
+  flex-direction: column;
+}
+
+.city-content-main {
+  background-color: $border-gray;
+  align-items: center;
+}
+
+.products-wrapper {
+  width: 100%;
+  margin: 50px 0 100px 0;
+}
+
+.city-introduction {
+  padding-right: 30px;
+  font-size: 0.95rem;
+  margin: 30px 0;
+}
+
+.city-map {
+  border: 1px solid #FFF;
+  border-radius: 6px;
+  box-shadow: 1px 1px 3px 1px rgba(222, 222, 222, 0.2);
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: '檢視地圖';
+    @include flexCenter;
+    position: relative;
+    bottom: 40px;
+    width: 100%;
+    height: 40px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: $main-black;
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  img {
+    transition: all 0.6s ease-in-out;
+  }
+  
+  .google-map-marker {
+    color: $pink;
+    font-size: 50px;
+    height: auto;
+    position: absolute;
+    left: calc(50% - 20px);
+    top: 35px;
+    z-index: 1;
+  }
+
+  &:hover {
+    cursor: pointer;
+    opacity: .9;
+
+    img {
+      transform: scale(1.5);
+    }
+
+    .google-map-marker {
+      transform: scale(1);
+      @keyframes bounce {
+        0% {
+          top: 35px;
+        }
+        50% {
+          top: 15px;
+        }
+        100% {
+          top: 35px;
+        }
+      }
+      animation-name: bounce;
+      animation-duration: .75s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+/* map window */
+.map-dialog-content {
+  width: 800px;
+  height: 800px;
+  background-color: #fff;
+}
+
+.map-info-image {
+  width: 200px;
+  border-radius: 4px;
+}
+
+.explore-cities {
+  background-color: $border-gray;
+  width: 100%;
+  height: 500px;
+  padding: 40px 0;
+
+  .explore-cities-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: $main-black;
+    margin-bottom: 15px;
+  }
+
+  .city-card {
+    position: relative;
+
+    img {
+      height: 280px;
+      border-radius: 6px;
+    }
+
+    span {
+      position: absolute;
+      font-size: 1.3rem;
+      bottom: 15px;
+      left: 15px;
+      color: #fff;
+      font-weight: 900;
+    }
+
+    &:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+  }
+
+  .slick-arrow {
+    background-color: transparent;
+    box-shadow: none;
+    top: 120px;
+    transition: all 0.2s;
+
+    &.slick-next:after,
+    &.slick-prev:after {
+      top: -8px;
+      right: 3px;
+      width: 20px;
+      height: 20px;
+      border-top: 4px solid $main-gray;
+      border-right: 4px solid $main-gray;
+    }
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
+}
+
+.city-dialog-content {
+  border-radius: 10px;
+  background-color: #fff;
+  padding-bottom: 30px;
+}
+
+.dialog-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  padding: 0 30px 30px 30px;
+  border-bottom: 1px solid $border-gray;
+}
+
+.city-list {
+  padding: 15px 30px;
+
+  span {
+    font-size: 0.9rem;
+    color: $main-black;
+    margin-right: 15px;
+    white-space: nowrap;
+
+    &:hover {
+      cursor: pointer;
+      color: $main-blue;
+    }
+  }
+}
+
+@media screen and (min-width: 996px) {
+  .city-banner {
+    .banner-title,
+    .city-switch {
+      left: 130px;
+    }
+  }
+
+  .city-content,
+  .city-content-main {
+    padding: 30px 130px;
+  }
+
+  .city-content {
+    display: grid;
+    grid-template-columns: auto 260px;
+  }
+
+  .city-introduction {
+    grid-column: 1 / 2;
+  }
+
+  .city-map {
+    grid-column: 2 / 3;
+  }
+}

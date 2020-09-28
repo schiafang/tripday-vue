@@ -29,7 +29,9 @@
         {{ product.location.city }}
       </div>
       <div class="policy" v-if="product.planOption">
-        <div><i class="icon-refresh"></i> 6天前可免費取消</div>
+        <div v-if="product.policy.cancel">
+          <i class="icon-refresh"></i> {{ product.policy.cancel }}
+        </div>
         <div><i class="icon-screen-smartphone"></i> 現場請出示 QR code</div>
       </div>
       <div class="description">

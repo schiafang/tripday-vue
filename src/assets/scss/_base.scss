@@ -16,6 +16,13 @@ $pink: #ef7a70;
   align-items: center;
 }
 
+@mixin textOverflow($num) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $num;
+  -webkit-box-orient: vertical;
+}
 
 %cardShadowStyle {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;

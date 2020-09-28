@@ -5,7 +5,7 @@
     </div>
     <div class="top-cities-content">
       <router-link
-        v-for="city in randomCities"
+        v-for="city in cities"
         :to="{ path: '/cities', query: { city: city.city } }"
         :key="city.id"
         class="city-card"
@@ -28,7 +28,6 @@ export default {
   data() {
     return {
       cities: [],
-      randomCities: [],
       isFocus: false,
       index: ''
     }
@@ -39,11 +38,13 @@ export default {
   methods: {
     async fetchCities() {
       try {
+        this.$store.state.isLoading = true
         const res = await productAPI.getCities()
-        this.cities = res.data
-        this.randomCities = this.shuffle(this.cities).slice(0, 5)
+        this.cities = this.shuffle(res.data).slice(0, 5)
+        this.$store.state.isLoading = false
       } catch (error) {
         console.log(error)
+        this.$store.state.isLoading = false
       }
     },
     shuffle(arr) {

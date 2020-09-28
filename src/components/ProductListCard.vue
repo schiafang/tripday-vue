@@ -1,9 +1,13 @@
 <template>
   <div>
-    <router-link to="/" v-for="product in products" :key="product.id">
+    <router-link
+      :to="{ name: 'ProductDetail', params: { id: product.id } }"
+      v-for="product in products"
+      :key="product.id"
+    >
       <div class="product-list-card my-4">
         <FavoriteHeart :id="product.id" />
-        <div class="product-card-image">
+        <div class="product-list-card-image">
           <img v-lazy="product.image" alt="" />
         </div>
         <div class="product-list-card-detail">

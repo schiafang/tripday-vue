@@ -19,14 +19,18 @@
               <img v-lazy="product.image" alt="" />
             </div>
 
-            <div class="flash-label">
+            <div class="flash-label" v-if="product.policy.check">
               <i class="fas fa-caret-down"></i>
               <i class="fa fa-flash flash-icon"></i>立即確認
             </div>
 
             <div class="product-card-detail">
               <div class="card-title">
-                <i class="fa fa-flash title-flash"></i>{{ product.title }}
+                <i
+                  class="fa fa-flash title-flash"
+                  v-if="product.policy.check"
+                ></i
+                >{{ product.title }}
               </div>
               <div class="card-ordered">
                 <i class="fab fa-hotjar"></i> 15K+ 已訂購
@@ -60,7 +64,7 @@ import Star from './Star'
 import FavoriteHeart from '../components/FavoriteHeart'
 
 export default {
-  name: 'TopProductCard',
+  name: 'ProductCard',
   components: { Star, FavoriteHeart },
   props: {
     products: {

@@ -25,6 +25,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import productAPI from '../apis/product'
 import { mapState } from 'vuex'
 import ProductListCard from '../components/ProductListCard'
@@ -39,22 +40,23 @@ export default {
     }
   },
   created() {
-    this.fetchData()
+    this.fetchData(this.$route.query.q)
   },
   computed: {
     ...mapState(['isLoading'])
   },
-  beforeRouteUpdate(to, from, next) {
-    this.fetchData()
-    next()
+  watch: {
+    $route(to) {
+      this.fetchData(to.query.q)
+    }
   },
   methods: {
-    async fetchData() {
+    async fetchData(q) {
       try {
         this.$store.state.isLoading = true
         if (this.$route.query.q) {
           this.searchString = this.$route.query.q
-          const searchProducts = await productAPI.searchProducts(this.$route.query.q)
+          const searchProducts = await productAPI.searchProducts(q)
           this.products = searchProducts.data
           this.$store.state.isLoading = false
         } else {

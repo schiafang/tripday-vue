@@ -168,7 +168,7 @@ export default {
   created() {
     this.disabledDates = state.disabledDates
 
-    this.$nextTick(function () {
+    this.$nextTick(function () { //computed
       let typeTemp = []
       this.plan.planOption[0].ticketTypes.forEach((item, index) => {
         return typeTemp.push({ index, name: item.name, quantity: 0, price: item.price })

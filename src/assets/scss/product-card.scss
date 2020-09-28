@@ -7,9 +7,9 @@
 .product-card,
 .product-list-card {
   min-width: 270px;
-  min-height: 305px;
+  height: 305px;
   border: 1px solid $border-gray;
-  border-radius: 6px;
+  border-radius: 8px;
   position: relative;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
@@ -52,6 +52,7 @@
   opacity: 0;
   transition: all 0.3s ease-in-out;
   letter-spacing: 1px;
+  z-index:1;
 
   .flash-icon {
     margin-right: 3px;
@@ -73,10 +74,8 @@
   color: $main-gray;
 
   .card-title {
-    grid-area: title;
     width: auto;
     padding-right: 45px;
-    height: 50px;
     font-size: 1rem;
     font-weight: 450;
     color: $main-black;
@@ -119,6 +118,7 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+    height: 45px;
 
     .original {
       text-decoration: line-through;
@@ -146,6 +146,12 @@
     'place price'
     'rate price';
 
+  .card-title {
+    grid-area: title;
+    min-height: 50px;
+    @include textOverflow(2);
+  }
+
   .title-flash {
     transition: transform 0.3s ease-out;
     color: $main-blue;
@@ -154,75 +160,90 @@
   }
 }
 
-.product-list-card-detail {
-  display: flex;
-  flex-direction: column;
-  padding: 20px 10px 10px 10px;
-  border-radius: 0 0 8px 8px;
+.product-list-card {
+  height: auto;
+  border-radius: 8px;
 
-  .check-span,
-  .cancel-span {
-    color: #FFF;
-    font-size: .7rem;
-    border-radius: 3px;
-    padding: 4px 8px;
-    font-weight: 700;
-    background-color: $yellow;
-    margin-right: 5px;
+  .product-list-card-image {
+    height: 160px;
+    width: 100%;
   }
-
-  .cancel-span {
-    background-color: $pink;
-  }
-
-  .card-title {
-    font-weight: 700;
-    height: auto;
-    margin: 10px 0;
-  }
-
-  .card-introduction {
-    margin-bottom: 10px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-
-  .card-policy,
-  .card-date {
-    font-size: .7rem;
-  }
-
-  .card-bottom {
-    height: 40px;
+  
+  .product-list-card-detail {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    padding: 20px 10px 10px 10px;
+  
+    .check-span,
+    .cancel-span {
+      color: #FFF;
+      font-size: .7rem;
+      border-radius: 3px;
+      padding: 4px 8px;
+      font-weight: 700;
+      background-color: $yellow;
+      margin-right: 5px;
+    }
+  
+    .cancel-span {
+      background-color: $pink;
+    }
+  
+    .card-title {
+      font-weight: 700;
+      margin: 10px 0;
+    }
+  
+    .card-introduction {
+      min-height: 40px;
+      margin-bottom: 10px;
+      @include textOverflow(3);
+    }
+  
+    .card-policy,
+    .card-date {
+      font-size: .7rem;
+    }
+  
+    .card-bottom {
+      height: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  
+    .card-ordered .fa-hotjar {
+      color: $yellow;
+    }
   }
-
-  .card-ordered .fa-hotjar {
-    color: $yellow;
-  }
-
 }
+
 
 @media screen and (min-width: 762px) {
   .product-list-card {
     display: flex;
     width: 100%;
-    min-height: 220px;
+    height: 230px;
+    border-radius: 8px;
 
-    .product-card-image {
-      min-height: 220px;
+    .product-list-card-image {
+      height: 100%;
       max-width: 240px;
-      border-radius: 8px 0 0 8px;
     }
   
     .product-list-card-detail {
       padding: 20px;
       width: 100%;
-      height: 220px;
+      height: 100%;
+
+      .card-title {
+        height: 2rem;
+        @include textOverflow(1)
+      }
+
+      .card-introduction {
+        @include textOverflow(2);
+    }
     }
   }
 }
@@ -237,6 +258,4 @@
       margin-left: -45px;
     }
   }
-
-  
 }

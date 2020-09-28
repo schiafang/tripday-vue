@@ -82,6 +82,10 @@ select {
   padding: 8px 15px;
   background-color: $main-blue;
   font-weight: 600;
+
+  &:disabled {
+    background-color: $gray;
+  }
 }
 
 img {
@@ -90,10 +94,17 @@ img {
 }
 
 img[lazy=loading] {
-opacity: 0;
+  opacity: .1;
+  background-color: $main-gray ;
 }
+
+img[lazy=error] {
+  background-color: $border-gray ;
+}
+
 img[lazy=loaded] {
  opacity: 1;
+ background-color: transparent;
 }
 
 .breadcrumbs {
