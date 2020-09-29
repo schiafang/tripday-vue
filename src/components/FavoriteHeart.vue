@@ -1,5 +1,14 @@
 <template>
   <div class="favorite-icon-wrapper">
+    <div
+      class="sign-tip"
+      ref="signTip"
+      :style="{
+        opacity: 0,
+        zIndex: 2,
+        transition: 'opacity .2s ease-in-out'
+      }"
+    ></div>
     <i
       v-if="!isAuthenticated || !favoriteProducts.includes(id)"
       class="far fa-heart add-favorite favorite-icon"
@@ -10,14 +19,6 @@
       class="fas fa-heart remove-favorite favorite-icon"
       @click.stop.prevent="removeFavorite(id)"
     ></i>
-    <div
-      class="sign-tip"
-      ref="signTip"
-      :style="{
-        opacity: 0,
-        transition: 'opacity .2s ease-in-out'
-      }"
-    ></div>
   </div>
 </template>
 
@@ -84,8 +85,8 @@ export default {
 
 .sign-tip {
   position: absolute;
-  right: -15px;
-  top: -15px;
+  right: 28px;
+  top: 28px;
 
   &::after {
     content: '請先登入';

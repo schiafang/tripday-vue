@@ -1,0 +1,270 @@
+@import 'base';
+
+#map {
+  height: 700px;
+}
+
+.city-map {
+  border: 1px solid #fff;
+  border-radius: 6px;
+  box-shadow: 1px 1px 3px 1px rgba(222, 222, 222, 0.2);
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: '檢視地圖';
+    @include flexCenter;
+    position: relative;
+    bottom: 40px;
+    width: 100%;
+    height: 40px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: $main-black;
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  img {
+    transition: all 0.6s ease-in-out;
+  }
+
+  .google-map-marker {
+    color: $pink;
+    font-size: 50px;
+    height: auto;
+    position: absolute;
+    left: calc(50% - 20px);
+    top: 35px;
+    z-index: 1;
+  }
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+
+    img {
+      transform: scale(1.5);
+    }
+
+    .google-map-marker {
+      transform: scale(1);
+      @keyframes bounce {
+        0% {
+          top: 35px;
+        }
+        50% {
+          top: 15px;
+        }
+        100% {
+          top: 35px;
+        }
+      }
+      animation-name: bounce;
+      animation-duration: 0.75s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+/* map window */
+.dialog-content {
+  display: grid;
+  grid-template-columns: 0 auto;
+}
+
+.dialog-map {
+  grid-column: 2 / 3;
+  width: 100%;
+  height: 800px;
+  background-color: #fff;
+
+  .map-info-window {
+    display: flex;
+    width: 400px;
+    height: 95px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .map-info-image {
+    width: 130px;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .gm-ui-hover-effect {
+    visibility: hidden;
+  }
+
+  .gm-style .gm-style-iw-c {
+    padding: 0;
+  }
+
+  .gm-style .gm-style-iw-d {
+    overflow: hidden !important;
+  }
+
+  .map-info-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    color: $main-black;
+    padding: 10px;
+
+    .top {
+      margin-bottom: 5px;
+      @include textOverflow(2);
+    }
+
+    .bottom {
+      color: $main-gray;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .price span {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $main-blue;
+      }
+
+      .star {
+        color: transparent;
+        font-size: 0.5rem;
+      }
+
+      .rating-count {
+        font-size: 0.5rem;
+        margin-left: 5px;
+        color: $second-gray;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 996px) {
+  .dialog-content {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+  }
+
+  .dialog-map {
+    grid-column: 2 / 3;
+  }
+
+  .dialog-product-list {
+    grid-column: 1 / 2;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 6px 0 5px -3px rgba(0, 0, 0, 0.2);
+    padding: 5px 10px;
+    height: 700px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(200, 200, 200, 0.8);
+      border-radius: 5px;
+      border: 1px solid #fff;
+    }
+    &::-webkit-scrollbar {
+      width: 8px;
+      background-color: transparent;
+      box-shadow: inset 2px 0 6px 1px rgba(100, 100, 100, 0.1);
+    }
+  }
+
+  .map-product-card {
+    display: flex;
+    border: 1px solid $border-gray;
+    margin: 10px 0;
+    border-radius: 6px;
+    width: 100%;
+    height: 110px;
+    overflow: hidden;
+
+    img {
+      width: 120px;
+    }
+
+    .card-info {
+      color: $main-black;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .card-title {
+        font-size: 0.9rem;
+        @include textOverflow(2);
+      }
+
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      .star {
+        width: 80px;
+        font-size: 0.7rem !important;
+      }
+
+      .rating-price {
+        margin-top: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        span {
+          font-size: 0.8rem;
+          color: $main-gray;
+
+          span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: $main-blue;
+          }
+        }
+      }
+
+      .card-btn {
+        font-size: 0.8rem;
+        color: $main-blue;
+        border: 1px solid $main-blue;
+        padding: 3px 5px;
+        border-radius: 3px;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(222, 222, 222, 0.2);
+      border: 1px solid rgba(222, 222, 222, 0.2);
+    }
+  }
+
+  .map-tip {
+    display: flex;
+    padding: 30px;
+    font-size: 0.9rem;
+    color: $main-gray;
+
+    i {
+      font-size: 2rem;
+      color: $main-blue;
+      margin: 3px 15px 0 0;
+    }
+
+    span {
+      color: $main-blue;
+    }
+  }
+}

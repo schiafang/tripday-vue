@@ -53,20 +53,7 @@
         <div class="city-introduction">
           {{ city.introduction }}
         </div>
-
-        <div class="city-map" @click="openMapDialog">
-          <img src="../assets/images/map.png" alt="" />
-          <i class="fas fa-map-marker-alt google-map-marker"></i>
-        </div>
-
-        <!--google map-->
-        <v-dialog
-          v-model="mapDialog"
-          max-width="800px"
-          transition="slide-y-transition"
-        >
-          <div class="map-dialog-content" id="map"></div>
-        </v-dialog>
+        <GoogleMapMarker :city="city" />
       </div>
 
       <div class="city-content-main">
@@ -120,10 +107,11 @@ import GoogleMapsApiLoader from 'google-maps-api-loader'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import productAPI from '../apis/product'
+import GoogleMapMarker from '../components/GoogleMapMarker'
 
 export default {
   name: 'City',
-  components: { ProductCard, VueSlickCarousel },
+  components: { ProductCard, VueSlickCarousel, GoogleMapMarker },
   data() {
     return {
       products: [],
@@ -132,13 +120,10 @@ export default {
       googleMap: null,
       slickSettings: {},
       cityDialog: false,
-      mapDialog: false,
       restaurants: [],
-      map: null,
-      google: null
     }
   },
-  async mounted() {
+  mounted() {
     this.fetchCities()
     this.fetchCityProduct()
   },
@@ -221,54 +206,6 @@ export default {
     switchCity(city) {
       this.cityDialog = false
       this.$router.push({ path: '/cities', query: { city: city } })
-    },
-    initMap() {
-      const currentCityGeocode = { ...this.city.geocode }
-      this.map = new this.google.maps.Map(document.getElementById("map"), {
-        center: {
-          lat: currentCityGeocode.lat,
-          lng: currentCityGeocode.lng
-        },
-        zoom: 12,
-        maxZoom: 20,
-        minZoom: 3,
-        streetViewControl: false,
-        mapTypeControl: false
-      })
-    },
-    setMarker() {
-
-      const customMarker = {
-        path:
-          "M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z",
-        fillColor: '#ef7a70',
-        fillOpacity: .8,
-        scale: .1,
-        strokeWeight: 0,
-      };
-      this.products.forEach(i => {
-        const marker = new this.google.maps.Marker({
-          position: { lat: i.geocode.lat, lng: i.geocode.lng },
-          map: this.map,
-        })
-
-        const info = `<div class="ma-2"><h2 class="mb-3">${i.placeTitle}</h2><img class="map-info-image" src="${i.cover || i.image}" /></div>`
-
-        const infoWindow = new this.google.maps.InfoWindow({
-          content: info
-        })
-
-        marker.addListener('mouseover', () => infoWindow.open(map, marker))
-        marker.addListener('mouseout', () => infoWindow.close())
-      })
-
-    },
-    async openMapDialog() {
-      this.mapDialog = true
-      const googleMap = await GoogleMapsApiLoader({ apiKey: process.env.VUE_APP_GOOGLEAPI })
-      this.google = googleMap
-      this.initMap()
-      this.setMarker()
     }
   }
 }

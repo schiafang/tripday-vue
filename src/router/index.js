@@ -74,7 +74,7 @@ router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
   const stateToken = store.state.token
   store.state.isLoading = true
-  if (token !== stateToken) { store.dispatch('fetchCurrentUser') }
+  if (token !== stateToken && token) { store.dispatch('fetchCurrentUser') }
   store.state.isLoading = false
   next()
 })

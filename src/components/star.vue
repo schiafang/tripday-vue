@@ -45,9 +45,6 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/scss/_base.scss';
 .star {
-  // background: linear-gradient(90deg, #2292a4 30%, #bebebe 30%);
-  // background-clip: text;
-  // -webkit-background-clip: text;
   color: transparent;
   font-size: 1rem;
 
