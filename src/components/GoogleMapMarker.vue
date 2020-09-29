@@ -129,7 +129,7 @@ export default {
       this.map = new this.google.maps.Map(document.getElementById("map"), {
         center: this.mapCenter,
         zoom: 12,
-        maxZoom: 20,
+        maxZoom: 15,
         minZoom: 3,
         streetViewControl: false,
         mapTypeControl: false,
@@ -205,7 +205,7 @@ export default {
       }))
 
       this.rangeProducts.sort((a, z) => a.distance - z.distance)
-      this.rangeProducts = this.rangeProducts.filter(i => i.distance < 16300)
+      this.rangeProducts = this.rangeProducts.filter(i => i.distance < 16000)
     },
     toggleBounce(id) {
       let currentMarker

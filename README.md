@@ -40,23 +40,18 @@ HELLO2WORLD
 - [x] 使用者可以選購行程
 - [x] 使用者可以使用優惠券
 - [x] 使用者可以確認訂單結帳
+- [x] 使用者結帳後可以收到確認訊息
+- [x] 使用者可以管理個人資料 
+- [x] 使用者可以查詢訂單資料
+- [x] 使用者可以透過GoogleMap api 快速查看地點 
+- [x] 使用者可以在商品詳細頁面看到5則Google評論
+- [x] 使用者可以透過分類瀏覽不同地區的行程
+- [x] 使用者可以關鍵字搜尋目的地或行程名稱
+- [x] 使用者可以收藏商品
+- [x] 使用者可以移除收藏
+- [x] 使用者可以在收藏頁面看到加入收藏的商品
 
-
-- [ ] 使用者可以透過分類瀏覽不同地區的行程
-- [ ] 使用者可以收藏商品
-- [ ] 使用者可以移除收藏
-- [ ] 使用者可以在收藏頁面看到加入收藏的商品
-- [ ] 使用者可以關鍵字搜尋目的地或行程名稱
-- [ ] 使用者可以在詳細資料頁面留下評論
-- [ ] 使用者可以在商品詳細頁面看到其他人的評論
-- [ ] 使用者可以評分
-- [ ] 使用者可以將行程放入購物車 
-- [ ] 使用者結帳後可以收到確認訊息
-- [ ] 使用者可以轉換中英文功能 
-- [ ] 使用者可以轉換TWD與USD
-- [ ] 使用者可以管理個人資料 
-- [ ] 使用者可以查詢訂單資料
-- [ ] 使用者可以透過GoogleMap api 快速查看地點 
+- [ ] 使用者可以轉換TWD與USD 
 - [ ] 使用者可以使用信用卡與 LINE PAy 結帳
 
 <br>
@@ -77,10 +72,14 @@ HTML
 [vuejs-datepicker](https://www.npmjs.com/package/vuejs-datepicker)  
 [sweetalert2](https://sweetalert2.github.io/)  
 [Fontawesome](https://fontawesome.com/)  
+[Simple Line Icons](https://simplelineicons.github.io/)   
 [moment](https://www.npmjs.com/package/moment)  
-[uuid](https://www.npmjs.com/package/uuid)  
-[VueSlickCarousel](https://github.com/gs-shop/vue-slick-carousel)
-[Google Maps Embed API](https://developers.google.com/maps/documentation/embed/get-started)
+[VueSlickCarousel](https://github.com/gs-shop/vue-slick-carousel)   
+[Google Maps Embed API](https://developers.google.com/maps/documentation/embed/get-started)     
+[Google Maps Places API](https://developers.google.com/places/web-service/overview)     
+[Google Maps Place Details API](https://developers.google.com/places/web-service/details)   
+[My JSON Server](https://github.com/typicode/json-server)   
+[vue-lazyload](https://github.com/hilongjw/vue-lazyload#image-listener-filter)
 
 ## Clone and Setup
 [Download](https://github.com/schiafang/tripday-vue/archive/master.zip) or clone repository to your local computer.
