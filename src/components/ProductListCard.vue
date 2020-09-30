@@ -49,16 +49,12 @@
               </div>
             </div>
             <div class="card-price">
-              <div v-show="product.specialPrice" class="original">
-                TWD {{ product.price }}
-              </div>
-              <div class="price-now">
-                TWD
-                <span v-if="product.specialPrice">{{
-                  product.specialPrice
-                }}</span>
-                <span v-else>{{ product.price }}</span>
-              </div>
+              <Price
+                :initial-price="{
+                  price: product.price,
+                  specialPrice: product.specialPrice
+                }"
+              />
             </div>
           </div>
         </div>
@@ -70,10 +66,11 @@
 <script>
 import FavoriteHeart from '../components/FavoriteHeart'
 import Star from '../components/Star'
+import Price from './Price'
 
 export default {
   name: 'ProductListCard',
-  components: { FavoriteHeart, Star },
+  components: { FavoriteHeart, Star, Price },
   props: {
     products: {
       type: Array,

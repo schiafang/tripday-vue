@@ -40,16 +40,12 @@
                 ({{ product.ratingCount }})
               </div>
               <div class="card-price">
-                <div v-show="product.specialPrice" class="original">
-                  TWD {{ product.price }}
-                </div>
-                <div class="price-now">
-                  TWD
-                  <span v-if="product.specialPrice">{{
-                    product.specialPrice
-                  }}</span>
-                  <span v-else>{{ product.price }}</span>
-                </div>
+                <Price
+                  :initial-price="{
+                    price: product.price,
+                    specialPrice: product.specialPrice
+                  }"
+                />
               </div>
             </div>
           </router-link>
@@ -62,10 +58,11 @@
 <script>
 import Star from './Star'
 import FavoriteHeart from '../components/FavoriteHeart'
+import Price from '../components/Price'
 
 export default {
   name: 'ProductCard',
-  components: { Star, FavoriteHeart },
+  components: { Star, FavoriteHeart, Price },
   props: {
     products: {
       type: Array,

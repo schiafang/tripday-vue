@@ -75,6 +75,31 @@
   grid-template-columns: 0 auto;
 }
 
+.map-dialog-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  background-color: $main-black;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  z-index: 99;
+  color: $light-gray;
+  font-size: 1.5rem;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .dialog-map {
   grid-column: 2 / 3;
   width: 100%;
@@ -150,6 +175,10 @@
   }
 }
 
+.dialog-product-list {
+  display: none;
+}
+
 @media screen and (min-width: 996px) {
   .dialog-content {
     display: grid;
@@ -161,6 +190,7 @@
   }
 
   .dialog-product-list {
+    display: block;
     grid-column: 1 / 2;
     z-index: 1;
     background-color: #fff;
@@ -214,10 +244,11 @@
 
       .star {
         width: 80px;
-        font-size: 0.7rem !important;
+        font-size: 0.5rem !important;
       }
 
       .rating-price {
+        width: 100px;
         margin-top: 5px;
         display: flex;
         flex-direction: column;
@@ -226,8 +257,11 @@
         span {
           font-size: 0.8rem;
           color: $main-gray;
+          display: flex;
+          align-items: center;
 
           span {
+            margin-left: 5px;
             font-size: 0.9rem;
             font-weight: 600;
             color: $main-blue;

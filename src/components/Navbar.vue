@@ -1,6 +1,5 @@
 <template >
   <div class="nav">
-    <!-- navbrand -->
     <router-link to="/"><div class="nav-brand">tripday</div></router-link>
 
     <!-- searchbar -->
@@ -83,9 +82,9 @@
 
       <!-- currency -->
       <div class="nav-item nav-item-currency">
-        <label for="dropdown-currency-toggle" class="dropdown-currency-label"
-          >TWD</label
-        >
+        <label for="dropdown-currency-toggle" class="dropdown-currency-label">{{
+          currentCurrency
+        }}</label>
         <input
           type="checkbox"
           id="dropdown-currency-toggle"
@@ -93,7 +92,18 @@
           v-model="currencyCheck"
         />
         <div class="dropdown-currency-content">
-          <a href="#" class="dropdown-link nav-item-link">USD 美元</a>
+          <button
+            class="dropdown-link nav-item-link"
+            @click="getCurrency('USD')"
+          >
+            USD 美元
+          </button>
+          <button
+            class="dropdown-link nav-item-link"
+            @click="getCurrency('TWD')"
+          >
+            TWD 新台幣
+          </button>
         </div>
       </div>
 
@@ -159,9 +169,11 @@ export default {
       if (this.screenWidth < 996) {
         this.isSmallWindow = true
         this.display = 'block'
+        this.$store.state.mobileScreen = true
       } else {
         this.isSmallWindow = false
         this.display = 'none'
+        this.$store.state.mobileScreen = false
       }
     },
     showAuthNavList() {
@@ -171,10 +183,9 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isAuthenticated', 'user'])
+    ...mapState(['isAuthenticated', 'user', 'currentCurrency'])
   },
   methods: {
-    //手機螢幕顯示使用者清單
     hideNavList() {
       this.checked = false
       this.showNavlistBack = false
@@ -182,7 +193,6 @@ export default {
     showNavlist() {
       this.showNavlistBack = true
     },
-    //寬螢幕顯示使用者清單
     toggleDeskTopNavList() {
       this.showAuthNavList = !this.showAuthNavList
     },
@@ -190,6 +200,7 @@ export default {
       this.$store.commit('openDialog', true)
     },
     logout() {
+      this.hideNavList()
       this.$store.commit('revokeAuthentication')
     },
     search() {
@@ -200,6 +211,16 @@ export default {
         return
       }
     },
+    getCurrency(currency) {
+      this.hideNavList()
+      if (currency === 'TWD') {
+        this.$store.state.exchangeRate = 1
+        this.$store.state.currentCurrency = 'TWD'
+      }
+      if (currency === 'USD' && this.$store.state.exchangeRate === 1) {
+        this.$store.dispatch('getCurrency', currency)
+      }
+    }
   }
 }
 </script>

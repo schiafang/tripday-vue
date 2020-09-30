@@ -43,16 +43,12 @@
               ({{ product.ratingCount }})
             </div>
             <div class="card-price">
-              <div v-show="product.specialPrice" class="original">
-                TWD {{ product.price }}
-              </div>
-              <div class="price-now">
-                TWD
-                <span v-if="product.specialPrice">{{
-                  product.specialPrice
-                }}</span>
-                <span v-else>{{ product.price }}</span>
-              </div>
+              <Price
+                :initial-price="{
+                  price: product.price,
+                  specialPrice: product.specialPrice
+                }"
+              />
             </div>
           </div>
         </router-link>
@@ -65,12 +61,13 @@
 /* eslint-disable */
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-import Star from './Star'
 import { productSlide } from './../utils/mixins'
+import Star from './Star'
+import Price from './Price'
 
 export default {
   name: 'TopProducts',
-  components: { VueSlickCarousel, Star },
+  components: { VueSlickCarousel, Star, Price },
   mixins: [productSlide],
   props: {
     products: {

@@ -1,3 +1,5 @@
+import { mapState } from 'vuex'
+
 export const productSlide = {
   data() {
     return {
@@ -48,6 +50,17 @@ export const productSlide = {
           },
         ]
       }
+    }
+  }
+}
+
+export const currency = {
+  computed: {
+    ...mapState(['exchangeRate', 'currentCurrency'])
+  },
+  filters: {
+    exchange(value) {
+      return Math.round(value * 100) / 100
     }
   }
 }

@@ -119,8 +119,9 @@
     justify-content: flex-end;
     align-items: flex-end;
     height: 45px;
-
+    
     .original {
+      text-align: right;
       text-decoration: line-through;
       height: 15px;
     }

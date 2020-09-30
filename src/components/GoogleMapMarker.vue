@@ -9,7 +9,17 @@
       v-model="mapDialog"
       max-width="1200px"
       transition="slide-y-transition"
+      class="map-dialog"
     >
+      <transition name="fade">
+        <button
+          v-if="mobileScreen && map"
+          class="map-dialog-close"
+          @click="mapDialog = false"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </transition>
       <div class="dialog-content">
         <div class="dialog-product-list">
           <router-link
@@ -27,10 +37,13 @@
                 <span class="card-title"> {{ product.title }}</span>
                 <div class="bottom">
                   <div class="rating-price">
-                    <Star :rating="product.rating" />
                     <span
-                      >TWD <span>{{ product.price }}</span></span
-                    >
+                      >{{ currentCurrency }}
+                      <span>{{
+                        (product.price / exchangeRate) | exchange
+                      }}</span>
+                    </span>
+                    <Star :rating="product.rating" />
                   </div>
                   <button class="card-btn">立即訂購</button>
                 </div>
@@ -57,6 +70,8 @@
 import productAPI from '../apis/product'
 import GoogleMapsApiLoader from 'google-maps-api-loader'
 import Star from '../components/Star.vue'
+import { mapState } from 'vuex'
+import { currency } from './../utils/mixins'
 
 const customMarker = {
   path:
@@ -70,6 +85,7 @@ const customMarker = {
 export default {
   name: 'GoogleMapMarker',
   components: { Star },
+  mixins: [currency],
   props: {
     city: {
       type: Object
@@ -104,6 +120,9 @@ export default {
       this.marker = []
       this.setMarker()
     }
+  },
+  computed: {
+    ...mapState(['mobileScreen'])
   },
   methods: {
     async fetchAllProducts() {

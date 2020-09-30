@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+// import axios from 'axios'
 import authorizationAPI from '../apis/authorization'
 import createPersistedState from "vuex-persistedstate";
 import SecureLS from "secure-ls";
@@ -21,7 +22,10 @@ export default new Vuex.Store({
     favoriteProducts: [],
     isAuthenticated: false,
     token: '',
-    isLoading: false
+    isLoading: false,
+    mobileScreen: false,
+    exchangeRate: 1,
+    currentCurrency: 'TWD'
   },
   mutations: {
     setCurrentUser(state, user) {
@@ -67,6 +71,19 @@ export default new Vuex.Store({
         console.error(error)
         commit('revokeAuthentication')
       }
+    },
+    async getCurrency(_, currency) {
+      // const res = await axios.get(`http://data.fixer.io/api/latest?access_key=acbd6972196dcf75fac8c856311702c0&symbols=${currency},TWD&format=1`)
+      // console.log('getCurrency', currency)
+
+      // const TWD = res.data.rates.TWD
+
+      if (currency === 'USD') {
+        // const exchange = TWD / res.data.rates.USD
+        const exchange = 28.992198027261733 //TEST
+        this.state.exchangeRate = exchange
+        this.state.currentCurrency = 'USD'
+      }
     }
   },
   modules: {
@@ -74,6 +91,14 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState({
       key: 'userInfo',
+      reducer(state) {
+        return {
+          user: state.user,
+          favoriteProducts: state.favoriteProducts,
+          isAuthenticated: state.isAuthenticated,
+          token: state.token
+        }
+      },
       storage: {
         getItem: key => ls.get(key),
         setItem: (key, value) => ls.set(key, value),

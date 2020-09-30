@@ -350,12 +350,16 @@
                         class="item"
                       >
                         {{ type.name }} x {{ type.quantity }}
-                        <span> TWD {{ type.price * type.quantity }}</span>
+                        <span>
+                          {{ bookingDetail.currency }}
+                          {{ (type.price * type.quantity) | exchange }}</span
+                        >
                       </div>
                     </div>
 
                     <div class="bill-total">
-                      總金額 <span>{{ bookingDetail.totalPrice }}</span>
+                      總金額
+                      <span>{{ bookingDetail.totalPrice | exchange }}</span>
                     </div>
 
                     <div class="bill-discount" v-if="discount !== 0">
@@ -371,7 +375,10 @@
                   {{ type.name }} x {{ type.quantity }}
                 </span> -->
             <div class="total-price">
-              支付金額<span> TWD {{ orderDetail.billPrice }}</span>
+              支付金額<span>
+                {{ bookingDetail.currency }}
+                {{ orderDetail.billPrice | exchange }}</span
+              >
             </div>
           </div>
         </div>
@@ -404,6 +411,8 @@
 // import Datepicker from 'vuejs-datepicker';
 import { mapState } from 'vuex'
 import Spinner from '../components/Spinner'
+import { currency } from './../utils/mixins'
+import { round } from 'mathjs'
 
 const couponNumber = [['GOTRIP2020', 500], ['HELLO2WORLD', 150]]
 const fold = 'rotate(-45deg)'
@@ -412,6 +421,7 @@ const unfold = 'rotate(135deg)'
 export default {
   name: 'booking',
   components: { Spinner },
+  mixins: [currency],
   data() {
     return {
       type: [],
@@ -443,7 +453,7 @@ export default {
     this.bookingDetail = JSON.parse(localStorage.getItem('booking'))
     this.orderDetail.billPrice = this.bookingDetail.totalPrice
     this.orderDetail.email = this.$store.state.user.email
-    this.type = this.bookingDetail.type.filter(i => i.quantity !== 0) //取出有選購的票種與數量
+    this.type = this.bookingDetail.type.filter(i => i.quantity !== 0)
   },
   watch: {
     step: {
@@ -475,6 +485,12 @@ export default {
     },
     passengerName() {
       return this.passengerLastName + ' ' + this.passengerFirstName
+    },
+    exchangeTypePrice() {
+      this.bookingDetail.type = this.bookingDetail.type.map(i => ({
+        ...i,
+        price: (i.price * i.quantity) / this.bookingDetail.exchangeRate
+      }))
     }
   },
   methods: {
@@ -535,7 +551,7 @@ export default {
 
       if (valid) {
         couponNumber.forEach(i => {
-          if (i[0] === val) return this.discount = i[1]
+          if (i[0] === val) return this.discount = round((i[1] / this.bookingDetail.exchangeRate), 0)
         })
 
         if (this.discount >= this.bookingDetail.totalPrice) {
@@ -545,7 +561,7 @@ export default {
         }
 
         this.$refs.discountTip.style.color = 'green'
-        this.discountTip = ` 折扣 ${this.discount} 元`
+        this.discountTip = ` 折扣 ${this.bookingDetail.currency} ${this.discount} `
       } else {
         this.discountTip = '折扣碼錯誤'
         this.$refs.discountTip.style.color = 'red'
@@ -575,6 +591,7 @@ export default {
       orderListData.push(this.orderDetail)
       localStorage.setItem('orderList', JSON.stringify(orderListData)) //全部訂單
       localStorage.setItem('checkout', JSON.stringify(this.orderDetail)) //確認畫面
+      localStorage.removeItem('booking')
 
       //模擬loading
       setTimeout(() => {

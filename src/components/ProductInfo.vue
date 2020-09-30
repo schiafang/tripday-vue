@@ -63,10 +63,15 @@
       <div class="booking-card" @click="scrollToPlanOption">
         <div class="price">
           <div class="price-now">
-            TWD {{ product.specialPrice || product.price }}
+            {{ currentCurrency }}
+            {{
+              ((product.specialPrice || product.price) / exchangeRate)
+                | exchange
+            }}
           </div>
           <div class="original" v-show="product.specialPrice">
-            TWD {{ product.price }}
+            {{ currentCurrency }}
+            {{ (product.price / exchangeRate) | exchange }}
           </div>
         </div>
         <div class="score">
@@ -89,10 +94,12 @@ import ProductCommentCard from '../components/ProductCommentCard'
 import FavoriteHeart from '../components/FavoriteHeart'
 import Star from '../components/Star'
 import { mapState } from 'vuex'
+import { currency } from './../utils/mixins'
 
 export default {
   name: 'ProductInfo',
   components: { ProductCommentCard, Star, FavoriteHeart },
+  mixins: [currency],
   props: {
     product: {
       type: Object,

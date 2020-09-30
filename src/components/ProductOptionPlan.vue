@@ -8,7 +8,9 @@
         <div class="d-flex justify-center">
           {{ plan.title }} <span class="title-label">6天前可免費取消</span>
         </div>
-        <div class="price">TWD {{ plan.price }}</div>
+        <div class="price">
+          {{ currentCurrency }} {{ (plan.price / exchangeRate) | exchange }}
+        </div>
       </div>
       <ul class="ticket-type">
         <li>學生票：限12歲以上持有學生證之學生適用</li>
@@ -83,17 +85,20 @@
               </div>
 
               <div class="type-count d-flex align-center">
-                <span>TWD {{ type.price }}/ 每人</span>
+                <span
+                  >{{ currentCurrency }}
+                  {{ (type.price / exchangeRate) | exchange }} / 每人</span
+                >
                 <div class="counter">
                   <button
                     class="minus-btn"
                     :disabled="bookingDetail.type[index].quantity === 0"
-                    @click="counterMinus(type.price, index)"
+                    @click="counterMinus(type.price / exchangeRate, index)"
                   ></button>
                   {{ bookingDetail.type[index].quantity }}
                   <button
                     class="plus-btn"
-                    @click="counterPlus(type.price, index)"
+                    @click="counterPlus(type.price / exchangeRate, index)"
                   ></button>
                 </div>
               </div>
@@ -104,7 +109,8 @@
         <!--確認結帳-->
         <div class="total-booking">
           <div class="total-price">
-            <span>總金額</span> TWD {{ bookingDetail.totalPrice }}
+            <span>總金額</span> {{ currentCurrency }}
+            {{ bookingDetail.totalPrice }}
           </div>
           <div>
             <button class="cart-btn" disabled>加入購物車</button>
@@ -134,6 +140,8 @@
 import Datepicker from 'vuejs-datepicker'
 import { zh, en } from 'vuejs-datepicker/dist/locale'
 import moment from 'moment'
+import { currency } from './../utils/mixins'
+import { round, evaluate } from 'mathjs'
 
 var state = {
   disabledDates: {
@@ -144,6 +152,7 @@ var state = {
 export default {
   name: 'ProductOptionPlan',
   components: { Datepicker },
+  mixins: [currency],
   props: {
     plan: {
       type: Object,
@@ -161,32 +170,61 @@ export default {
         time: '',
         type: [],
         totalPrice: 0,
+        currency: 'TWD',
+        exchangeRate: 1
       },
       alert: null
     }
   },
   created() {
     this.disabledDates = state.disabledDates
-
-    this.$nextTick(function () { //computed
+  },
+  watch: {
+    plan: {
+      handler() {
+        this.getTicketType
+      },
+      deep: true
+    },
+    currentCurrency(newValue) {
+      this.bookingDetail = {
+        date: '',
+        time: '',
+        type: [],
+        totalPrice: 0,
+        currency: newValue,
+        exchangeRate: this.$store.state.exchangeRate
+      }
+      this.getTicketType
+    }
+  },
+  computed: {
+    getTicketType() {
       let typeTemp = []
       this.plan.planOption[0].ticketTypes.forEach((item, index) => {
         return typeTemp.push({ index, name: item.name, quantity: 0, price: item.price })
       })
-      this.bookingDetail.type = typeTemp.map(i => ({ ...i }))  //更新後加入 quantity 屬性的 ticketTypes
-    })
+      this.bookingDetail.type = typeTemp.map(i => ({
+        ...i,
+        price: Math.round((i.price / this.$store.state.exchangeRate) * 100) / 100
+      }))
+    }
   },
   methods: {
     counterPlus(price, index) {
+      price = round(price, 2)
       let type = this.bookingDetail.type
       type[index].quantity += 1
       this.bookingDetail.totalPrice += Number(price)
+      this.bookingDetail.totalPrice = round(this.bookingDetail.totalPrice, 2)
     },
     counterMinus(price, index) {
+      price = round(price, 2)
       let type = this.bookingDetail.type
       if (type[index].quantity > 0) {
         type[index].quantity -= 1
         this.bookingDetail.totalPrice -= Number(price)
+        this.bookingDetail.totalPrice = round(this.bookingDetail.totalPrice, 2)
       } else {
         return
       }
@@ -208,6 +246,8 @@ export default {
         ...this.bookingDetail,
         date: moment(date).format('YYYY-MM-DD'),
         plan: this.plan,
+        currency: this.$store.state.currentCurrency,
+        exchangeRate: this.$store.state.exchangeRate,
       }
 
       localStorage.setItem('booking', JSON.stringify(bookingData))

@@ -1,5 +1,4 @@
 @import 'base';
-
 .nav {
   width: 100%;
   height: 60px;
@@ -34,6 +33,7 @@
     opacity: 1;
   }
 }
+
 .search-btn {
   font-size: 20px;
   position: relative;
@@ -162,42 +162,40 @@
 
 /* Dropdown */
 .dropdown-currency-content {
-  width: 100%;
-  position: absolute;
   display: none;
-  background-color:#FFF;
-  z-index: 10;
-
-  .dropdown-link {
-    display: block;
-    margin-left: 15px;
-    margin-top: 0;
-  }
 }
 
 .dropdown-currency-label {
   display: block;
   border-top: 1.5px solid $border-gray;
-  margin-bottom: -20px;
-  cursor: pointer;
-  padding: 30px 0 10px 20px;
+  padding: 20px;
 
   &::after {
     content: '\003E';
     display: inline-block;
-    transform: scale(1.8, 1) rotate(90deg); 
-    margin-left: 10px;
-    margin-bottom: 5px;
+    position: relative;
     font-size: .5rem;
+    transform: scale(1.8, 1) rotate(90deg); 
+    left: 5px;
+    top: -1px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    font-weight: 500;;
   }
 }
 
 .dropdown-currency-toggle {
   visibility: hidden;
+  position: absolute;
+  left: -100px;
 
   &:checked {
     ~.dropdown-currency-content {
       display: block;   
+      position: relative;
+      top: -15px;
     }
     ~.dropdown-currency-label { /*無效*/
       background-color: rgb(231, 25, 25);
@@ -264,16 +262,17 @@
     align-items: center;
     margin: 0 15px;
     height: 50px;
+    margin-top: 3px;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     .user-image {
       width: 40px;
       height: 40px;
       border-radius: 100%;
       object-fit: cover;
-      
-      &:hover {
-        cursor: pointer;
-      }
     }
   }
 
@@ -291,10 +290,6 @@
     }
   }
 
-  .nav-item-currency {
-    margin-top: 3px;
-  }
-
   .dropdown-currency-label {
     border: none;
     padding: 0;
@@ -304,10 +299,10 @@
   .dropdown-currency-content {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     text-align: center;
-    width: auto;
+    width: 160px;
     position: absolute;
     display: none;
-    top: 50px;
+    top: 0;
     right: 0;
     border-radius: 4px;
     padding: 4px 0;
@@ -315,9 +310,17 @@
     z-index: 10;
 
     .dropdown-link {
-      width: 160px;
-      display: block;
+      text-align: right;
+      width: 100%;
       margin: 0;
+    }
+  }
+
+  .dropdown-currency-toggle:checked  {
+    ~.dropdown-currency-content {
+      position: absolute;
+      top: 50px;
+      left: -100px;
     }
   }
 }
