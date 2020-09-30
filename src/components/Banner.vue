@@ -52,7 +52,7 @@ export default {
 
 .banner {
   width: 100%;
-  height: 380px;
+  height: 450px;
   position: relative;
 
   .banner-img {

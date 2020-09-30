@@ -25,7 +25,9 @@ export default new Vuex.Store({
     isLoading: false,
     mobileScreen: false,
     exchangeRate: 1,
-    currentCurrency: 'TWD'
+    currentCurrency: 'TWD',
+    attrs: false,
+    on: false
   },
   mutations: {
     setCurrentUser(state, user) {

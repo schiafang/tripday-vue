@@ -41,7 +41,10 @@ export default {
         this.$store.commit('addFavorite', id)
       } else {
         this.$refs.signTip.style.opacity = 1
-        setTimeout(() => { this.$refs.signTip.style.opacity = 0 }, 1500)
+        setTimeout(() => {
+          this.$refs.signTip.style.opacity = 0
+          this.$EventBus.$emit('openSignForm', true)
+        }, 800)
         return
       }
     },
@@ -50,7 +53,10 @@ export default {
         this.$store.commit('removeFavorite', id)
       } else {
         this.$refs.signTip.style.opacity = 1
-        setTimeout(() => { this.$refs.signTip.style.opacity = 0 }, 1500)
+        setTimeout(() => {
+          this.$refs.signTip.style.opacity = 0
+          this.$EventBus.$emit('openSignForm', true)
+        }, 800)
         return
       }
     }

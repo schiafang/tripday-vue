@@ -9,6 +9,8 @@ import './assets/scss/main.scss'
 Vue.config.productionTip = false
 Vue.use(VueLazyload)
 
+Vue.prototype.$EventBus = new Vue()
+
 new Vue({
   router,
   vuetify,

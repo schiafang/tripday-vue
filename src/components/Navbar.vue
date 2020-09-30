@@ -126,6 +126,8 @@
 </template>
 
 <script>
+/* eslint-disable */
+
 import SignForm from './SignForm'
 import { mapState } from 'vuex'
 

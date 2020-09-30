@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" max-width="450px">
+    <v-dialog v-model="dialog" max-width="450px" :persistent="isLoading">
       <template v-slot:activator="{ on, attrs }">
         <div class="nav-item-sign" v-bind="attrs" v-on="on">
           登入/註冊
@@ -17,9 +17,13 @@
             color="cyan darken-1"
           ></v-progress-linear>
         </div>
-        <div class="dialog-close" @click="dialog = !dialog">
+        <button
+          class="dialog-close"
+          @click="dialog = !dialog"
+          :disabled="isLoading"
+        >
           <i class="fas fa-times"></i>
-        </div>
+        </button>
         <div>
           <transition name="slide-fade">
             <v-alert
@@ -44,7 +48,7 @@
                 ><i class="far fa-envelope"></i
               ></label>
               <input
-                type="text"
+                type="email"
                 placeholder="Email"
                 class="sign-email sign-input"
                 v-model="email"
@@ -64,7 +68,16 @@
               />
             </div>
 
-            <button class="sign-in-btn">登入</button>
+            <button class="sign-in-btn" :disabled="isLoading">
+              登入
+              <v-progress-circular
+                v-show="isLoading"
+                indeterminate
+                size="20"
+                width="2"
+                class="circular"
+              ></v-progress-circular>
+            </button>
           </form>
           <div class="sign-up-link" @click="showSignInForm = false">
             免費註冊
@@ -82,7 +95,7 @@
                 ><i class="far fa-envelope"></i
               ></label>
               <input
-                type="text"
+                type="email"
                 placeholder="請輸入Email"
                 class="sign-email sign-input"
                 v-model="email"
@@ -113,7 +126,16 @@
                 required
               />
             </div>
-            <button class="sign-up-btn">註冊</button>
+            <button class="sign-up-btn" :disabled="isLoading">
+              註冊
+              <v-progress-circular
+                v-show="isLoading"
+                indeterminate
+                size="20"
+                width="2"
+                class="circular"
+              ></v-progress-circular>
+            </button>
           </form>
           <div class="sign-up-link" @click="showSignInForm = true">
             登入tripday
@@ -147,6 +169,11 @@ export default {
     dialog() {
       return this.clearForm()
     }
+  },
+  mounted() {
+    this.$EventBus.$on("openSignForm", e => {
+      this.dialog = e ? true : false
+    })
   },
   methods: {
     clearForm() {
