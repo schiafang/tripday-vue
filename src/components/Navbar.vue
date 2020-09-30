@@ -4,14 +4,19 @@
 
     <!-- searchbar -->
     <div v-if="$route.name !== 'Index'">
-      <input
-        class="nav-search-bar"
-        type="text"
-        placeholder="輸入目的地、景點或行程名稱"
-        v-model="searchInput"
-        @keydown.enter="search"
-      />
-      <i class="fas fa-search search-btn" @click="search"></i>
+      <div class="nav-search-bar">
+        <input type="checkbox" id="searchBarToggle" />
+        <input
+          type="text"
+          class="search-input"
+          placeholder="輸入目的地、景點或行程名稱"
+          v-model="searchInput"
+          @keydown.enter="search"
+        />
+        <label for="searchBarToggle"
+          ><i class="fas fa-search search-btn mt-3" @click="search"></i
+        ></label>
+      </div>
     </div>
 
     <!-- hambuger/nav-list-toggle -->
@@ -75,11 +80,6 @@
         </div>
       </div>
 
-      <!-- sign form -->
-      <div v-else>
-        <SignForm />
-      </div>
-
       <!-- currency -->
       <div class="nav-item nav-item-currency">
         <label for="dropdown-currency-toggle" class="dropdown-currency-label">{{
@@ -105,6 +105,11 @@
             TWD 新台幣
           </button>
         </div>
+      </div>
+
+      <!-- sign form -->
+      <div v-if="!isAuthenticated">
+        <SignForm />
       </div>
 
       <!-- in widescreen unfold nav list -->
