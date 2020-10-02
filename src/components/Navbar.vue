@@ -14,7 +14,7 @@
           @keydown.enter="search"
         />
         <label for="searchBarToggle"
-          ><i class="fas fa-search search-btn mt-3" @click="search"></i
+          ><i class="search-btn  icon-magnifier" @click="search"></i
         ></label>
       </div>
     </div>

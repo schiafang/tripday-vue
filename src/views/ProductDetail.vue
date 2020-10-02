@@ -5,9 +5,9 @@
 
       <ProductOptionPlan :plan="plan" v-if="plan.planOption" />
 
-      <div class="product-description">
+      <div class="product-description" id="product-description">
         <div class="product-description-container">
-          <div class="description-block" id="placeBlock">
+          <div class="description-block" id="place-block">
             <div class="description-title">
               體驗地點
             </div>
@@ -52,7 +52,7 @@
 
           <div
             class="description-block"
-            id="reviewsBlock"
+            id="reviews-block"
             v-if="reviews.length !== 0"
           >
             <div class="description-title">
@@ -69,16 +69,34 @@
                 </div>
               </div>
             </div>
-            <div id="description-reviews">
+            <div id="description-reviews" v-if="reviews.length !== 0">
               <ProductCommentCard :reviews="reviews" />
             </div>
           </div>
         </div>
-        <div class="product-nav-tab">nav tab</div>
+
+        <aside class="sidebar">
+          <affix
+            class="menu sidebar-menu "
+            relative-element-selector="#product-description"
+            :offset="{ top: 100, bottom: 0 }"
+            :scroll-affix="false"
+          >
+            <scrollactive :offset="0">
+              <a
+                href="#place-block"
+                class="scrollactive-item"
+                onclick="return false"
+                >體驗地點</a
+              >
+              <a href="#reviews-block" class="scrollactive-item">旅客評論</a>
+            </scrollactive>
+          </affix>
+        </aside>
       </div>
     </div>
 
-    <!--商品資料建立中-->
+    <!--in-progress-->
     <div v-else class="in-progress-wrapper">
       <i class="fas fa-hammer"></i> In progress
     </div>
@@ -94,10 +112,26 @@ import ProductOptionPlan from '../components/ProductOptionPlan'
 import placeDetailAPI from '../apis/placeDetail'
 import productAPI from '../apis/product'
 import { mapState } from 'vuex'
+import { Affix } from 'vue-affix'
 
 export default {
   name: 'ProductDetail',
-  components: { ProductInfo, ProductCommentCard, ProductOptionPlan, Star },
+  components: { ProductInfo, ProductCommentCard, ProductOptionPlan, Star, Affix },
+  Props: {
+    offset: {
+      type: Object,
+      default: () => {
+        return {
+          top: 40,
+          bottom: 40
+        }
+      },
+      scrollAffix: {
+        type: Boolean,
+        default: false
+      },
+    }
+  },
   data() {
     return {
       product: {},
@@ -141,6 +175,11 @@ export default {
 
         this.reviews = placeDetail.data.result.reviews.sort((a, b) => b.time - a.time)
 
+        this.reviews = this.reviews.map(i => ({
+          ...i,
+          textLength: i.text.length > 50 ? true : false
+        }))
+
         this.product.review = []
         this.product.review.push(this.reviews[0]) //最新一則評論
 
@@ -159,17 +198,18 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/scss/_base.scss';
+
 .google-map {
   width: 100%;
   height: 400px;
 }
 
-.product-nav-tab {
+.sidebar-menu {
   display: none;
 }
 
 .description-block {
-  padding: 45px 0;
+  padding-bottom: 90px;
   border-bottom: 1px solid $border-gray;
 }
 
@@ -268,19 +308,43 @@ export default {
 
 @media screen and (min-width: 996px) {
   .product-description {
-    // opacity: 0.2;
-    margin-top: 100px;
     display: flex;
     flex-direction: row;
+    padding: 30px 0;
   }
 
   .product-description-container {
-    width: calc(100% - 150px);
+    width: calc(100% - 250px);
+    padding-right: 15px;
   }
 
-  .product-nav-tab {
+  .sidebar-menu {
+    padding-left: 30px;
+    position: relative;
+    top: 20px;
+
+    &.affix {
+      position: fixed;
+      top: 20px;
+    }
+  }
+
+  .scrollactive-item {
+    color: $main-gray;
     display: block;
-    width: 250px;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid transparent;
+
+    &:hover {
+      color: $main-blue;
+    }
+
+    &.is-active {
+      color: $main-blue;
+      font-weight: 500;
+      border-left: 5px solid $main-blue;
+    }
   }
 }
 </style>

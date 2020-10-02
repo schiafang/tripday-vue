@@ -385,7 +385,8 @@
       },
       "policy": {
         "check": "立即確認",
-        "cancel": "6天前可免費取消"
+        "cancel": "6天前可免費取消",
+        "rule": "現場請出示 QR code"
       },
       "placeTitle": "Xpark",
       "address": "320台灣桃園市中壢區春德路105號",

@@ -1,5 +1,5 @@
 <template>
-  <div class="product-info" v-if="Object.keys(product).length !== 0">
+  <div class="product-info">
     <div class="breadcrumbs">
       <router-link to="/">
         首頁
@@ -32,8 +32,11 @@
         <div v-if="product.policy.cancel">
           <i class="icon-refresh"></i> {{ product.policy.cancel }}
         </div>
-        <div><i class="icon-screen-smartphone"></i> 現場請出示 QR code</div>
+        <div>
+          <i class="icon-screen-smartphone"></i> {{ product.policy.rule }}
+        </div>
       </div>
+      <div v-else class="no-plan-option"><span>目前沒有行程</span></div>
       <div class="description">
         <div class="introduction">
           {{ product.description.introduction }}
@@ -48,7 +51,7 @@
         </ul>
       </div>
     </div>
-    <div class="product-comment" v-if="product.review">
+    <div class="product-comment" v-if="product.planOption">
       <div class="top">
         <h3>旅客評價</h3>
         <div class="more" @click="scrollToComments">
