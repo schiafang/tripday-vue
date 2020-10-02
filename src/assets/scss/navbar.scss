@@ -145,16 +145,19 @@
     height: 50px;
     width: 50px;
   }
+
   .user-name {
+    width: 200px;
+    @include textOverflow(1);
     font-size: 1rem;
     font-weight: 600;
     color: #FFF;
+    padding-right: 15px;
   }
+
   .user-setting {
     font-size: 1.2rem;
     color: #FFF;
-    position: relative;
-    right: -150px;
   }
 }
 
@@ -244,7 +247,7 @@
   }
 
   .nav-list-auth {
-    border-radius: 12px;
+    border-radius: 6px;
     background-color: #FFF;
     width: 250px;
     height: auto;
@@ -262,9 +265,9 @@
 
   .nav-item-user {
     background: transparent;
-    border-radius: 12px 12px 0 0;
+    border-radius: 6px 6px 0 0;
     border-bottom: 1.5px solid $border-gray;
-
+    
     &:hover {
       background-color: $border-gray;
     }
@@ -273,8 +276,8 @@
       color: $main-gray;
     }
 
-    .user-setting {
-      right: -80px;
+    .user-name {
+      width: 130px;
     }
   }
 

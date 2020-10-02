@@ -29,6 +29,8 @@
     margin: 30px 0; 
     font-size: .9rem;
     color: $main-gray;
+    display: flex;
+    justify-content: space-between;
 
     span {
       color: $main-blue;
@@ -60,7 +62,6 @@
     background-color: $border-gray
   }
 }
-
 
 .user-info {
   img {
@@ -128,7 +129,7 @@
   .submit-btn {
     width: 75px;
     float: right;
-    margin: 30px 0;
+    margin: 50px 0;
   }  
 
   .form-file-item {
@@ -164,6 +165,39 @@
 .order-list-item {
   padding: 0px;
   margin-bottom: 30px;
+  position: relative;
+
+  .delete-order {
+    position: absolute;
+    right: 90px;
+    top: 40px;
+    display: inline-block;
+    padding: 5px 20px;
+    color: $gray;
+    z-index: 2;
+    border: 1px solid $gray;
+    border-radius: 4px;
+
+    &:hover {
+      color: $main-gray;
+      border: 1px solid $main-gray;
+    }
+  }
+
+  .expired {
+    position: absolute;
+    margin-right: 30px;
+    right: 0;
+    bottom: 20px;
+    transform: rotate(-15deg);
+    display: inline-block;
+    opacity: .2;
+    padding: 3px 15px;
+    color: $pink;
+    z-index: 3;
+    border: 2px solid $pink;
+    border-radius: 4px;
+  }
   
   .top {
     box-shadow: rgba(95, 95, 95, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -226,7 +260,6 @@
     }
   }
 
-
   .item {
     margin: 15px 0;
   }
@@ -242,6 +275,7 @@
     color: $main-gray;
   }
 }
+
 
 @media screen and (min-width: 996px) {
   .user-container {
@@ -283,7 +317,6 @@
       font-size: 1.1rem;
     }
   }
-
   
   .user-tab {
     @include contentStyle;

@@ -27,7 +27,7 @@
           <h2 class="mb-3">訂購成功 🎉</h2>
 
           <div class="order-detail">
-            <h3>訂單編號 #XDEW323087</h3>
+            <h3>訂單編號 #{{ orderDetail.id }}</h3>
 
             <h4 class="mt-4">
               {{ orderDetail.bookingDetail.plan.planOption[0].title }}

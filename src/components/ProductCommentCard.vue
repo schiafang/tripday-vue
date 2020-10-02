@@ -1,6 +1,5 @@
 <template>
   <div class="comments-content">
-    <Spinner v-if="reviews.length === 0" />
     <div class="comment-card" v-for="(review, index) in reviews" :key="index">
       <div
         class="left"
@@ -41,11 +40,10 @@
 <script>
 import Star from './Star'
 import moment from 'moment'
-import Spinner from '../components/Spinner'
 
 export default {
   name: 'ProductCommentCard',
-  components: { Star, Spinner },
+  components: { Star },
   props: {
     reviews: {
       type: Array

@@ -7,10 +7,9 @@ import VueLazyload from 'vue-lazyload'
 import './assets/scss/main.scss'
 import VueScrollactive from 'vue-scrollactive';
 
-Vue.use(VueScrollactive);
-
 Vue.config.productionTip = false
 Vue.use(VueLazyload)
+Vue.use(VueScrollactive)
 
 Vue.prototype.$EventBus = new Vue()
 

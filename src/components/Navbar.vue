@@ -112,8 +112,7 @@
         <SignForm />
       </div>
 
-      <!-- in widescreen unfold nav list -->
-      <div v-if="!isSmallWindow && isAuthenticated" class="nav-item">
+      <div v-if="!isSmallWindow && isAuthenticated" class="nav-item nav-user">
         <img
           :src="user.avatar"
           alt="avatar"
@@ -127,7 +126,6 @@
 
 <script>
 /* eslint-disable */
-
 import SignForm from './SignForm'
 import { mapState } from 'vuex'
 

@@ -19,15 +19,24 @@
 
         <template v-else>
           <div class="user-content-subtitle">
-            <span> {{ orderList.length }}</span
-            >筆訂單在清單中
+            <div>
+              <span> {{ orderList.length }}</span
+              >筆訂單在清單中
+            </div>
+
+            <div class="">
+              <button @click="removeExpired()">清空過期訂單</button>
+            </div>
           </div>
 
           <div
             class="order-list-item"
             v-for="(order, index) in orderList"
-            :key="index"
+            :key="order.id"
           >
+            <div class="expired" v-if="order.expired">
+              Expired
+            </div>
             <input
               type="checkbox"
               :id="index + 'orderContent'"
@@ -49,7 +58,7 @@
                 </span>
               </div>
               <div class="order-list-number">
-                <h6>訂單編號 #XDEW323087</h6>
+                <h6>訂單編號 #{{ order.id }}</h6>
               </div>
             </label>
 
@@ -76,7 +85,8 @@
               </div>
               <div class="item">
                 <i class="icon-credit-card"></i>
-                <span> 訂單金額:</span> {{ order.billPrice }}
+                <span> 訂單金額:</span>{{ order.bookingDetail.currency }}
+                {{ order.billPrice }}
               </div>
             </div>
           </div>
@@ -93,6 +103,7 @@
 <script>
 import UserTab from '../components/UserTab'
 import { mapState } from 'vuex'
+import moment from 'moment'
 
 export default {
   name: 'User',
@@ -103,11 +114,40 @@ export default {
     }
   },
   created() {
-    const data = JSON.parse(localStorage.getItem('orderList'))
-    if (data) this.orderList = data
+    this.fetchOrderList()
   },
   computed: {
     ...mapState(['isAuthenticated', 'user'])
+  },
+  methods: {
+    fetchOrderList() {
+      let today = moment(new Date()).format('YYYY-MM-DD')
+      const data = JSON.parse(localStorage.getItem('orderList'))
+      if (data) this.orderList = data
+
+      this.orderList = this.orderList.map(i => ({
+        ...i,
+        expired: checkExpired(i.bookingDetail.date)
+      }))
+
+      function checkExpired(date) {
+        today = moment(today)
+        const expired = moment(date)
+
+        const years = expired.diff(today, 'years')
+        const months = expired.diff(today, 'months') - (years * 12)
+        today.add(years, 'years').add(months, 'months')
+        const days = expired.diff(today, 'days')
+
+        return years < 0 || months < 0 || days < 0 ? true : false
+      }
+    },
+    removeExpired() {
+      if (window.confirm('要刪除過期訂單嗎？')) {
+        this.orderList = this.orderList.filter(i => !i.expired)
+      }
+      localStorage.setItem('orderList', JSON.stringify(this.orderList))
+    }
   }
 }
 </script>

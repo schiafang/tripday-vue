@@ -42,8 +42,7 @@ export default {
         const res = await productAPI.getCities()
         this.cities = this.shuffle(res.data).slice(0, 5)
         this.$store.state.isLoading = false
-      } catch (error) {
-        console.log(error)
+      } catch  {
         this.$store.state.isLoading = false
       }
     },

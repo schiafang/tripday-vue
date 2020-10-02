@@ -102,7 +102,8 @@ export default {
       mapCenter: {
         lat: 25.033976,
         lng: 121.5645389
-      }
+      },
+      mapZoom: 12
     }
   },
   created() {
@@ -119,7 +120,12 @@ export default {
       this.rangeProducts = []
       this.marker = []
       this.setMarker()
-    }
+    },
+    mapZoom() {
+      this.rangeProducts = []
+      this.marker = []
+      this.setMarker()
+    },
   },
   computed: {
     ...mapState(['mobileScreen'])
@@ -149,7 +155,7 @@ export default {
         center: this.mapCenter,
         zoom: 12,
         maxZoom: 15,
-        minZoom: 3,
+        minZoom: 8,
         streetViewControl: false,
         mapTypeControl: false,
         fullscreenControl: false,
@@ -214,6 +220,9 @@ export default {
           this.mapCenter = this.map.center
           marker.setMap(null)
         })
+        this.map.addListener('zoom_changed', () => {
+          this.mapZoom = this.map.zoom
+        })
       })
       this.sortProducts()
     },
@@ -224,7 +233,21 @@ export default {
       }))
 
       this.rangeProducts.sort((a, z) => a.distance - z.distance)
-      this.rangeProducts = this.rangeProducts.filter(i => i.distance < 16000)
+      if (this.mapZoom === 12) {
+        this.rangeProducts = this.rangeProducts.filter(i => i.distance < 16000)
+      }
+      if (this.mapZoom === 11) {
+        this.rangeProducts = this.rangeProducts.filter(i => i.distance < 30000)
+      }
+      if (this.mapZoom === 10) {
+        this.rangeProducts = this.rangeProducts.filter(i => i.distance < 50000)
+      }
+      if (this.mapZoom === 9) {
+        this.rangeProducts = this.rangeProducts.filter(i => i.distance < 110000)
+      }
+      if (this.mapZoom === 8) {
+        this.rangeProducts = this.rangeProducts.filter(i => i.distance < 200000)
+      }
     },
     toggleBounce(id) {
       let currentMarker

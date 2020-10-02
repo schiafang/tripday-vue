@@ -14,11 +14,13 @@
       class="far fa-heart add-favorite favorite-icon"
       @click.stop.prevent="addFavorite(id)"
     ></i>
-    <i
-      v-else
-      class="fas fa-heart remove-favorite favorite-icon"
-      @click.stop.prevent="removeFavorite(id)"
-    ></i>
+    <transition name="popup">
+      <i
+        v-if="isAuthenticated && favoriteProducts.includes(id)"
+        class="fas fa-heart remove-favorite favorite-icon"
+        @click.stop.prevent="removeFavorite(id)"
+      ></i>
+    </transition>
   </div>
 </template>
 
@@ -76,7 +78,7 @@ export default {
   border-radius: 50%;
   background-color: #fff;
   color: $gray;
-  font-size: 1.2rem;
+  font-size: 1rem;
   z-index: 1;
   @include flexCenter;
 
@@ -106,8 +108,43 @@ export default {
 }
 
 /** ProductInfo Page heart */
-.heart-wrapper .favorite-icon {
-  position: static;
-  font-size: 1.6rem;
+.heart-wrapper {
+  position: relative;
+  top: -30px;
+  transform: scale(1.5);
+}
+
+@keyframes popup {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.popup-enter-active,
+.popup-leave-active {
+  transition: all 0.3s;
+  animation-duration: 0.6s;
+  animation-iteration-count: 1;
+  animation-name: popup;
+  animation-timing-function: ease-in-out;
+}
+
+.popup-enter,
+.popup-leave-to {
+  opacity: 0;
+  transform: scale(1.5);
 }
 </style>

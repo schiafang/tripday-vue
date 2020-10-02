@@ -5,8 +5,8 @@
       v-for="product in products"
       :key="product.id"
     >
-      <div class="product-list-card my-4">
-        <FavoriteHeart :id="product.id" />
+      <div class="product-list-card my-4" :id="`productListCard${product.id}`">
+        <FavoriteHeart :id="product.id" @click="removeFavorite(product.id)" />
         <div class="product-list-card-image">
           <img v-lazy="product.image" alt="" />
         </div>
@@ -33,9 +33,7 @@
             {{ product.location.country }} {{ product.location.city }}
           </div>
 
-          <div class="card-date">
-            最早可使用日期：2020-09-27
-          </div>
+          <div class="card-date">最早可預定日期：{{ date }}</div>
 
           <div class="card-bottom">
             <div class="d-flex">
@@ -67,6 +65,7 @@
 import FavoriteHeart from '../components/FavoriteHeart'
 import Star from '../components/Star'
 import Price from './Price'
+import moment from 'moment'
 
 export default {
   name: 'ProductListCard',
@@ -76,6 +75,14 @@ export default {
       type: Array,
       required: true
     }
+  },
+  data() {
+    return {
+      date: null
+    }
+  },
+  created() {
+    this.date = moment(new Date()).add(1, 'days').format('YYYY-MM-DD')
   }
 }
 </script>

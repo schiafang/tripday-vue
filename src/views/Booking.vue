@@ -418,6 +418,12 @@ const couponNumber = [['GOTRIP2020', 500], ['HELLO2WORLD', 150]]
 const fold = 'rotate(-45deg)'
 const unfold = 'rotate(135deg)'
 
+function orderIdGenerate() {
+  return 'xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : r & 0x3 | 0x8; return v.toString(16)
+  })
+}
+
 export default {
   name: 'booking',
   components: { Spinner },
@@ -427,6 +433,7 @@ export default {
       type: [],
       bookingDetail: {},
       orderDetail: {
+        id: orderIdGenerate().toUpperCase(),
         fullName: '',
         contactNumber: '',
         email: '',
@@ -597,7 +604,7 @@ export default {
       setTimeout(() => {
         this.$store.state.isLoading = false
         this.$router.push('/booking/step2')
-      }, 3500)
+      }, 2500)
 
       // this.$router.push('/booking/step2')
     }

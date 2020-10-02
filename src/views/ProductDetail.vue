@@ -187,8 +187,8 @@ export default {
         this.googleEmbed = `https://www.google.com/maps/embed/v1/place?key=${process.env.VUE_APP_GOOGLEAPI}&q=${embedQuery}`
 
         this.$store.state.isLoading = false
-      } catch (error) {
-        console.log(error)
+      } catch {
+        // console.log(error)
         this.$store.state.isLoading = false
       }
     }
@@ -319,6 +319,7 @@ export default {
   }
 
   .sidebar-menu {
+    display: block;
     padding-left: 30px;
     position: relative;
     top: 20px;

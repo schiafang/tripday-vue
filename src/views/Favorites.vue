@@ -17,9 +17,14 @@
           </div>
         </template>
 
-        <div class="favorites-list" v-else>
-          <ProductListCard :products="favorites" />
-        </div>
+        <transition name="fade">
+          <div class="favorites-list" v-if="favorites.length !== 0">
+            <ProductListCard
+              :products="favorites"
+              v-if="favorites.length !== 0"
+            />
+          </div>
+        </transition>
       </div>
     </div>
     <div class="user-container" v-else>
@@ -40,7 +45,7 @@ export default {
   data() {
     return {
       favorites: [],
-      products: []
+      products: [],
     }
   },
   created() {
@@ -50,8 +55,16 @@ export default {
     ...mapState(['isAuthenticated', 'user', 'favoriteProducts'])
   },
   watch: {
-    favoriteProducts() {
-      this.fetchProducts()
+    favoriteProducts(a, b) {
+      let remove = a.filter(i => !(b.indexOf(i) > -1)).concat(b.filter(i => !(a.indexOf(i) > -1)))
+      let target = document.querySelector(`#productListCard${remove}`)
+      target.style.height = 0
+      target.style.opacity = 0
+
+      setTimeout(() => {
+        this.fetchProducts()
+      }, 500)
+
     }
   },
   methods: {
@@ -72,4 +85,13 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/scss/user-page.scss';
+.fade-enter-active,
+.fade-leave-active {
+  opacity: 1;
+  transition: opacity 0.7s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

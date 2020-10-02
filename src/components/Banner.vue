@@ -1,17 +1,35 @@
 <template>
   <div class="banner">
     <img v-lazy="banner" alt="" class="banner-img" />
-    <div class="search-bar">
-      <input
-        class="search-input"
-        type="text"
-        placeholder="輸入目的地、景點或行程名稱"
-        v-model="searchInput"
-        @keydown.enter="search"
-      />
-      <button class="search-btn" @click="search">
-        <i class="fas fa-search"></i>
-      </button>
+    <div class="search-block">
+      <div class="mb-5">
+        帶你深入探索有趣又獨特的旅遊體驗行程
+      </div>
+      <div class="search-bar">
+        <input
+          class="search-input"
+          type="text"
+          placeholder="輸入目的地、景點或行程名稱"
+          v-model="searchInput"
+          @keydown.enter="search"
+        />
+        <button class="search-btn" @click="search">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <div class="keyword">
+        <span class="mr-4">熱門關鍵字</span> |
+        <div class="keyword-content">
+          <button
+            v-for="(keyword, index) in keywords"
+            :key="index"
+            class="keyword-item"
+            @click="searchKeyword(keyword)"
+          >
+            {{ keyword }}
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -24,15 +42,19 @@ const bannerAll = ['https://images.unsplash.com/photo-1470004914212-05527e49370b
   'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1008&q=80'
 ]
 
+const keywords = ['Xpark', '台北', '桃園', '台中', '101', '水族館', '樂園', '宜蘭', '花蓮']
+
 export default {
   data() {
     return {
       banner: '',
-      searchInput: ''
+      searchInput: '',
+      keywords: []
     }
   },
   created() {
     this.banner = bannerAll[Math.floor(Math.random() * bannerAll.length)]
+    this.keywords = keywords
   },
   methods: {
     search() {
@@ -42,6 +64,9 @@ export default {
       } else {
         return
       }
+    },
+    searchKeyword(keyword) {
+      this.$router.push({ name: 'ProductList', query: { q: keyword } })
     }
   }
 }
@@ -60,12 +85,42 @@ export default {
   }
 }
 
-.search-bar {
-  display: flex;
-  width: 100%;
+.search-block {
   position: absolute;
   top: 150px;
   left: 30px;
+  color: #fff;
+}
+
+.keyword {
+  margin-top: 15px;
+  display: flex;
+}
+
+.keyword-content {
+  padding: 0 15px;
+  max-width: 350px;
+}
+
+.keyword-item {
+  display: inline-block;
+  border: 1px solid #fff;
+  padding: 0 8px;
+  margin: 0 10px 10px 0;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 5px #333;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.search-bar {
+  display: flex;
+  width: 100%;
 }
 
 .search-input {
@@ -97,9 +152,19 @@ export default {
 }
 
 @media screen and (min-width: 996px) {
+  .search-block {
+    position: absolute;
+    top: 150px;
+    left: 130px;
+  }
+
   .search-bar {
     width: 400px;
-    left: 130px;
+  }
+
+  .keyword-content {
+    padding: 0 15px;
+    max-width: 400px;
   }
 }
 </style>
