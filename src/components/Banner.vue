@@ -18,7 +18,7 @@
         </button>
       </div>
       <div class="keyword">
-        <span class="mr-4">熱門關鍵字</span> |
+        <span>熱門關鍵字</span>
         <div class="keyword-content">
           <button
             v-for="(keyword, index) in keywords"
@@ -87,6 +87,7 @@ export default {
 }
 
 .search-block {
+  width: calc(100% - 30px);
   position: absolute;
   top: 150px;
   left: 30px;
@@ -96,11 +97,17 @@ export default {
 .keyword {
   margin-top: 15px;
   display: flex;
+  flex-direction: column;
+
+  span {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+  }
 }
 
 .keyword-content {
-  padding: 0 15px;
-  max-width: 350px;
+  max-width: 300px;
 }
 
 .keyword-item {
@@ -120,8 +127,8 @@ export default {
 }
 
 .search-bar {
+  width: 70%;
   display: flex;
-  width: 100%;
 }
 
 .search-input {
@@ -149,6 +156,18 @@ export default {
   &:hover {
     cursor: pointer;
     opacity: 0.9;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .keyword {
+    display: flex;
+    flex-direction: row;
+
+    span {
+      display: inline-block;
+      max-width: 90px;
+    }
   }
 }
 

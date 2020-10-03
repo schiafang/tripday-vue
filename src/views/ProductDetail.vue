@@ -117,6 +117,11 @@ import { Affix } from 'vue-affix'
 export default {
   name: 'ProductDetail',
   components: { ProductInfo, ProductCommentCard, ProductOptionPlan, Star, Affix },
+  metaInfo() {
+    return {
+      title: this.title,
+    }
+  },
   Props: {
     offset: {
       type: Object,
@@ -134,6 +139,7 @@ export default {
   },
   data() {
     return {
+      title: '',
       product: {},
       plan: {
         product: {},
@@ -159,6 +165,7 @@ export default {
         this.product = res.data
         this.plan.product = this.product
         this.plan.planOption = this.product.planOption
+        this.title = `tripday - ${this.product.title}`
 
         //取得 google map place ID
         const googlePlace = await placeDetailAPI.getPlaceID(this.product.placeTitle)
