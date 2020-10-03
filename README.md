@@ -76,12 +76,24 @@ HTML
 [Fontawesome](https://fontawesome.com/)  
 [Simple Line Icons](https://simplelineicons.github.io/)   
 [moment](https://www.npmjs.com/package/moment)  
-[VueSlickCarousel](https://github.com/gs-shop/vue-slick-carousel)   
-[Google Maps Embed API](https://developers.google.com/maps/documentation/embed/get-started)     
-[Google Maps Places API](https://developers.google.com/places/web-service/overview)     
-[Google Maps Place Details API](https://developers.google.com/places/web-service/details)   
-[My JSON Server](https://github.com/typicode/json-server)   
-[vue-lazyload](https://github.com/hilongjw/vue-lazyload#image-listener-filter)
+[VueSlickCarousel](https://github.com/gs-shop/vue-slick-carousel)  
+[vuex-persistedstate](https://www.npmjs.com/package/vuex-persistedstate)   
+[vue-lazyload](https://github.com/hilongjw/vue-lazyload#image-listener-filter)   
+[mathjs](https://mathjs.org/)    
+[vue-affix](https://www.npmjs.com/package/vue-affix)     
+[vue-scrollactive](https://www.npmjs.com/package/vue-scrollactive)    
+
+
+**API**  
+[Maps Embed API](https://developers.google.com/maps/documentation/embed/get-started)     
+[Maps Places API](https://developers.google.com/places/web-service/overview)     
+[Maps Place Details API](https://developers.google.com/places/web-service/details)   
+[Maps API Javascript](https://developers.google.com/maps/documentation/javascript/overview)    
+[Fixer](https://fixer.io/)
+
+
+
+
 
 ## Clone and Setup
 [Download](https://github.com/schiafang/tripday-vue/archive/master.zip) or clone repository to your local computer.
@@ -94,9 +106,14 @@ Install
 npm install
 ```
 
+Start JSON Server
+```
+npm run json:server (localhost:3000)
+```
+
 Compiles and hot-reloads for development
 ```
-npm run serve
+npm run serve (localhost:8080)
 ```
 
 Compiles and minifies for production
