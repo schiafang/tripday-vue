@@ -51,7 +51,9 @@ HELLO2WORLD
 - [x] 使用者可以移除收藏
 - [x] 使用者可以在收藏頁面看到加入收藏的商品
 - [x] 使用者可以轉換TWD與USD
+
  
+ **in progress**
 - [ ] 使用者可以使用信用卡與 LINE PAy 結帳
 
 <br>

@@ -22,10 +22,17 @@
     font-weight: 450;
     line-height: 2rem;
     padding: 25px 10px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 50px;
+
+    span {
+      grid-column: 1/2;
+    }
+
+    .heart-wrapper {
+      height: 50px;
+      grid-column: 2/3;
+    }
   }
 
   .location {

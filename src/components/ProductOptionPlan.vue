@@ -143,9 +143,10 @@ import moment from 'moment'
 import { currency } from './../utils/mixins'
 import { round, evaluate } from 'mathjs'
 
+var dateTime = new Date()
 var state = {
   disabledDates: {
-    to: new Date()
+    to: new Date(dateTime.setDate(dateTime.getDate() + 1))
   }
 }
 

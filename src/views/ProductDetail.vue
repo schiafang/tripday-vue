@@ -188,7 +188,6 @@ export default {
 
         this.$store.state.isLoading = false
       } catch {
-        // console.log(error)
         this.$store.state.isLoading = false
       }
     }

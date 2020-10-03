@@ -16,9 +16,11 @@
 
 .nav-brand {
   grid-column: 1/2;
-  color: $main-blue;
-  font-size: 2.3rem;
-  font-weight: 500;
+  padding: 12px 0;
+
+  img {
+    width: 130px;
+  }
 }
 
 .nav-search-bar {

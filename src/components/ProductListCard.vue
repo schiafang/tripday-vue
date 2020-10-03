@@ -33,7 +33,9 @@
             {{ product.location.country }} {{ product.location.city }}
           </div>
 
-          <div class="card-date">最早可預定日期：{{ date }}</div>
+          <div class="card-date" v-if="product.planOption">
+            最早可預定日期：{{ date }}
+          </div>
 
           <div class="card-bottom">
             <div class="d-flex">
@@ -82,7 +84,7 @@ export default {
     }
   },
   created() {
-    this.date = moment(new Date()).add(1, 'days').format('YYYY-MM-DD')
+    this.date = moment(new Date()).add(2, 'days').format('YYYY-MM-DD')
   }
 }
 </script>

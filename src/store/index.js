@@ -67,8 +67,8 @@ export default new Vuex.Store({
       try {
         const { data } = await authorizationAPI.getCurrentUser()
         if (status === 'error') { throw new Error(data) }
-        const { id, name, email, isAdmin, realname, avatar } = data
-        commit('setCurrentUser', { id, name, email, isAdmin, realname, avatar })
+        const { id, name, email, isAdmin, realname, avatar, tel } = data
+        commit('setCurrentUser', { id, name, email, isAdmin, realname, avatar, tel })
       } catch (error) {
         console.error(error)
         commit('revokeAuthentication')
@@ -76,12 +76,14 @@ export default new Vuex.Store({
     },
     async getCurrency(_, currency) {
       const res = await axios.get(`http://data.fixer.io/api/latest?access_key=acbd6972196dcf75fac8c856311702c0&symbols=${currency},TWD&format=1`)
-      console.log('getCurrency', currency)
 
       const TWD = res.data.rates.TWD
+      let exchange = 28.992198027261733
 
       if (currency === 'USD') {
-        const exchange = TWD / res.data.rates.USD
+        if (res) {
+          exchange = TWD / res.data.rates.USD
+        }
         this.state.exchangeRate = exchange
         this.state.currentCurrency = 'USD'
       }

@@ -112,8 +112,14 @@ import GoogleMapMarker from '../components/GoogleMapMarker'
 export default {
   name: 'City',
   components: { ProductCard, VueSlickCarousel, GoogleMapMarker },
+  metaInfo() {
+    return {
+      title: `2020 ${this.title} 熱門旅遊 - tripday `,
+    }
+  },
   data() {
     return {
+      title: '',
       products: [],
       city: {},
       cities: [],
@@ -130,6 +136,7 @@ export default {
   watch: {
     $route(to) {
       this.city = this.cities.filter(i => i.city === to.query.city)[0]
+      this.title = this.city.title
       this.fetchCityProduct()
     }
   },
@@ -149,6 +156,7 @@ export default {
       const res = await productAPI.getCities()
       this.cities = res.data
       this.city = res.data.filter(i => i.city === this.$route.query.city)[0]
+      this.title = this.city.title
       this.setSlickSetting()
     },
     async fetchLocation() {

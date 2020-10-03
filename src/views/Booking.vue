@@ -460,6 +460,7 @@ export default {
     this.bookingDetail = JSON.parse(localStorage.getItem('booking'))
     this.orderDetail.billPrice = this.bookingDetail.totalPrice
     this.orderDetail.email = this.$store.state.user.email
+    this.orderDetail.contactNumber = this.$store.state.user.tel
     this.type = this.bookingDetail.type.filter(i => i.quantity !== 0)
   },
   watch: {

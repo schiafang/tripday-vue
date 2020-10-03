@@ -33,14 +33,21 @@ import ProductListCard from '../components/ProductListCard'
 export default {
   name: 'ProductList',
   components: { ProductListCard },
+  metaInfo() {
+    return {
+      title: this.title,
+    }
+  },
   data() {
     return {
       products: [],
-      searchString: ''
+      searchString: '',
+      title: ''
     }
   },
   created() {
     this.fetchData(this.$route.query.q)
+    this.title = `${this.$route.query.q} 精選商品 - tripday`
   },
   computed: {
     ...mapState(['isLoading'])
@@ -48,6 +55,7 @@ export default {
   watch: {
     $route(to) {
       this.fetchData(to.query.q)
+      this.title = `${to.query.q} 精選商品 - tripday`
     }
   },
   methods: {

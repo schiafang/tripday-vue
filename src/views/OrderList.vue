@@ -143,9 +143,12 @@ export default {
       }
     },
     removeExpired() {
+      if (this.orderList.filter(i => i.expired).length === 0) return
+
       if (window.confirm('要刪除過期訂單嗎？')) {
         this.orderList = this.orderList.filter(i => !i.expired)
       }
+
       localStorage.setItem('orderList', JSON.stringify(this.orderList))
     }
   }

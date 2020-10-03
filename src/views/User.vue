@@ -38,7 +38,12 @@
 
           <div class="form-item">
             <label for="tel">電話號碼</label>
-            <input type="text" name="tel" placeholder="例：陳" />
+            <input
+              type="text"
+              name="tel"
+              placeholder="例：陳"
+              v-model="formData.tel"
+            />
           </div>
 
           <div class="form-item">

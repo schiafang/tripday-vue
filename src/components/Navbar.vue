@@ -1,6 +1,9 @@
 <template >
   <div class="nav">
-    <router-link to="/"><div class="nav-brand">tripday</div></router-link>
+    <router-link to="/"
+      ><div class="nav-brand">
+        <img src="../assets/images/logo.svg" alt="" /></div
+    ></router-link>
 
     <!-- searchbar -->
     <div v-if="$route.name !== 'Index'">

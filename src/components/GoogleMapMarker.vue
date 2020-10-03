@@ -154,7 +154,7 @@ export default {
       this.map = new this.google.maps.Map(document.getElementById("map"), {
         center: this.mapCenter,
         zoom: 12,
-        maxZoom: 15,
+        maxZoom: 13,
         minZoom: 8,
         streetViewControl: false,
         mapTypeControl: false,
@@ -233,6 +233,9 @@ export default {
       }))
 
       this.rangeProducts.sort((a, z) => a.distance - z.distance)
+      if (this.mapZoom === 13) {
+        this.rangeProducts = this.rangeProducts.filter(i => i.distance < 8000)
+      }
       if (this.mapZoom === 12) {
         this.rangeProducts = this.rangeProducts.filter(i => i.distance < 16000)
       }

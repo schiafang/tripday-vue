@@ -109,8 +109,6 @@ export default {
 
 /** ProductInfo Page heart */
 .heart-wrapper {
-  position: relative;
-  top: -30px;
   transform: scale(1.5);
 }
 

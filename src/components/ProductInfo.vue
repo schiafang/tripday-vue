@@ -18,7 +18,9 @@
     </div>
     <div class="product-content">
       <div class="product-title">
-        {{ product.title }}
+        <span>
+          {{ product.title }}
+        </span>
 
         <div class="heart-wrapper">
           <FavoriteHeart :id="product.id" />
