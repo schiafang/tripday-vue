@@ -1,12 +1,15 @@
 # tripday🦉 
 <br>
-
-## Overview
+<br>
 
 A front-end project to clone Taiwan travel website
 
+
 <br>
 
+![index](https://i.imgur.com/Xumct3s.png)
+
+<br>
 
 ## Demo browse
 ####  👉 [Demo](https://schiafang.github.io/tripday-vue/)
