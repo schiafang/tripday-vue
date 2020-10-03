@@ -31,11 +31,17 @@
         {{ product.location.city }}
       </div>
       <div class="policy" v-if="product.planOption">
-        <div v-if="product.policy.cancel">
-          <i class="icon-refresh"></i> {{ product.policy.cancel }}
+        <div v-if="product.policy.time">
+          <i class="icon-clock"></i> {{ product.policy.time }}
         </div>
-        <div>
+        <div v-if="product.policy.refund">
+          <i class="icon-refresh"></i> {{ product.policy.refund }}
+        </div>
+        <div v-if="product.policy.rule">
           <i class="icon-screen-smartphone"></i> {{ product.policy.rule }}
+        </div>
+        <div v-if="product.policy.cancel">
+          <i class="icon-close"></i> {{ product.policy.cancel }}
         </div>
       </div>
       <div v-else class="no-plan-option"><span>目前沒有行程</span></div>

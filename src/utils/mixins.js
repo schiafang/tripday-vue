@@ -64,3 +64,16 @@ export const currency = {
     }
   }
 }
+
+export const orderCount = {
+  filters: {
+    orderCount(value) {
+      if (value >= 1000) {
+        let num = Math.floor(value / 1000)
+        return `${num}K+`
+      } else {
+        return value
+      }
+    }
+  }
+}

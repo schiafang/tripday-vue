@@ -6,7 +6,8 @@
     <div class="plan-content" v-for="plan in plan.planOption" :key="plan.id">
       <div class="plan-title">
         <div class="d-flex justify-center">
-          {{ plan.title }} <span class="title-label">6天前可免費取消</span>
+          {{ plan.title }}
+          <!-- <span class="title-label">{{ plan.product.policy.refund }}</span> -->
         </div>
         <div class="price">
           {{ currentCurrency }} {{ (plan.price / exchangeRate) | exchange }}
@@ -24,7 +25,6 @@
       <div class="benifit-bar">
         <span>關於此方案</span>
         <div class="row">
-          <div><i class="icon-refresh"></i> 6天前可免費取消</div>
           <div><i class="fa fa-flash flash-icon main-color"></i> 立即確認</div>
           <div><i class="icon-paper-plane"></i> 立即發送憑證</div>
         </div>
@@ -174,11 +174,13 @@ export default {
         currency: 'TWD',
         exchangeRate: 1
       },
-      alert: null
+      alert: null,
+      typeTemp: []
     }
   },
   created() {
     this.disabledDates = state.disabledDates
+    this.getTicketType
   },
   watch: {
     plan: {
@@ -209,6 +211,8 @@ export default {
         ...i,
         price: Math.round((i.price / this.$store.state.exchangeRate) * 100) / 100
       }))
+
+      this.typeTemp = typeTemp
     }
   },
   methods: {

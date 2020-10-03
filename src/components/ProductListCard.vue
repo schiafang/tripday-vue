@@ -45,7 +45,8 @@
               </div>
               |
               <div class="card-ordered ml-2">
-                <i class="fab fa-hotjar"></i> 15K+ 已訂購
+                <i class="fab fa-hotjar" v-if="product.orderCount >= 1000"></i>
+                {{ product.orderCount | orderCount }} 已訂購
               </div>
             </div>
             <div class="card-price">
@@ -68,10 +69,12 @@ import FavoriteHeart from '../components/FavoriteHeart'
 import Star from '../components/Star'
 import Price from './Price'
 import moment from 'moment'
+import { orderCount } from './../utils/mixins'
 
 export default {
   name: 'ProductListCard',
   components: { FavoriteHeart, Star, Price },
+  mixins: [orderCount],
   props: {
     products: {
       type: Array,

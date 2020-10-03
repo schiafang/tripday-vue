@@ -11,9 +11,9 @@ export default {
       return res
     })
   },
-  getLocation(address) {
-    return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.VUE_APP_GOOGLEAPI}`).then(res => {
-      return res
-    })
-  }
+  // getLocation(address) {
+  //   return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.VUE_APP_GOOGLEAPI}`).then(res => {
+  //     return res
+  //   })
+  // }
 }

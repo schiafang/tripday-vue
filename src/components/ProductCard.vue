@@ -33,7 +33,8 @@
                 >{{ product.title }}
               </div>
               <div class="card-ordered">
-                <i class="fab fa-hotjar"></i> 15K+ 已訂購
+                <i class="fab fa-hotjar" v-if="product.orderCount >= 1000"></i>
+                {{ product.orderCount | orderCount }} 已訂購
               </div>
               <div class="card-rating">
                 <Star :rating="product.rating" />
@@ -59,10 +60,12 @@
 import Star from './Star'
 import FavoriteHeart from '../components/FavoriteHeart'
 import Price from '../components/Price'
+import { orderCount } from './../utils/mixins'
 
 export default {
   name: 'ProductCard',
   components: { Star, FavoriteHeart, Price },
+  mixins: [orderCount],
   props: {
     products: {
       type: Array,

@@ -385,7 +385,7 @@
       },
       "policy": {
         "check": "立即確認",
-        "cancel": "6天前可免費取消",
+        "refund": "6天前可免費取消",
         "rule": "現場請出示 QR code"
       },
       "placeTitle": "Xpark",
@@ -461,7 +461,7 @@
       },
       "policy": {
         "check": "立即確認",
-        "cancel": "3天前可免費取消"
+        "refund": "3天前可免費取消"
       },
       "placeTitle": "麗寶樂園",
       "address": "臺中市后里區福容路8號",
@@ -749,6 +749,149 @@
       "rating": 4.6,
       "ratingCount": 1462,
       "orderCount": 1462
+    },
+    {
+      "id": 12,
+      "title": "【新北金山親子景點】朱銘美術館電子門票",
+      "image": "https://comet.noonspace.com/w62/juming/MsgInfo/mainhomeBanner2.jpg",
+      "description": {
+        "introduction": "台灣當代雕塑大師「朱銘」選在有好山好水的金山地區，規劃出佔地11公頃的藝術公園，依據不同地貌呈現他不同時期的重要創作。一定要看的是戶外的「太極廣場」，這裡展出朱銘最受重視的太極系列作品，氣勢磅礡、與眾不凡的巨型翻銅雕塑。此外還有美術館本館的金字塔形建築，展示了朱銘的平面、木雕與燒陶作品。",
+        "highlights": []
+      },
+      "price": 280,
+      "specialPrice": null,
+      "city": "newTaipei",
+      "location": {
+        "country": "台灣",
+        "city": "新北"
+      },
+      "geocode": {
+        "lat": 25.2464426,
+        "lng": 121.6112102
+      },
+      "policy": {
+        "time": "行程時間 7 小時",
+        "cancel": "不可取消",
+        "rule": "現場請出示 QR code"
+      },
+      "placeTitle": "朱銘美術館",
+      "address": "20842 新北市金山區西勢湖2號",
+      "rating": 4.5,
+      "ratingCount": 4320,
+      "orderCount": 362,
+      "planOption": [
+        {
+          "id": 112,
+          "title": "【新北金山親子景點】朱銘美術館電子門票",
+          "price": 280,
+          "ticketTime": null,
+          "ticketTypes": [
+            {
+              "name": "人數",
+              "limit": "",
+              "price": 280
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "新北淡水｜逐岸・齊柏林空間展覽預售門票",
+      "image": "https://www.chipolin.org/upload/news/20191207114428_news.jpg",
+      "description": {
+        "introduction": "齊柏林導演的空中攝影影像裡，帶著滿滿的故事、感動與驚喜。然而，以往的展覽來不及讓更多人一起參與，於是齊柏林空間應運而生：讓你置身在淡水的場館裡，就能感受紀實攝影背後的人文深度和環境關懷。齊柏林空間，帶你翻越內心的崇山峻嶺。。",
+        "highlights": [
+          "齊柏林導演歷時 25 年空拍影像"
+        ]
+      },
+      "price": 280,
+      "specialPrice": null,
+      "city": "newTaipei",
+      "location": {
+        "country": "台灣",
+        "city": "新北"
+      },
+      "geocode": {
+        "lat": 25.1726353,
+        "lng": 121.4369533
+      },
+      "policy": {
+        "check": null,
+        "refund": "4天前可免費取消",
+        "time": null,
+        "cancel": null,
+        "rule": "現場請出示 QR code"
+      },
+      "placeTitle": "齊柏林空間",
+      "address": "新北市淡水區中正路316-1號",
+      "rating": 4.9,
+      "ratingCount": 8,
+      "orderCount": 23,
+      "planOption": [
+        {
+          "id": 113,
+          "title": "線上預售票",
+          "price": 120,
+          "ticketTime": null,
+          "ticketTypes": [
+            {
+              "name": "人數",
+              "limit": "",
+              "price": 120
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "台灣三峽｜滿月圓國家森林遊樂區門票",
+      "image": "https://recreation.forest.gov.tw/Files/Forest/RA/PHOTO/album/0200001/DSCN8379.jpg",
+      "description": {
+        "introduction": "滿月圓森林遊樂區座落於三峽鎮的山區，溪流資源豐富，植物種類多且富變化性，尤其每年由秋季到春季時，都有楓葉轉紅、落葉的美麗景色可欣賞，觀賞期長，是北台灣最好的賞楓去處。",
+        "highlights": [
+          "豐富的自然生態搭與互動AR設施，更身歷其境體驗生態"
+        ]
+      },
+      "price": 80,
+      "specialPrice": null,
+      "city": "newTaipei",
+      "location": {
+        "country": "台灣",
+        "city": "新北"
+      },
+      "geocode": {
+        "lat": 24.8303912,
+        "lng": 121.444704
+      },
+      "policy": {
+        "check": "立即確認",
+        "refund": null,
+        "time": null,
+        "cancel": "不可取消",
+        "rule": "現場請出示 QR code"
+      },
+      "placeTitle": "滿月圓國家森林遊樂區",
+      "address": "新北市三峽區有木里174-1號",
+      "rating": 3.9,
+      "ratingCount": 42,
+      "orderCount": 123,
+      "planOption": [
+        {
+          "id": 114,
+          "title": "台灣三峽｜滿月圓國家森林遊樂區門票",
+          "price": 80,
+          "ticketTime": null,
+          "ticketTypes": [
+            {
+              "name": "成人",
+              "limit": "",
+              "price": 80
+            }
+          ]
+        }
+      ]
     }
   ]
 }

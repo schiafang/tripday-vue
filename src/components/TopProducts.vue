@@ -32,7 +32,8 @@
               <i class="fa fa-flash title-flash"></i>{{ product.title }}
             </div>
             <div class="card-ordered">
-              <i class="fab fa-hotjar"></i> 15K+ 已訂購
+              <i class="fab fa-hotjar"></i>
+              {{ product.orderCount | orderCount }} 已訂購
             </div>
             <div class="card-place">
               <i class="fas fa-map-marker-alt"></i>
@@ -61,14 +62,14 @@
 /* eslint-disable */
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-import { productSlide } from './../utils/mixins'
+import { productSlide, orderCount } from './../utils/mixins'
 import Star from './Star'
 import Price from './Price'
 
 export default {
   name: 'TopProducts',
   components: { VueSlickCarousel, Star, Price },
-  mixins: [productSlide],
+  mixins: [productSlide, orderCount],
   props: {
     products: {
       type: Array,
