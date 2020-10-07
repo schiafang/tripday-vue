@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+// import axios from 'axios'
 import authorizationAPI from '../apis/authorization'
 import createPersistedState from "vuex-persistedstate";
 import SecureLS from "secure-ls";
@@ -75,17 +75,22 @@ export default new Vuex.Store({
       }
     },
     async getCurrency(_, currency) {
-      const res = await axios.get(`http://data.fixer.io/api/latest?access_key=acbd6972196dcf75fac8c856311702c0&symbols=${currency},TWD&format=1`)
+      // const res = await axios.get(`https://data.fixer.io/api/latest?access_key=acbd6972196dcf75fac8c856311702c0&symbols=${currency},TWD&format=1`)
 
-      const TWD = res.data.rates.TWD
+      // const TWD = res.data.rates.TWD
       let exchange = 28.992198027261733
 
       if (currency === 'USD') {
-        if (res) {
-          exchange = TWD / res.data.rates.USD
-        }
+        // if (res) {
+        //   exchange = TWD / res.data.rates.USD
+        // }
         this.state.exchangeRate = exchange
         this.state.currentCurrency = 'USD'
+      }
+
+      if (currency === 'TWD') {
+        this.state.exchangeRate = 1
+        this.state.currentCurrency = 'TWD'
       }
     }
   },
