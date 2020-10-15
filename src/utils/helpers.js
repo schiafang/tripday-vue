@@ -1,12 +1,13 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
+const corsAnywhere = 'https://cors-anywhere.herokuapp.com/'
 
 export const axiosInstance = axios.create({
-  baseURL: 'https://tripday-api.herokuapp.com'
+  baseURL: `${corsAnywhere}https://tripday-api.herokuapp.com`
 })
 
 export const axiosInstanceJSON = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? 'https://tripday-json-server.vercel.app' : 'http://localhost:3000/'
+  baseURL: process.env.NODE_ENV === 'production' ? `${corsAnywhere}https://tripday-json-server.vercel.app` : 'http://localhost:3000/'
 })
 
 axiosInstance.interceptors.request.use(

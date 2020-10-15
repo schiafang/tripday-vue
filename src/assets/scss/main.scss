@@ -125,7 +125,6 @@ img[lazy=loaded] {
   }
 }
 
-/* dialog */
 .dialog-top {
   height: 8px;
   width: 100%;
@@ -150,13 +149,11 @@ img[lazy=loaded] {
   }
 }
 
-/** slick */
 .slick-slide {
   padding: 0 5px;
 }
 
 .slick-arrow {
-  // @include flexCenter;
   background-color: #fff;
   opacity: 0.7;
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.1);
@@ -204,14 +201,11 @@ img[lazy=loaded] {
   }
 }
 
-/*附註說明文字*/
 .caption-tag {
   font-size: .85rem;
   color: $main-gray;
-  // letter-spacing: 1px;
 }
 
-/*提示文字與動畫*/
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.3s ease-in-out;

@@ -18,5 +18,5 @@ export default {
   },
   getProducts() {
     return axiosInstanceJSON.get('/products')
-  },
+  }
 }

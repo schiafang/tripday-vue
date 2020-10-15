@@ -8,6 +8,6 @@ export default {
     return axiosInstance.post('/api/signup', { email, password, confirmPassword })
   },
   getCurrentUser() {
-    return axiosInstance.get('/get_current_user') //命名
+    return axiosInstance.get('/get_current_user')
   }
 }

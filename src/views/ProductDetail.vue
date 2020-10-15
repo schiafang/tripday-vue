@@ -96,7 +96,6 @@
       </div>
     </div>
 
-    <!--in-progress-->
     <div v-else class="in-progress-wrapper">
       <i class="fas fa-hammer"></i> In progress
     </div>
@@ -167,11 +166,11 @@ export default {
         this.plan.planOption = this.product.planOption
         this.title = `tripday - ${this.product.title}`
 
-        //取得 google map place ID
+        //fetch google map place ID
         const googlePlace = await placeDetailAPI.getPlaceID(this.product.placeTitle)
         const placeID = googlePlace.data.candidates[0].place_id
 
-        //取得 place detail 
+        //fetch place detail 
         const placeDetail = await placeDetailAPI.getPlaceDetail(placeID)
 
         if (placeDetail.data.result.opening_hours) {
@@ -188,7 +187,7 @@ export default {
         }))
 
         this.product.review = []
-        this.product.review.push(this.reviews[0]) //最新一則評論
+        this.product.review.push(this.reviews[0])
 
         let embedQuery = this.product.address || this.product.placeTitle
         this.googleEmbed = `https://www.google.com/maps/embed/v1/place?key=${process.env.VUE_APP_GOOGLEAPI}&q=${embedQuery}`
@@ -203,155 +202,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/_base.scss';
-
-.google-map {
-  width: 100%;
-  height: 400px;
-}
-
-.sidebar-menu {
-  display: none;
-}
-
-.description-block {
-  padding-bottom: 90px;
-  border-bottom: 1px solid $border-gray;
-}
-
-.description-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.description-place {
-  border: 1px solid $border-gray;
-  border-radius: 3px;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-
-  .place-title {
-    padding: 15px;
-    color: $main-gray;
-    font-size: 0.9rem;
-    border-bottom: 1px solid $border-gray;
-
-    span {
-      color: $main-black;
-      display: block;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-  }
-
-  .place-detail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-  }
-
-  .google-map-frame {
-    width: 100%;
-    height: 350px;
-    border-radius: 4px;
-    margin-bottom: 30px;
-  }
-
-  .place-detail-info {
-    margin: 15px 0;
-    width: 100%;
-    display: block;
-    font-size: 0.8rem;
-    line-height: 0.6rem;
-
-    span {
-      display: inline-block;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 15px;
-    }
-  }
-}
-
-.rating-info {
-  display: flex;
-  align-items: center;
-  border-bottom: 2px solid $border-gray;
-  padding-bottom: 15px;
-
-  .rating-box {
-    @include flexCenter;
-    @extend %userBackgroundGradient;
-    width: 55px;
-    height: 55px;
-    border-radius: 4px;
-    color: #fff;
-    margin: 15px 0;
-  }
-
-  .rating-star {
-    height: 55px;
-    font-size: 0.9rem;
-    font-weight: normal;
-    color: $main-gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
-
-.in-progress-wrapper {
-  height: 70vh;
-  color: #c26b63;
-  font-size: 36px;
-  text-align: center;
-  font-weight: 600;
-  padding-top: 170px;
-}
-
-@media screen and (min-width: 996px) {
-  .product-description {
-    display: flex;
-    flex-direction: row;
-    padding: 30px 0;
-  }
-
-  .product-description-container {
-    width: calc(100% - 250px);
-    padding-right: 15px;
-  }
-
-  .sidebar-menu {
-    display: block;
-    padding-left: 30px;
-    position: relative;
-    top: 20px;
-
-    &.affix {
-      position: fixed;
-      top: 20px;
-    }
-  }
-
-  .scrollactive-item {
-    color: $main-gray;
-    display: block;
-    padding: 0 15px;
-    margin-bottom: 15px;
-    border-left: 5px solid transparent;
-
-    &:hover {
-      color: $main-blue;
-    }
-
-    &.is-active {
-      color: $main-blue;
-      font-weight: 500;
-      border-left: 5px solid $main-blue;
-    }
-  }
-}
+@import '../assets/scss/product-detail.scss';
 </style>
