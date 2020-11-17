@@ -21,7 +21,6 @@
         <span>
           {{ product.title }}
         </span>
-
         <div class="heart-wrapper">
           <FavoriteHeart :id="product.id" />
         </div>

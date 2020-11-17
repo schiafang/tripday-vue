@@ -1,8 +1,8 @@
-@import 'base';
+@import "base";
 
 .v-alert {
   margin-top: 15px;
-  transition: display .3s ease-in-out;
+  transition: display 0.3s ease-in-out;
 }
 
 .product-option-plan {
@@ -19,8 +19,8 @@
 
 .plan-content {
   border-radius: 6px;
-  background-color: #FFF;
-  box-shadow: 3px 5px 10px 8px rgba(100,100,100,.1);
+  background-color: #fff;
+  box-shadow: 3px 5px 10px 8px rgba(100, 100, 100, 0.1);
   width: 100%;
   padding: 20px;
   margin-bottom: 5px;
@@ -30,7 +30,8 @@ hr {
   margin: 0 -20px;
 }
 
-.plan-title, .plan-subtitle {
+.plan-title,
+.plan-subtitle {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,18 +39,17 @@ hr {
   font-weight: 800;
   margin-bottom: 15px;
 
-
   .title-label {
     border-radius: 3px;
-    color: #FFF;
+    color: #fff;
     background-color: $pink;
-    font-size: .6rem;
+    font-size: 0.6rem;
     padding: 5px 8px;
     margin-left: 10px;
   }
 }
 
-.plan-subtitle  {
+.plan-subtitle {
   font-size: 1rem;
   margin-top: 30px;
 }
@@ -60,7 +60,7 @@ hr {
 }
 
 .ticket-type {
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: $main-gray;
 }
 
@@ -74,10 +74,10 @@ hr {
   margin: 15px 0;
   padding: 15px;
   white-space: nowrap;
-  
+
   div {
     display: inline-block;
-    font-size: .9rem;
+    font-size: 0.9rem;
     margin-right: 30px;
     padding: 10px;
     font-weight: normal;
@@ -89,7 +89,7 @@ hr {
 }
 
 .time-option-radio {
-  font-size: .9rem;
+  font-size: 0.9rem;
   display: flex;
   padding: 15px 0;
   flex-wrap: wrap;
@@ -98,13 +98,13 @@ hr {
     display: none;
 
     &:checked {
-      ~.radio-label {
-        color: #FFF;
+      ~ .radio-label {
+        color: #fff;
         background-color: $main-blue;
         position: relative;
 
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           top: 5px;
           right: 5px;
@@ -148,7 +148,7 @@ hr {
       font-weight: 900;
 
       span {
-        font-size: .8rem;
+        font-size: 0.8rem;
         font-weight: normal;
         color: rgb(136, 136, 136);
         margin-left: 5px;
@@ -156,7 +156,7 @@ hr {
     }
 
     .type-count span {
-      font-size: .9rem;
+      font-size: 0.9rem;
       font-weight: 500;
       color: rgb(151, 151, 151);
     }
@@ -169,7 +169,7 @@ hr {
     align-items: center;
     font-size: 1.2rem;
     margin-left: 10px;
-    
+
     button {
       width: 30px;
       height: 30px;
@@ -180,21 +180,21 @@ hr {
       font-weight: 400;
       position: relative;
       margin-left: 5px;
-  
+
       &:disabled {
-        opacity: .4;
+        opacity: 0.4;
       }
     }
-  
+
     .plus-btn::after {
-      content: '\002B';
+      content: "\002B";
       position: absolute;
       top: -8px;
       left: 5px;
     }
-  
+
     .minus-btn::after {
-      content: '\2212';
+      content: "\2212";
       position: absolute;
       top: -8px;
       left: 5px;
@@ -215,7 +215,7 @@ hr {
     font-weight: 500;
 
     span {
-      font-size: .9rem;
+      font-size: 0.9rem;
       color: $main-gray;
       font-weight: normal;
     }
@@ -227,8 +227,9 @@ hr {
     background-color: $main-blue;
     padding: 10px 15px;
     border-radius: 4px;
-    color: #FFF;
+    color: #fff;
     margin: 15px 0 0 10px;
+    position: relative;
 
     &:disabled {
       background-color: $border-gray;
@@ -237,7 +238,6 @@ hr {
 
   .cart-btn {
     background-color: rgb(88, 175, 114);
-
   }
 }
 
@@ -260,10 +260,10 @@ hr {
     display: grid;
     grid-template-columns: minmax(420px, 1fr) 50px 1fr;
     grid-template-rows: auto auto 1fr;
-    grid-template-areas: 
-    'date . time'
-    'date . type'
-    'date .  booking';
+    grid-template-areas:
+      "date . time"
+      "date . type"
+      "date .  booking";
 
     .date-option {
       grid-area: date;

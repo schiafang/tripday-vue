@@ -142,6 +142,7 @@ import { zh, en } from 'vuejs-datepicker/dist/locale'
 import moment from 'moment'
 import { currency } from './../utils/mixins'
 import { round, evaluate } from 'mathjs'
+import { mapState } from 'vuex'
 
 var dateTime = new Date()
 var state = {
@@ -202,6 +203,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['isAuthenticated']),
     getTicketType() {
       let typeTemp = []
       this.plan.planOption[0].ticketTypes.forEach((item, index) => {
@@ -235,6 +237,11 @@ export default {
       }
     },
     bookingNow(plan) {
+      if (!this.isAuthenticated) {
+        this.$EventBus.$emit('openSignForm', true)
+        return
+      }
+
       const { date, time, totalPrice } = this.bookingDetail
 
       if (!date || !totalPrice) {

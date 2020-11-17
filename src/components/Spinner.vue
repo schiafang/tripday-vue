@@ -2,9 +2,9 @@
   <div class="spinner-content">
     <v-progress-circular
       indeterminate
-      color="rgba(34, 146, 164, 1)"
-      size="60"
-      width="6"
+      color="#2292A4"
+      size="40"
+      width="8"
     ></v-progress-circular>
   </div>
 </template>

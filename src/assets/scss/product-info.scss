@@ -1,4 +1,4 @@
-@import 'base';
+@import "base";
 
 .product-info {
   width: 100%;
@@ -23,13 +23,14 @@
     line-height: 2rem;
     padding: 25px 10px 0 0;
     display: grid;
-    grid-template-columns: 1fr 50px;
+    grid-template-columns: 1fr 200px;
 
     span {
       grid-column: 1/2;
     }
 
     .heart-wrapper {
+      margin-right: 50px;
       height: 50px;
       grid-column: 2/3;
     }
@@ -40,7 +41,7 @@
     padding: 30px 0;
 
     i {
-      opacity: .5;
+      opacity: 0.5;
       margin-right: 10px;
     }
   }
@@ -58,43 +59,43 @@
       white-space: nowrap;
     }
   }
-    
-  .description {
-      margin: 30px 0;
-      padding-right: 30px;
 
-      .hightlights {
-        margin: 30px 0;
-      }
+  .description {
+    margin: 30px 0;
+    padding-right: 30px;
+
+    .hightlights {
+      margin: 30px 0;
+    }
   }
 }
 
 .product-comment {
+  display: flex;
+  flex-direction: column;
+
+  .top {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 
-    .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .more {
+      margin-right: 5px;
+      color: $main-gray;
+      font-size: 0.9rem;
 
-      .more {
-        margin-right: 5px;
-        color: $main-gray;
-        font-size: .9rem;
-
-        &:hover {
-          cursor: pointer;
-        }
+      &:hover {
+        cursor: pointer;
       }
     }
+  }
 }
 
 .product-booking-col {
-    width: 100%;
-    margin: 30px 0;
+  width: 100%;
+  margin: 30px 0;
 }
-  
+
 .booking-card {
   border: 1px solid $border-gray;
   padding: 15px;
@@ -108,20 +109,20 @@
 
     .price-now {
       font-size: 1.2rem;
-      font-family: 'Varela Round', sans-serif;
+      font-family: "Varela Round", sans-serif;
       font-weight: 700;
       margin-right: 10px;
     }
 
     .original {
-      font-size: .9rem;
+      font-size: 0.9rem;
       text-decoration: line-through;
     }
   }
 
   .score {
     margin: 10px 0;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: $main-gray;
     display: flex;
     align-items: center;
@@ -136,14 +137,14 @@
   .plan-btn {
     height: 50px;
     font-weight: 500;
-      
+
     &:hover {
-      opacity: .8;
+      opacity: 0.8;
     }
   }
 
   .bottom {
-    font-size: .9rem;
+    font-size: 0.9rem;
     margin-top: 15px;
   }
 }
@@ -151,7 +152,7 @@
 .no-plan-option {
   @include flexCenter;
   height: 300px;
-  
+
   span {
     font-size: 1.3rem;
     text-align: center;
@@ -162,18 +163,17 @@
     padding-top: 65px;
     border-radius: 50%;
     background-color: $border-gray;
-    color: #FFF;
+    color: #fff;
   }
 }
 
 @media screen and (min-width: 996px) {
-
   .product-info {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 300px;
-    grid-template-rows: auto 350px minmax(300px,1fr) auto;
-    grid-template-areas: 'breadcrumbs .' 'cover cover' 'content right' 'comment .';
+    grid-template-rows: auto 350px minmax(300px, 1fr) auto;
+    grid-template-areas: "breadcrumbs ." "cover cover" "content right" "comment .";
   }
 
   .breadcrumbs {
@@ -205,7 +205,7 @@
       }
     }
   }
-  
+
   .product-comment {
     grid-area: comment;
     min-height: 260px;
@@ -215,5 +215,4 @@
     grid-area: right;
     height: auto;
   }
-
 }
