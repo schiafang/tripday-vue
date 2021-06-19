@@ -69,7 +69,7 @@
 <script>
 import productAPI from '../apis/product'
 import GoogleMapsApiLoader from 'google-maps-api-loader'
-import Star from '../components/Star.vue'
+import Star from './Star.vue'
 import { mapState } from 'vuex'
 import { currency } from './../utils/mixins'
 
