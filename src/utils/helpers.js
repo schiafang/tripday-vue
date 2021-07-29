@@ -4,9 +4,6 @@ const corsAnywhere = 'https://cors.bridged.cc/'
 
 export const axiosInstance = axios.create({
   baseURL: `${corsAnywhere}https://tripday-api.herokuapp.com`,
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-  },
 })
 
 export const axiosInstanceJSON = axios.create({
