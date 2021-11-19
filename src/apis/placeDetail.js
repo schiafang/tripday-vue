@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const corsAnywhere = 'https://cors-anywhere.herokuapp.com/'
+const corsAnywhere = 'https://cors.bridged.cc/'
 
 const googleInstance = axios.create({
   baseURL: corsAnywhere + 'https://maps.googleapis.com/maps/api/',
