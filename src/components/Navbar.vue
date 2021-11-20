@@ -52,7 +52,7 @@
       >
         <router-link to="/user" @click="hideNavList">
           <div class="nav-item-user">
-            <img :src="user.avatar" alt="avatar" class="user-image" />
+            <img :src="user.avatar ? user.avatar:'https://i.imgur.com/hyCLvT0.png'" alt="avatar" class="user-image" />
             <span class="user-name">
               {{ user.name || user.email }}
             </span>
@@ -117,7 +117,7 @@
 
       <div v-if="!isSmallWindow && isAuthenticated" class="nav-item nav-user">
         <img
-          :src="user.avatar"
+          :src="user.avatar ? user.avatar:'https://i.imgur.com/hyCLvT0.png'"
           alt="avatar"
           class="user-image"
           @click="toggleDeskTopNavList"

@@ -86,18 +86,23 @@ export default new Vuex.Store({
       }
     },
     async getCurrency(_, currency) {
+      /* eslint-disable */
+      // Chrome block http
       const res = await axios.get(
         `http://data.fixer.io/api/latest?access_key=acbd6972196dcf75fac8c856311702c0&symbols=${currency},TWD&format=1`
       )
+      // const TWD = res.data.rates.TWD
 
-      const TWD = res.data.rates.TWD
+      let TWD = 31.358573
+      let USD = 1.128026
+
       let exchange = 28.992198027261733
 
       if (currency === 'USD') {
-        if (res) {
-          exchange = TWD / res.data.rates.USD
-        }
-
+        // if (res) {
+        //   exchange = TWD / res.data.rates.USD
+        // }
+        exchange = TWD / USD
         this.state.exchangeRate = exchange
         this.state.currentCurrency = 'USD'
       }
